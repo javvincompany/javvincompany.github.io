@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Javvin Press</title>
+<meta name="description" content="Javvin Press — 图书 · 文章 · 作者 / Books · Articles · Author">
+<style>
+  :root {
+    --paper: #faf7f1;
+    --ink: #2b2620;
+    --muted: #8a8177;
+    --accent: #9a6b3f;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Songti SC", "Noto Serif SC", "STSong", Georgia, serif;
+    background: var(--paper);
+    color: var(--ink);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+  }
+  .lang-switch {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    display: flex;
+    gap: 0.25rem;
+    border: 1px solid #d8d0c2;
+    border-radius: 999px;
+    overflow: hidden;
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+  .lang-switch button {
+    border: none;
+    background: transparent;
+    padding: 0.45rem 1rem;
+    font-size: 0.85rem;
+    cursor: pointer;
+    color: var(--muted);
+  }
+  .lang-switch button.active {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .brand {
+    font-size: clamp(2.5rem, 7vw, 4.5rem);
+    letter-spacing: 0.12em;
+    font-weight: 600;
+  }
+  .rule {
+    width: 64px;
+    height: 2px;
+    background: var(--accent);
+    margin: 1.75rem auto;
+  }
+  .tagline {
+    font-size: clamp(1rem, 2.6vw, 1.3rem);
+    letter-spacing: 0.35em;
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+    text-indent: 0.35em;
+  }
+  .notice {
+    font-size: clamp(0.95rem, 2.4vw, 1.1rem);
+    line-height: 2;
+    color: var(--ink);
+  }
+  footer {
+    position: absolute;
+    bottom: 1.5rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    letter-spacing: 0.1em;
+  }
+  [lang="en"] { display: none; }
+  body.en [lang="en"] { display: block; }
+  body.en [lang="zh"] { display: none; }
+  body.en { font-family: Georgia, "Times New Roman", serif; }
+</style>
+</head>
+<body>
+  <div class="lang-switch">
+    <button id="btn-zh" class="active" onclick="setLang('zh')">中文</button>
+    <button id="btn-en" onclick="setLang('en')">EN</button>
+  </div>
+
+  <main>
+    <h1 class="brand">Javvin Press</h1>
+    <div class="rule"></div>
+    <p class="tagline" lang="zh">图 书 · 文 章 · 作 者</p>
+    <p class="tagline" lang="en">BOOKS · ARTICLES · AUTHOR</p>
+    <p class="notice" lang="zh">网站正在建设中，敬请期待。</p>
+    <p class="notice" lang="en">This website is under construction.<br>Please check back soon.</p>
+  </main>
+
+  <footer>© 2026 Javvin Press</footer>
+
+<script>
+  function setLang(l) {
+    document.body.classList.toggle('en', l === 'en');
+    document.getElementById('btn-zh').classList.toggle('active', l === 'zh');
+    document.getElementById('btn-en').classList.toggle('active', l === 'en');
+    document.documentElement.lang = l === 'en' ? 'en' : 'zh-CN';
+  }
+</script>
+</body>
+</html>
