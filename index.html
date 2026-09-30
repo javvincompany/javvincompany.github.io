@@ -3,104 +3,212 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Javvin Press</title>
-<meta name="description" content="Javvin Press — 图书 · 文章 · 作者 / Books · Articles · Author">
+<title>Javvin Press — 图书 · Books</title>
+<meta name="description" content="Javvin Press — 董洁林作品：《欲望的力量：人类科技创新简史》（第二版）/ The Power of Desire: A Brief History of Human Technological Innovation">
 <style>
   :root {
+    --navy: #101722;
+    --navy2: #16202e;
     --paper: #faf7f1;
     --ink: #2b2620;
+    --gold: #c9a35c;
     --muted: #8a8177;
-    --accent: #9a6b3f;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: "Songti SC", "Noto Serif SC", "STSong", Georgia, serif;
     background: var(--paper);
     color: var(--ink);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 2rem;
+    line-height: 1.8;
   }
-  .lang-switch {
-    position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
+  body.en { font-family: Georgia, "Times New Roman", serif; }
+
+  header {
+    background: var(--navy);
+    color: var(--paper);
+    padding: 1rem 2rem;
     display: flex;
-    gap: 0.25rem;
-    border: 1px solid #d8d0c2;
-    border-radius: 999px;
-    overflow: hidden;
-    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .logo { font-size: 1.25rem; letter-spacing: 0.15em; font-weight: 600; }
+  nav { display: flex; gap: 1.75rem; align-items: center; font-size: 0.95rem; }
+  nav a { color: #cfc8ba; text-decoration: none; letter-spacing: 0.1em; }
+  nav a:hover { color: var(--gold); }
+  .lang-switch {
+    display: flex; gap: 0.25rem;
+    border: 1px solid #3a4657; border-radius: 999px; overflow: hidden;
   }
   .lang-switch button {
-    border: none;
-    background: transparent;
-    padding: 0.45rem 1rem;
-    font-size: 0.85rem;
-    cursor: pointer;
-    color: var(--muted);
-  }
-  .lang-switch button.active {
-    background: var(--ink);
-    color: var(--paper);
-  }
-  .brand {
-    font-size: clamp(2.5rem, 7vw, 4.5rem);
-    letter-spacing: 0.12em;
-    font-weight: 600;
-  }
-  .rule {
-    width: 64px;
-    height: 2px;
-    background: var(--accent);
-    margin: 1.75rem auto;
-  }
-  .tagline {
-    font-size: clamp(1rem, 2.6vw, 1.3rem);
-    letter-spacing: 0.35em;
-    color: var(--muted);
-    margin-bottom: 2.5rem;
-    text-indent: 0.35em;
-  }
-  .notice {
-    font-size: clamp(0.95rem, 2.4vw, 1.1rem);
-    line-height: 2;
-    color: var(--ink);
-  }
-  footer {
-    position: absolute;
-    bottom: 1.5rem;
-    font-size: 0.8rem;
-    color: var(--muted);
+    border: none; background: transparent; color: #9aa4b2;
+    padding: 0.35rem 0.9rem; font-size: 0.8rem; cursor: pointer;
     font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
-    letter-spacing: 0.1em;
   }
+  .lang-switch button.active { background: var(--gold); color: var(--navy); }
+
+  .hero {
+    background: linear-gradient(160deg, var(--navy) 0%, var(--navy2) 70%);
+    color: var(--paper);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 3.5rem;
+    padding: 4rem 2rem 5rem;
+  }
+  .hero img {
+    width: min(340px, 70vw);
+    border-radius: 4px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.55);
+  }
+  .hero-text { max-width: 520px; }
+  .badge {
+    display: inline-block;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 0.8rem;
+    letter-spacing: 0.25em;
+    padding: 0.3rem 1rem;
+    border-radius: 999px;
+    margin-bottom: 1.5rem;
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+  .hero-text h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.4;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.75rem;
+  }
+  .hero-text h1 .sub { color: var(--gold); }
+  .hero-text .en-title {
+    font-size: clamp(1rem, 2.4vw, 1.25rem);
+    color: #b9c0cb;
+    font-style: italic;
+    margin-bottom: 1.75rem;
+    line-height: 1.6;
+  }
+  .meta { list-style: none; font-size: 1rem; color: #d8d2c4; }
+  .meta li { margin: 0.4rem 0; }
+  .meta .k { color: var(--muted); display: inline-block; min-width: 4.5em; }
+  body.en .meta .k { min-width: 7em; }
+
+  section.block { max-width: 860px; margin: 0 auto; padding: 4rem 2rem; }
+  section.block h2 {
+    font-size: 1.5rem; letter-spacing: 0.3em; text-indent: 0.3em;
+    text-align: center; margin-bottom: 2rem;
+  }
+  section.block h2::after {
+    content: ""; display: block; width: 48px; height: 2px;
+    background: var(--gold); margin: 1rem auto 0;
+  }
+  .soon {
+    text-align: center; color: var(--muted);
+    border: 1px dashed #d8d0c2; border-radius: 8px;
+    padding: 3rem 1.5rem;
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+  .book-card {
+    display: flex; flex-wrap: wrap; gap: 2.5rem;
+    align-items: flex-start; justify-content: center;
+  }
+  .book-card img {
+    width: min(240px, 60vw); border-radius: 4px;
+    box-shadow: 0 16px 40px rgba(16,23,34,0.25);
+  }
+  .book-info { max-width: 440px; }
+  .book-info h3 { font-size: 1.6rem; letter-spacing: 0.1em; margin-bottom: 0.25rem; }
+  .book-info .en { color: var(--muted); font-style: italic; margin-bottom: 1.25rem; }
+  .book-info p { color: var(--muted); font-size: 0.95rem; }
+
+  footer {
+    background: var(--navy); color: #8f99a6;
+    text-align: center; padding: 2.5rem 1.5rem;
+    font-size: 0.85rem; letter-spacing: 0.08em;
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+  footer a { color: var(--gold); text-decoration: none; }
+
   [lang="en"] { display: none; }
   body.en [lang="en"] { display: block; }
   body.en [lang="zh"] { display: none; }
-  body.en { font-family: Georgia, "Times New Roman", serif; }
+  span[lang="en"], span[lang="zh"] { display: inline; }
+  body.en span[lang="en"] { display: inline; }
+  body.en span[lang="zh"] { display: none; }
 </style>
 </head>
 <body>
-  <div class="lang-switch">
-    <button id="btn-zh" class="active" onclick="setLang('zh')">中文</button>
-    <button id="btn-en" onclick="setLang('en')">EN</button>
+
+<header>
+  <div class="logo">Javvin Press</div>
+  <nav>
+    <a href="#books"><span lang="zh">图书</span><span lang="en">Books</span></a>
+    <a href="#articles"><span lang="zh">文章</span><span lang="en">Articles</span></a>
+    <a href="#about"><span lang="zh">关于</span><span lang="en">About</span></a>
+    <div class="lang-switch">
+      <button id="btn-zh" class="active" onclick="setLang('zh')">中文</button>
+      <button id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
+  </nav>
+</header>
+
+<div class="hero">
+  <img src="assets/covers/cover-3d.jpg" alt="《欲望的力量：人类科技创新简史》（第二版）封面">
+  <div class="hero-text">
+    <span class="badge" lang="zh">第 二 版</span>
+    <span class="badge" lang="en">SECOND EDITION</span>
+    <h1 lang="zh">欲望的力量<br><span class="sub">人类科技创新简史</span></h1>
+    <h1 lang="en">The Power of Desire<br><span class="sub">A Brief History of Human Technological Innovation</span></h1>
+    <p class="en-title" lang="zh">The Power of Desire: A Brief History of Human Technological Innovation</p>
+    <ul class="meta">
+      <li lang="zh"><span class="k">作者</span>董洁林 著</li>
+      <li lang="en"><span class="k">Author</span>Jielin Dong</li>
+      <li lang="zh"><span class="k">出版</span>Javvin Company</li>
+      <li lang="en"><span class="k">Publisher</span>Javvin Company</li>
+    </ul>
   </div>
+</div>
 
-  <main>
-    <h1 class="brand">Javvin Press</h1>
-    <div class="rule"></div>
-    <p class="tagline" lang="zh">图 书 · 文 章 · 作 者</p>
-    <p class="tagline" lang="en">BOOKS · ARTICLES · AUTHOR</p>
-    <p class="notice" lang="zh">网站正在建设中，敬请期待。</p>
-    <p class="notice" lang="en">This website is under construction.<br>Please check back soon.</p>
-  </main>
+<section class="block" id="books">
+  <h2 lang="zh">图书</h2>
+  <h2 lang="en">Books</h2>
+  <div class="book-card">
+    <img src="assets/covers/cover-front.jpg" alt="《欲望的力量：人类科技创新简史》（第二版）封面">
+    <div class="book-info">
+      <h3 lang="zh">欲望的力量：人类科技创新简史</h3>
+      <h3 lang="en">The Power of Desire: A Brief History of Human Technological Innovation</h3>
+      <p class="en" lang="zh">（第二版）董洁林 著 · Javvin Company</p>
+      <p class="en" lang="en">Second Edition · by Jielin Dong · Javvin Company</p>
+      <p lang="zh">内容简介与购买方式即将公布，敬请期待。</p>
+      <p lang="en">Description and purchase information coming soon.</p>
+    </div>
+  </div>
+</section>
 
-  <footer>© 2026 Javvin Press</footer>
+<section class="block" id="articles">
+  <h2 lang="zh">文章</h2>
+  <h2 lang="en">Articles</h2>
+  <div class="soon">
+    <p lang="zh">文章列表即将上线，敬请期待。</p>
+    <p lang="en">Article list coming soon.</p>
+  </div>
+</section>
+
+<section class="block" id="about">
+  <h2 lang="zh">关于</h2>
+  <h2 lang="en">About</h2>
+  <div class="soon">
+    <p lang="zh">作者简介即将上线，敬请期待。</p>
+    <p lang="en">Author bio coming soon.</p>
+    <p style="margin-top:1rem;"><span lang="zh">联系：</span><span lang="en">Contact: </span><a href="mailto:javvincompany@gmail.com" style="color:var(--gold);">javvincompany@gmail.com</a></p>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Javvin Press · <span lang="zh">版权所有</span><span lang="en">All rights reserved</span></p>
+</footer>
 
 <script>
   function setLang(l) {
