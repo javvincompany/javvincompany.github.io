@@ -34,7 +34,7 @@
     top: 0;
     z-index: 10;
   }
-  .logo { font-size: 1.25rem; letter-spacing: 0.15em; font-weight: 600; }
+  .logo img { height: 44px; width: auto; display: block; }
   nav { display: flex; gap: 1.75rem; align-items: center; font-size: 0.95rem; }
   nav a { color: #cfc8ba; text-decoration: none; letter-spacing: 0.1em; }
   nav a:hover { color: var(--gold); }
@@ -142,7 +142,7 @@
 <body>
 
 <header>
-  <div class="logo">Javvin Company</div>
+  <a class="logo" href="./" aria-label="Javvin Company"><img src="assets/javvin-wordmark.svg" alt="Javvin Company"></a>
   <nav>
     <a href="#books"><span lang="zh">图书</span><span lang="en">Books</span></a>
     <a href="#articles"><span lang="zh">文章</span><span lang="en">Articles</span></a>
