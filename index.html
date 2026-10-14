@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -141,7 +141,7 @@
   body.en span[lang="zh"] { display: none; }
 </style>
 </head>
-<body>
+<body class="en">
 
 <header>
   <a class="logo" href="./" aria-label="Javvin Company"><img src="assets/javvin-wordmark.svg" alt="Javvin Company"></a>
@@ -151,8 +151,8 @@
     <a href="#articles"><span lang="zh">文章</span><span lang="en">Articles</span></a>
     <a href="#about"><span lang="zh">关于</span><span lang="en">About</span></a>
     <div class="lang-switch">
-      <button id="btn-zh" class="active" onclick="setLang('zh')">中文</button>
-      <button id="btn-en" onclick="setLang('en')">EN</button>
+      <button id="btn-zh" onclick="setLang('zh')">中文</button>
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
     </div>
   </nav>
 </header>
