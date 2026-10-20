@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://javvincompany.github.io/sitemap.xml
