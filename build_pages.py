@@ -9,8 +9,9 @@
 import re, pathlib, json
 
 ROOT = pathlib.Path('/home/hatch/workspace/website')
-en_home = (ROOT / 'index.html').read_text()
-en_books = (ROOT / 'books.html').read_text()
+# Sources: the current /en/ and /zh/ trees (root files are redirect stubs now)
+en_home = (ROOT / 'en' / 'index.html').read_text()
+en_books = (ROOT / 'en' / 'books.html').read_text()
 zh_home = (ROOT / 'zh' / 'index.html').read_text()
 zh_books = (ROOT / 'zh' / 'books.html').read_text()
 
@@ -27,7 +28,7 @@ def footer(html):
     return re.search(r'<footer>.*?</footer>', html, re.S).group(0)
 
 def get_page(fname, zh=False):
-    return (ROOT / 'zh' / fname if zh else ROOT / fname).read_text()
+    return (ROOT / 'zh' / fname if zh else ROOT / 'en' / fname).read_text()
 
 BASE = 'https://javvincompany.github.io/'
 BOOK_JSONLD = {
@@ -158,9 +159,24 @@ def build(lang, out_dir):
     zh = (lang == 'zh')
     home = zh_home if zh else en_home
     books_pg = zh_books if zh else en_books
+    hero_html = hero(home)
+    # visible ISBN line in the hero meta list
+    isbn_li = ('<li><span class="k">ISBN</span>978-1-60267-030-3</li>' if zh
+               else '<li><span class="k">ISBN</span>978-1-60267-031-0</li>')
+    hero_html = hero_html.replace('</ul>', isbn_li + '\n</ul>', 1)
+    books_sec = section(books_pg, 'books')
+    # visible ISBN line in the book info
+    if zh:
+        books_sec = books_sec.replace(
+            '<p class="en">（第二版）董洁林 著 · Javvin Company</p>',
+            '<p class="en">（第二版）董洁林 著 · Javvin Company</p>\n<p class="en">纸质版 ISBN：978-1-60267-030-3</p>', 1)
+    else:
+        books_sec = books_sec.replace(
+            '<p class="en">by Jielin Dong · Javvin Company</p>',
+            '<p class="en">by Jielin Dong · Javvin Company</p>\n<p class="en">Print edition ISBN: 978-1-60267-031-0</p>', 1)
     bodies = {
-        'home': hero(home) + '\n' + cards(lang) + '\n' + footer(books_pg),
-        'books': section(books_pg, 'books') + '\n' + footer(books_pg),
+        'home': hero_html + '\n' + cards(lang) + '\n' + footer(books_pg),
+        'books': books_sec + '\n' + footer(books_pg),
         'posters': section(get_page('posters.html', zh), 'posters') + '\n' + footer(books_pg),
         'articles': section(get_page('articles.html', zh), 'articles') + '\n' + footer(books_pg),
         'about': section(get_page('about.html', zh), 'about') + '\n' + footer(books_pg),
