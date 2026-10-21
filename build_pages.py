@@ -33,6 +33,9 @@ if '.toc-row' not in EXTRA_CSS:
 if '.hero-tagline' not in EXTRA_CSS:
     EXTRA_CSS = EXTRA_CSS.replace('</style>',
         '  .hero-tagline { color: #e8e2d4; font-size: 1.05rem; line-height: 1.75; letter-spacing: 0.03em; margin: 1.25rem 0 0.25rem; }\n</style>')
+if 'body.en .hero-text h1' not in EXTRA_CSS:
+    EXTRA_CSS = EXTRA_CSS.replace('</style>',
+        '  body.en .hero-text h1 { font-size: clamp(1.7rem, 4.2vw, 2.6rem); }\n</style>')
 
 import json as _json
 def toc_block(lang):
