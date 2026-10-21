@@ -179,6 +179,16 @@ def build(lang, out_dir):
                '<p>Dr. Dong earned her Ph.D. in physics from Carnegie Mellon University in 1988 and her B.S. from Sun Yat-sen University in 1982. She went to the United States for graduate study through the highly competitive CUSPEA program.</p>\n'
                '</div>\n</section>')
     books_sec = books_sec + '\n' + bio
+    # return policy section after the author bio
+    if zh:
+        returns = ('<section class="block" id="returns">\n<h2>退货政策</h2>\n<div class="about-text">\n'
+                   '<p>电子产品（电子书与电子图谱）一经交付完成，概不退货退款。本店保证文件成功交付：如下载失败或文件损坏，将免费重新交付。印刷版由第三方零售商出售，其退货与退款依出售该印刷版之零售商的政策办理。</p>\n'
+                   '</div>\n</section>')
+    else:
+        returns = ('<section class="block" id="returns">\n<h2>Return Policy</h2>\n<div class="about-text">\n'
+                   '<p>All sales of digital products (ebooks and digital posters) are final upon completion of delivery; delivered digital products are non-refundable. We guarantee successful delivery of your files — if a download fails or a file is corrupted, we will re-deliver it at no additional charge. Print editions are sold through third-party retailers, and returns and refunds for print editions are governed by the policies of the retailer from which the print edition was purchased.</p>\n'
+                   '</div>\n</section>')
+    books_sec = books_sec + '\n' + returns
     # visible ISBN line in the book info
     if zh:
         books_sec = books_sec.replace(
