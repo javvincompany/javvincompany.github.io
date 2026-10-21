@@ -30,6 +30,9 @@ if '.toc-row' not in EXTRA_CSS:
         '  .praise { margin-bottom: 1.6rem; }\n'
         '  .praise p { font-size: 1.02rem; line-height: 1.75; }\n'
         '  .praise .who { color: var(--muted); margin-top: 0.3rem; font-size: 0.95rem; }\n</style>')
+if '.hero-tagline' not in EXTRA_CSS:
+    EXTRA_CSS = EXTRA_CSS.replace('</style>',
+        '  .hero-tagline { color: #e8e2d4; font-size: 1.05rem; line-height: 1.75; letter-spacing: 0.03em; margin: 1.25rem 0 0.25rem; }\n</style>')
 
 import json as _json
 def toc_block(lang):
@@ -217,6 +220,11 @@ def build(lang, out_dir):
     home = zh_home if zh else en_home
     books_pg = zh_books if zh else en_books
     hero_html = hero(home)
+    # core tagline in the hero (strip earlier injected line first)
+    hero_html = re.sub(r'\n?<p class="hero-tagline">[^<]*</p>', '', hero_html)
+    hero_tag = ('<p class="hero-tagline">从吃饱穿暖到人工智能，沿着人类欲望的线索，重新理解科技如何改变社会和历史。</p>\n' if zh
+                else '<p class="hero-tagline">From food and clothing to artificial intelligence — following the thread of human desire to rethink how technology changes society and history.</p>\n')
+    hero_html = hero_html.replace('<a class="hero-btn"', hero_tag + '<a class="hero-btn"', 1)
     # visible ISBN line in the hero meta list (strip earlier injected lines first)
     hero_html = re.sub(r'\n?<li><span class="k">ISBN</span>[^<]*</li>', '', hero_html)
     isbn_li = ('<li><span class="k">ISBN</span>978-1-60267-030-3</li>' if zh
