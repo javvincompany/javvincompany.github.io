@@ -187,6 +187,17 @@
   .praise .who { color: var(--muted); margin-top: 0.3rem; font-size: 0.95rem; }
   .hero-tagline { color: #e8e2d4; font-size: 1.05rem; line-height: 1.75; letter-spacing: 0.03em; margin: 1.25rem 0 0.25rem; }
   body.en .hero-text h1 { font-size: clamp(1.7rem, 4.2vw, 2.6rem); }
+  .hero-btn.alt { background: transparent; border: 1px solid var(--gold); color: var(--gold); margin-left: 0.5rem; }
+  @media (max-width: 640px) {
+    header { padding: 0.75rem 1rem; }
+    .logo img { height: 44px; }
+    nav { flex-wrap: wrap; gap: 0.5rem 0.9rem; justify-content: flex-end; }
+    nav a, .lang-switch a { white-space: nowrap; }
+    .hero { flex-direction: column; padding: 2rem 1.25rem 3rem; gap: 1.5rem; }
+    .hero-text { order: -1; }
+    .hero img { width: min(190px, 55vw); }
+    .hero-btn.alt { margin-left: 0; margin-top: 0.75rem; }
+  }
 </style>
 </head>
 <body>

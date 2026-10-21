@@ -218,6 +218,17 @@
   .praise .who { color: var(--muted); margin-top: 0.3rem; font-size: 0.95rem; }
   .hero-tagline { color: #e8e2d4; font-size: 1.05rem; line-height: 1.75; letter-spacing: 0.03em; margin: 1.25rem 0 0.25rem; }
   body.en .hero-text h1 { font-size: clamp(1.7rem, 4.2vw, 2.6rem); }
+  .hero-btn.alt { background: transparent; border: 1px solid var(--gold); color: var(--gold); margin-left: 0.5rem; }
+  @media (max-width: 640px) {
+    header { padding: 0.75rem 1rem; }
+    .logo img { height: 44px; }
+    nav { flex-wrap: wrap; gap: 0.5rem 0.9rem; justify-content: flex-end; }
+    nav a, .lang-switch a { white-space: nowrap; }
+    .hero { flex-direction: column; padding: 2rem 1.25rem 3rem; gap: 1.5rem; }
+    .hero-text { order: -1; }
+    .hero img { width: min(190px, 55vw); }
+    .hero-btn.alt { margin-left: 0; margin-top: 0.75rem; }
+  }
 </style>
 </head>
 <body class="en">
@@ -241,6 +252,7 @@
 
 <p class="hero-tagline">From food and clothing to artificial intelligence — following the thread of human desire to rethink how technology changes society and history.</p>
 <a class="hero-btn" href="books.html">Explore the Book</a>
+<a class="hero-btn alt" href="https://payhip.com/b/RXgzv" rel="noopener" target="_blank">Read a Free Sample</a>
 <ul class="meta">
 
 <li><span class="k">Author</span>Jielin Dong</li>
@@ -253,14 +265,14 @@
 
 <div class="cards">
 <a class="card" href="books.html"><h3>Books</h3><p>The Power of Desire — ebook (PDF) sold here.</p></a>
-<a class="card" href="posters.html"><h3>Posters</h3><p>Digital posters — download the PDF and print it yourself.</p></a>
+<a class="card" href="posters.html"><h3>Posters</h3><p>Coming soon.</p></a>
 <a class="card" href="articles.html"><h3>Articles</h3><p>Forewords by Xue Lan, Yan Yan, and Sun Xiaochun.</p></a>
 <a class="card" href="about.html"><h3>About</h3><p>About Javvin Company and how to reach us.</p></a>
 </div>
 <section class="block" id="praise">
 <h2>Praise for the Book</h2>
-<div class="praise"><p>“Elegant prose, compelling stories, and rigorous analysis—an achievement that invites comparison with Sapiens.”</p><p class="who">— Lan Xue, Dean of Schwarzman College, Tsinghua University</p></div>
-<div class="praise"><p>“The history of technological invention from the perspective of those who use technology, making it feel tangible and refreshingly new.”</p><p class="who">— Xiaochun Sun, Professor, University of Chinese Academy of Sciences</p></div>
+<div class="praise"><p>“Elegant prose, compelling stories, and rigorous analysis—an achievement that invites comparison with Sapiens.”</p><p class="who">— Xue Lan, Dean of Schwarzman College, Tsinghua University</p></div>
+<div class="praise"><p>“The history of technological invention from the perspective of those who use technology, making it feel tangible and refreshingly new.”</p><p class="who">— Sun Xiaochun, Professor, University of Chinese Academy of Sciences</p></div>
 <div class="praise"><p>“Vivid, accessible language and stories rooted in everyday life ... showing how the world we live in came to be—and who brought it into being.”</p><p class="who">— Zhiwu Chen, Chair Professor of Finance, The University of Hong Kong</p></div>
 <div class="praise"><p>“The quiet voices in the long tail of the spectrum of ideas become especially precious, because the future holds countless possibilities.”</p><p class="who">— Yan Yan, Founding Managing Partner, SAIF Partners</p></div>
 <div class="praise"><p>“Dong weaves human needs into the historical warp and data analysis into the logical weft to examine how science and technology have shaped human history.”</p><p class="who">— Guosheng Wu, Chair, Department of the History of Science, Tsinghua University</p></div>

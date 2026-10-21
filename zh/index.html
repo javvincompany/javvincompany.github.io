@@ -218,6 +218,17 @@
   .praise .who { color: var(--muted); margin-top: 0.3rem; font-size: 0.95rem; }
   .hero-tagline { color: #e8e2d4; font-size: 1.05rem; line-height: 1.75; letter-spacing: 0.03em; margin: 1.25rem 0 0.25rem; }
   body.en .hero-text h1 { font-size: clamp(1.7rem, 4.2vw, 2.6rem); }
+  .hero-btn.alt { background: transparent; border: 1px solid var(--gold); color: var(--gold); margin-left: 0.5rem; }
+  @media (max-width: 640px) {
+    header { padding: 0.75rem 1rem; }
+    .logo img { height: 44px; }
+    nav { flex-wrap: wrap; gap: 0.5rem 0.9rem; justify-content: flex-end; }
+    nav a, .lang-switch a { white-space: nowrap; }
+    .hero { flex-direction: column; padding: 2rem 1.25rem 3rem; gap: 1.5rem; }
+    .hero-text { order: -1; }
+    .hero img { width: min(190px, 55vw); }
+    .hero-btn.alt { margin-left: 0; margin-top: 0.75rem; }
+  }
 </style>
 </head>
 <body>
@@ -240,6 +251,7 @@
 
 <p class="hero-tagline">从吃饱穿暖到人工智能，沿着人类欲望的线索，重新理解科技如何改变社会和历史。</p>
 <a class="hero-btn" href="books.html">了解本书</a>
+<a class="hero-btn alt" href="https://payhip.com/b/P4XcA" rel="noopener" target="_blank">免费试读</a>
 <ul class="meta">
 <li><span class="k">作者</span>董洁林 著</li>
 
@@ -252,7 +264,7 @@
 
 <div class="cards">
 <a class="card" href="books.html"><h3>书籍</h3><p>《欲望的力量：人类科技创新简史》（第二版）电子版。</p></a>
-<a class="card" href="posters.html"><h3>图谱</h3><p>电子图谱 — 下载高清 PDF，自行打印装裱。</p></a>
+<a class="card" href="posters.html"><h3>图谱</h3><p>即将上线。</p></a>
 <a class="card" href="articles.html"><h3>文章</h3><p>薛澜、阎焱、孙小淳三篇推荐序。</p></a>
 <a class="card" href="about.html"><h3>关于</h3><p>Javvin 公司简介与联系方式。</p></a>
 </div>

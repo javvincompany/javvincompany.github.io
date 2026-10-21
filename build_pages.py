@@ -36,6 +36,19 @@ if '.hero-tagline' not in EXTRA_CSS:
 if 'body.en .hero-text h1' not in EXTRA_CSS:
     EXTRA_CSS = EXTRA_CSS.replace('</style>',
         '  body.en .hero-text h1 { font-size: clamp(1.7rem, 4.2vw, 2.6rem); }\n</style>')
+if 'hero-btn.alt' not in EXTRA_CSS:
+    EXTRA_CSS = EXTRA_CSS.replace('</style>',
+        '  .hero-btn.alt { background: transparent; border: 1px solid var(--gold); color: var(--gold); margin-left: 0.5rem; }\n'
+        '  @media (max-width: 640px) {\n'
+        '    header { padding: 0.75rem 1rem; }\n'
+        '    .logo img { height: 44px; }\n'
+        '    nav { flex-wrap: wrap; gap: 0.5rem 0.9rem; justify-content: flex-end; }\n'
+        '    nav a, .lang-switch a { white-space: nowrap; }\n'
+        '    .hero { flex-direction: column; padding: 2rem 1.25rem 3rem; gap: 1.5rem; }\n'
+        '    .hero-text { order: -1; }\n'
+        '    .hero img { width: min(190px, 55vw); }\n'
+        '    .hero-btn.alt { margin-left: 0; margin-top: 0.75rem; }\n'
+        '  }\n</style>')
 
 import json as _json
 def toc_block(lang):
@@ -52,8 +65,8 @@ def toc_block(lang):
 
 PRAISE = {
     'en': [
-        ('Elegant prose, compelling stories, and rigorous analysis—an achievement that invites comparison with Sapiens.', 'Lan Xue', 'Dean of Schwarzman College, Tsinghua University'),
-        ('The history of technological invention from the perspective of those who use technology, making it feel tangible and refreshingly new.', 'Xiaochun Sun', 'Professor, University of Chinese Academy of Sciences'),
+        ('Elegant prose, compelling stories, and rigorous analysis—an achievement that invites comparison with Sapiens.', 'Xue Lan', 'Dean of Schwarzman College, Tsinghua University'),
+        ('The history of technological invention from the perspective of those who use technology, making it feel tangible and refreshingly new.', 'Sun Xiaochun', 'Professor, University of Chinese Academy of Sciences'),
         ('Vivid, accessible language and stories rooted in everyday life ... showing how the world we live in came to be—and who brought it into being.', 'Zhiwu Chen', 'Chair Professor of Finance, The University of Hong Kong'),
         ('The quiet voices in the long tail of the spectrum of ideas become especially precious, because the future holds countless possibilities.', 'Yan Yan', 'Founding Managing Partner, SAIF Partners'),
         ('Dong weaves human needs into the historical warp and data analysis into the logical weft to examine how science and technology have shaped human history.', 'Guosheng Wu', 'Chair, Department of the History of Science, Tsinghua University'),
@@ -177,12 +190,12 @@ def head(lang, page, fname, title, desc, og_title):
 def cards(lang):
     if lang == 'en':
         items = [('books.html', 'Books', 'The Power of Desire — ebook (PDF) sold here.'),
-                 ('posters.html', 'Posters', 'Digital posters — download the PDF and print it yourself.'),
+                 ('posters.html', 'Posters', 'Coming soon.'),
                  ('articles.html', 'Articles', 'Forewords by Xue Lan, Yan Yan, and Sun Xiaochun.'),
                  ('about.html', 'About', 'About Javvin Company and how to reach us.')]
     else:
         items = [('books.html', '书籍', '《欲望的力量：人类科技创新简史》（第二版）电子版。'),
-                 ('posters.html', '图谱', '电子图谱 — 下载高清 PDF，自行打印装裱。'),
+                 ('posters.html', '图谱', '即将上线。'),
                  ('articles.html', '文章', '薛澜、阎焱、孙小淳三篇推荐序。'),
                  ('about.html', '关于', 'Javvin 公司简介与联系方式。')]
     inner = '\n'.join('<a class="card" href="%s"><h3>%s</h3><p>%s</p></a>' % i for i in items)
@@ -228,6 +241,15 @@ def build(lang, out_dir):
     hero_tag = ('<p class="hero-tagline">从吃饱穿暖到人工智能，沿着人类欲望的线索，重新理解科技如何改变社会和历史。</p>\n' if zh
                 else '<p class="hero-tagline">From food and clothing to artificial intelligence — following the thread of human desire to rethink how technology changes society and history.</p>\n')
     hero_html = hero_html.replace('<a class="hero-btn"', hero_tag + '<a class="hero-btn"', 1)
+    # free-sample button next to the explore button (strip earlier injected one first)
+    hero_html = re.sub(r'\n?<a class="hero-btn alt"[^>]*>[^<]*</a>', '', hero_html)
+    if zh:
+        sample_btn = '\n<a class="hero-btn alt" href="https://payhip.com/b/P4XcA" rel="noopener" target="_blank">免费试读</a>'
+        explore = '<a class="hero-btn" href="books.html">了解本书</a>'
+    else:
+        sample_btn = '\n<a class="hero-btn alt" href="https://payhip.com/b/RXgzv" rel="noopener" target="_blank">Read a Free Sample</a>'
+        explore = '<a class="hero-btn" href="books.html">Explore the Book</a>'
+    hero_html = hero_html.replace(explore, explore + sample_btn, 1)
     # visible ISBN line in the hero meta list (strip earlier injected lines first)
     hero_html = re.sub(r'\n?<li><span class="k">ISBN</span>[^<]*</li>', '', hero_html)
     isbn_li = ('<li><span class="k">ISBN</span>978-1-60267-030-3</li>' if zh
