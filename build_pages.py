@@ -160,7 +160,8 @@ def build(lang, out_dir):
     home = zh_home if zh else en_home
     books_pg = zh_books if zh else en_books
     hero_html = hero(home)
-    # visible ISBN line in the hero meta list
+    # visible ISBN line in the hero meta list (strip earlier injected lines first)
+    hero_html = re.sub(r'\n?<li><span class="k">ISBN</span>[^<]*</li>', '', hero_html)
     isbn_li = ('<li><span class="k">ISBN</span>978-1-60267-030-3</li>' if zh
                else '<li><span class="k">ISBN</span>978-1-60267-031-0</li>')
     hero_html = hero_html.replace('</ul>', isbn_li + '\n</ul>', 1)
@@ -189,15 +190,16 @@ def build(lang, out_dir):
                    '<p>All sales of digital products (ebooks and digital posters) are final upon completion of delivery; delivered digital products are non-refundable. We guarantee successful delivery of your files — if a download fails or a file is corrupted, we will re-deliver it at no additional charge. Print editions are sold through third-party retailers, and returns and refunds for print editions are governed by the policies of the retailer from which the print edition was purchased.</p>\n'
                    '</div>\n</section>')
     books_sec = books_sec + '\n' + returns
-    # visible ISBN line in the book info
+    # visible ISBN line in the book info (strip earlier injected lines first)
+    books_sec = re.sub(r'\n?<p class="en">(Print edition ISBN:|纸质版 ISBN：|ISBN[:：])[^<]*</p>', '', books_sec)
     if zh:
         books_sec = books_sec.replace(
             '<p class="en">（第二版）董洁林 著 · Javvin Company</p>',
-            '<p class="en">（第二版）董洁林 著 · Javvin Company</p>\n<p class="en">纸质版 ISBN：978-1-60267-030-3</p>', 1)
+            '<p class="en">（第二版）董洁林 著 · Javvin Company</p>\n<p class="en">ISBN：978-1-60267-030-3</p>', 1)
     else:
         books_sec = books_sec.replace(
             '<p class="en">by Jielin Dong · Javvin Company</p>',
-            '<p class="en">by Jielin Dong · Javvin Company</p>\n<p class="en">Print edition ISBN: 978-1-60267-031-0</p>', 1)
+            '<p class="en">by Jielin Dong · Javvin Company</p>\n<p class="en">ISBN: 978-1-60267-031-0</p>', 1)
     bodies = {
         'home': hero_html + '\n' + cards(lang) + '\n' + footer(books_pg),
         'books': books_sec + '\n' + footer(books_pg),
