@@ -16,10 +16,64 @@ zh_home = (ROOT / 'zh' / 'index.html').read_text()
 zh_books = (ROOT / 'zh' / 'books.html').read_text()
 
 STYLE = re.search(r'<style>.*?</style>', en_home, re.S).group(0)
+# smaller covers (idempotent: match whatever current values are)
+STYLE = re.sub(r'(\.hero img \{\s*width: min\()\d+px', r'\g<1>280px', STYLE)
+STYLE = re.sub(r'(\.book-card img \{\s*width: min\()\d+px', r'\g<1>180px', STYLE)
 EXTRA_CSS = re.search(r'<style>\s*\.cards.*?</style>', en_home, re.S).group(0)
 if '.tagline' not in EXTRA_CSS:
     EXTRA_CSS = EXTRA_CSS.replace('</style>',
         '  .tagline { font-size: 1.08rem; color: var(--ink); letter-spacing: 0.03em; line-height: 1.7; margin: 0.25rem 0 1rem; }\n</style>')
+if '.toc-row' not in EXTRA_CSS:
+    EXTRA_CSS = EXTRA_CSS.replace('</style>',
+        '  .toc-row { display: flex; justify-content: space-between; gap: 1rem; padding: 0.12rem 0; }\n'
+        '  .toc-part { font-weight: bold; margin-top: 0.9rem; }\n'
+        '  .praise { margin-bottom: 1.6rem; }\n'
+        '  .praise p { font-size: 1.02rem; line-height: 1.75; }\n'
+        '  .praise .who { color: var(--muted); margin-top: 0.3rem; font-size: 0.95rem; }\n</style>')
+
+import json as _json
+def toc_block(lang):
+    data = _json.loads((ROOT / ('toc-zh.json' if lang == 'zh' else 'toc-en.json')).read_text())
+    rows = []
+    for e in data:
+        t = e['title']
+        is_part = bool(re.match(r'^(VIII|VII|VI|IV|V|III|II|I)\s', t)) and not t.startswith(('Chapter', '第'))
+        cls = 'toc-row toc-part' if is_part else 'toc-row'
+        rows.append('<div class="%s"><span>%s</span><span>%s</span></div>' % (cls, t, e['page']))
+    label = '目录' if lang == 'zh' else 'Table of Contents'
+    return ('<section class="block" id="toc">\n<details class="foreword">\n<summary><span>%s</span></summary>\n<div>\n%s\n</div>\n</details>\n</section>'
+            % (label, '\n'.join(rows)))
+
+PRAISE = {
+    'en': [
+        ('Elegant prose, compelling stories, and rigorous analysis—an achievement that invites comparison with Sapiens.', 'Lan Xue', 'Dean of Schwarzman College, Tsinghua University'),
+        ('The history of technological invention from the perspective of those who use technology, making it feel tangible and refreshingly new.', 'Xiaochun Sun', 'Professor, University of Chinese Academy of Sciences'),
+        ('Vivid, accessible language and stories rooted in everyday life ... showing how the world we live in came to be—and who brought it into being.', 'Zhiwu Chen', 'Chair Professor of Finance, The University of Hong Kong'),
+        ('The quiet voices in the long tail of the spectrum of ideas become especially precious, because the future holds countless possibilities.', 'Yan Yan', 'Founding Managing Partner, SAIF Partners'),
+        ('Dong weaves human needs into the historical warp and data analysis into the logical weft to examine how science and technology have shaped human history.', 'Guosheng Wu', 'Chair, Department of the History of Science, Tsinghua University'),
+        ('Through quantitative analysis and exceptionally well-grounded arguments, the book offers illuminating answers.', 'Weigang Wan', 'Science Writer'),
+    ],
+    'zh': [
+        ('把传统的科技创新编年史解构，再用优美的文笔、引人入胜的故事和严谨的学术分析按照新的体系重建。', '薛澜', '清华大学苏世民书院院长'),
+        ('以技术使用者的角度，观察和体会人类技术的发明创造历史，使人感到真切且耳目一新。', '孙小淳', '中国科学院大学人文学院教授'),
+        ('以通俗鲜活的语言和生活化故事讲解一次次科技创新，让你了解今天我们生活的世界是怎么来的、是谁带来的。', '陈志武', '香港大学金融学讲席教授'),
+        ('思想谱系分布长尾里的微弱声音就格外弥足珍贵，因为未来有无数可能性。', '阎焱', '赛富基金创始管理合伙人'),
+        ('以人的需求为历史经线，以科技史的数据分析为逻辑纬线，透视科学技术对人类历史的影响，别具一格，值得关注！', '吴国盛', '清华大学科学史系主任'),
+        ('这本书使用量化分析的科学方法、极其扎实的论证，给了我很好的答案。', '万维钢', '科学作家'),
+    ],
+}
+
+def praise_block(lang):
+    items = PRAISE[lang]
+    label = '各界推荐' if lang == 'zh' else 'Praise for the Book'
+    parts = ['<section class="block" id="praise">\n<h2>%s</h2>' % label]
+    for q, name, aff in items:
+        if lang == 'zh':
+            parts.append('<div class="praise"><p>“%s”</p><p class="who">——%s · %s</p></div>' % (q, name, aff))
+        else:
+            parts.append('<div class="praise"><p>“%s”</p><p class="who">— %s, %s</p></div>' % (q, name, aff))
+    parts.append('</section>')
+    return '\n'.join(parts)
 
 def section(html, sid):
     return re.search(r'<section class="block" id="%s">.*?</section>' % sid, html, re.S).group(0)
@@ -182,7 +236,7 @@ def build(lang, out_dir):
                '<p>Dr. Dong has held academic and research appointments at Tsinghua University and Soochow University. At Tsinghua, she has served as a part-time research fellow at the China Institute for Science and Technology Policy and as a part-time professor and academic committee member at the Research Center for Technological Innovation. At Soochow, she has served as a distinguished professor and director of the Center for Enterprise Innovation and Development. Her career also includes management roles at technology companies, including Lucent, Cisco, and Network Associates, as well as positions in financial services and scientific research institutes. She has served on the boards of several technology startups.</p>\n'
                '<p>Dr. Dong earned her Ph.D. in physics from Carnegie Mellon University in 1988 and her B.S. from Sun Yat-sen University in 1982. She went to the United States for graduate study through the highly competitive CUSPEA program.</p>\n'
                '</div>\n</section>')
-    books_sec = books_sec + '\n' + bio
+    books_sec = books_sec + '\n' + toc_block(lang) + '\n' + praise_block(lang) + '\n' + bio
     # return policy lives on the About page (moved there 2026-10-21 at her request)
     if zh:
         returns = ('<section class="block" id="returns">\n<h2>退货政策</h2>\n<div class="about-text">\n'
