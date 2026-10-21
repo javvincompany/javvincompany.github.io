@@ -258,7 +258,7 @@ def build(lang, out_dir):
             '<p class="en">by Jielin Dong · Javvin Company</p>',
             '<p class="en">by Jielin Dong · Javvin Company</p>\n<p class="en">ISBN: 978-1-60267-031-0</p>\n<p class="tagline">From food and clothing to artificial intelligence — following the thread of human desire to rethink how technology changes society and history.</p>', 1)
     bodies = {
-        'home': hero_html + '\n' + cards(lang) + '\n' + footer(books_pg),
+        'home': hero_html + '\n' + cards(lang) + '\n' + praise_block(lang) + '\n' + footer(books_pg),
         'books': books_sec + '\n' + footer(books_pg),
         'posters': section(get_page('posters.html', zh), 'posters') + '\n' + footer(books_pg),
         'articles': section(get_page('articles.html', zh), 'articles') + '\n' + footer(books_pg),
