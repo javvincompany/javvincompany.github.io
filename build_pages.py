@@ -165,6 +165,20 @@ def build(lang, out_dir):
                else '<li><span class="k">ISBN</span>978-1-60267-031-0</li>')
     hero_html = hero_html.replace('</ul>', isbn_li + '\n</ul>', 1)
     books_sec = section(books_pg, 'books')
+    # author bio section after the book introduction
+    if zh:
+        bio = ('<section class="block" id="author">\n<h2>作者简介</h2>\n<div class="about-text">\n'
+               '<p>董洁林博士是一位学者和评论家，研究领域涵盖科技史、创新政策与全球科技竞争。她是《华尔街日报》和《金融时报》中文版的长期撰稿人，发表文章众多，并著有五部著作。</p>\n'
+               '<p>董博士曾在清华大学和苏州大学担任学术与研究职务。在清华大学，她曾任中国科学学与科技政策研究院兼职研究员，并任技术创新研究中心兼职教授、学术委员会委员。在苏州大学，她曾任特聘教授、企业创新与发展研究中心主任。她的职业生涯还包括在朗讯、思科、Network Associates 等科技公司担任管理职务，以及在金融服务机构和科研院所任职。她曾出任多家科技初创企业的董事。</p>\n'
+               '<p>董博士 1988 年获卡内基梅隆大学物理学博士学位，1982 年获中山大学学士学位。她通过竞争极为激烈的 CUSPEA（中美联合培养物理研究生）项目赴美攻读研究生。</p>\n'
+               '</div>\n</section>')
+    else:
+        bio = ('<section class="block" id="author">\n<h2>About the Author</h2>\n<div class="about-text">\n'
+               '<p>Dr. Jielin Dong is a scholar and commentator whose work spans the history of science and technology, innovation policy, and global technology competition. She is a regular contributor to the Chinese editions of The Wall Street Journal and the Financial Times. She has published numerous articles and five books.</p>\n'
+               '<p>Dr. Dong has held academic and research appointments at Tsinghua University and Soochow University. At Tsinghua, she has served as a part-time research fellow at the China Institute for Science and Technology Policy and as a part-time professor and academic committee member at the Research Center for Technological Innovation. At Soochow, she has served as a distinguished professor and director of the Center for Enterprise Innovation and Development. Her career also includes management roles at technology companies, including Lucent, Cisco, and Network Associates, as well as positions in financial services and scientific research institutes. She has served on the boards of several technology startups.</p>\n'
+               '<p>Dr. Dong earned her Ph.D. in physics from Carnegie Mellon University in 1988 and her B.S. from Sun Yat-sen University in 1982. She went to the United States for graduate study through the highly competitive CUSPEA program.</p>\n'
+               '</div>\n</section>')
+    books_sec = books_sec + '\n' + bio
     # visible ISBN line in the book info
     if zh:
         books_sec = books_sec.replace(
