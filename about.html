@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About — Javvin Company</title>
+<meta content="Javvin Company is an independent publisher in San Francisco, specializing in books and posters on technological innovation." name="description"/>
+<meta content="UjqM5b327ctUoN0HMQ91Dvwp_7B0VCA48ALKU27OKyU" name="google-site-verification"/>
+<link href="https://javvincompany.github.io/about.html" rel="canonical"/><link href="https://javvincompany.github.io/about.html" hreflang="x-default" rel="alternate"/><link href="https://javvincompany.github.io/zh/about.html" hreflang="zh" rel="alternate"/><link href="https://javvincompany.github.io/about.html" hreflang="en" rel="alternate"/>
+<meta content="website" property="og:type"/>
+<meta content="Javvin Company" property="og:site_name"/>
+<meta content="Javvin Company — About" property="og:title"/>
+<meta content="Javvin Company is an independent publisher in San Francisco, specializing in books and posters on technological innovation." property="og:description"/>
+<meta content="https://javvincompany.github.io/about.html" property="og:url"/>
+<meta content="https://javvincompany.github.io/assets/covers/cover-en-front.jpg" property="og:image"/>
+<style>
+  :root {
+    --navy: #101722;
+    --navy2: #16202e;
+    --paper: #faf7f1;
+    --ink: #2b2620;
+    --gold: #c9a35c;
+    --muted: #8a8177;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Songti SC", "Noto Serif SC", "STSong", Georgia, serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.8;
+  }
+  body.en { font-family: Georgia, "Times New Roman", serif; }
+
+  header {
+    background: var(--navy);
+    color: var(--paper);
+    padding: 1rem 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .logo img { height: 64px; width: auto; display: block; }
+  nav { display: flex; gap: 1.75rem; align-items: center; font-size: 0.95rem; }
+  nav a { color: #cfc8ba; text-decoration: none; letter-spacing: 0.1em; }
+  nav a:hover { color: var(--gold); }
+  .lang-switch {
+    display: flex; gap: 0.25rem;
+    border: 1px solid #3a4657; border-radius: 999px; overflow: hidden;
+  }
+  .lang-switch a {
+    border: none; background: transparent; color: #9aa4b2;
+    padding: 0.35rem 0.9rem; font-size: 0.8rem; cursor: pointer;
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+  .lang-switch a.active { background: var(--gold); color: var(--navy); }
+
+  .hero {
+    background: linear-gradient(160deg, var(--navy) 0%, var(--navy2) 70%);
+    color: var(--paper);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 3.5rem;
+    padding: 4rem 2rem 5rem;
+  }
+  .hero img {
+    width: min(340px, 70vw);
+    border-radius: 4px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.55);
+  }
+  .hero-text { max-width: 520px; }
+  .badge {
+    display: inline-block;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 0.8rem;
+    letter-spacing: 0.25em;
+    padding: 0.3rem 1rem;
+    border-radius: 999px;
+    margin-bottom: 1.5rem;
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+  .hero-text h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.4;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.75rem;
+  }
+  .hero-text h1 .sub { color: var(--gold); }
+  .hero-text .en-title {
+    font-size: clamp(1rem, 2.4vw, 1.25rem);
+    color: #b9c0cb;
+    font-style: italic;
+    margin-bottom: 1.75rem;
+    line-height: 1.6;
+  }
+  .meta { list-style: none; font-size: 1rem; color: #d8d2c4; }
+  .meta li { margin: 0.4rem 0; }
+  .meta .k { color: var(--muted); display: inline-block; min-width: 4.5em; }
+  body.en .meta .k { min-width: 7em; }
+
+  section.block { max-width: 860px; margin: 0 auto; padding: 4rem 2rem; }
+  section.block h2 {
+    font-size: 1.5rem; letter-spacing: 0.3em; text-indent: 0.3em;
+    text-align: center; margin-bottom: 2rem;
+  }
+  section.block h2::after {
+    content: ""; display: block; width: 48px; height: 2px;
+    background: var(--gold); margin: 1rem auto 0;
+  }
+  .soon {
+    text-align: center; color: var(--muted);
+    border: 1px dashed #d8d0c2; border-radius: 8px;
+    padding: 3rem 1.5rem;
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+  .book-card {
+    display: flex; flex-wrap: wrap; gap: 2.5rem;
+    align-items: flex-start; justify-content: center;
+  }
+  .book-card img {
+    width: min(240px, 60vw); border-radius: 4px;
+    box-shadow: 0 16px 40px rgba(16,23,34,0.25);
+  }
+  .book-info { max-width: 440px; }
+  .book-info h3 { font-size: 1.6rem; letter-spacing: 0.1em; margin-bottom: 0.25rem; }
+  .book-info .en { color: var(--muted); font-style: italic; margin-bottom: 1.25rem; }
+  .book-info p { color: var(--muted); font-size: 0.95rem; }
+  .buy-btn {
+    display: inline-block; margin: 0.9rem 0 1.4rem;
+    background: var(--gold); color: var(--navy);
+    padding: 0.6rem 1.6rem; border-radius: 999px;
+    text-decoration: none; font-size: 0.95rem; letter-spacing: 0.05em;
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+  .buy-btn:hover { opacity: 0.88; }
+  .sample-link { margin: -0.4rem 0 1.2rem; font-size: 0.92rem;
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; }
+  .sample-link a { color: #96762e; }
+  .foreword {
+    border: 1px solid #e2dacc; border-radius: 8px;
+    padding: 1.25rem 1.5rem; margin-bottom: 1.25rem; background: #fffdf8;
+  }
+  .foreword summary { cursor: pointer; font-size: 1.02rem; letter-spacing: 0.03em; line-height: 1.8; }
+  .foreword summary:hover { color: var(--gold); }
+  .foreword h3 { font-size: 1.28rem; letter-spacing: 0.05em; margin: 1.5rem 0 0.3rem; }
+  .foreword .byline { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.25rem; }
+  .foreword p { margin-bottom: 1rem; }
+
+  .about-text p { margin-bottom: 1.25rem; }
+  .about-text p:last-child { margin-bottom: 0; }
+
+  footer {
+    background: var(--navy); color: #8f99a6;
+    text-align: center; padding: 2.5rem 1.5rem;
+    font-size: 0.85rem; letter-spacing: 0.08em;
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+  footer a { color: var(--gold); text-decoration: none; }
+
+  .lang-switch a { text-decoration: none; display: inline-block; }
+</style>
+<style>
+  .cards { max-width: 860px; margin: 0 auto; padding: 3.5rem 2rem 4rem;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 1.25rem; }
+  .card { border: 1px solid #e2dacc; border-radius: 8px; background: #fffdf8;
+    padding: 1.75rem 1.25rem; text-align: center; text-decoration: none; color: var(--ink); }
+  .card:hover { border-color: var(--gold); }
+  .card h3 { font-size: 1.15rem; letter-spacing: 0.2em; margin-bottom: 0.5rem; }
+  .card p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+  .hero-btn { display: inline-block; margin-top: 1.5rem; background: var(--gold); color: var(--navy);
+    padding: 0.6rem 1.6rem; border-radius: 999px; text-decoration: none; font-size: 0.95rem;
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; }
+  .hero-btn:hover { opacity: 0.88; }
+</style>
+</head>
+<body class="en">
+<header>
+<a aria-label="Javvin Company" class="logo" href="./"><img alt="Javvin Company" src="assets/javvin-wordmark.svg"/></a>
+<nav>
+<a href="books.html"><span>Books</span></a>
+<a href="posters.html"><span>Posters</span></a>
+<a href="articles.html"><span>Articles</span></a>
+<a href="about.html"><span>About</span></a>
+<div class="lang-switch"><a class="active" href="about.html">EN</a><a href="/zh/about.html">中文</a></div>
+</nav>
+</header>
+<section class="block" id="about">
+
+<h2>About</h2>
+<div class="about-text">
+
+<p>Javvin Company is an independent publisher based in San Francisco, specializing in books and posters on technological innovation. More than twenty years ago, Javvin's printed technology books and knowledge posters were beloved by readers; today, Javvin returns with a digital-first approach, publishing every work in both Chinese and English editions. The ebooks and digital posters sold here are delivered as high-resolution PDF files, available for download immediately after purchase. Print editions are available via print-on-demand on Amazon and other websites.</p>
+<p style="margin-top:1rem;"><span>Contact: </span><a href="mailto:javvincompany@gmail.com" style="color:var(--gold);">javvincompany@gmail.com</a></p>
+</div>
+</section>
+<footer>
+<p>© 2026 Javvin Company · <span>All rights reserved</span></p>
+</footer>
+</body>
+</html>
