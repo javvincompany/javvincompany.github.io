@@ -17,6 +17,9 @@ zh_books = (ROOT / 'zh' / 'books.html').read_text()
 
 STYLE = re.search(r'<style>.*?</style>', en_home, re.S).group(0)
 EXTRA_CSS = re.search(r'<style>\s*\.cards.*?</style>', en_home, re.S).group(0)
+if '.tagline' not in EXTRA_CSS:
+    EXTRA_CSS = EXTRA_CSS.replace('</style>',
+        '  .tagline { font-size: 1.08rem; color: var(--ink); letter-spacing: 0.03em; line-height: 1.7; margin: 0.25rem 0 1rem; }\n</style>')
 
 def section(html, sid):
     return re.search(r'<section class="block" id="%s">.*?</section>' % sid, html, re.S).group(0)
@@ -191,14 +194,15 @@ def build(lang, out_dir):
                    '</div>\n</section>')
     # visible ISBN line in the book info (strip earlier injected lines first)
     books_sec = re.sub(r'\n?<p class="en">(Print edition ISBN:|纸质版 ISBN：|ISBN[:：])[^<]*</p>', '', books_sec)
+    books_sec = re.sub(r'\n?<p class="tagline">[^<]*</p>', '', books_sec)
     if zh:
         books_sec = books_sec.replace(
             '<p class="en">（第二版）董洁林 著 · Javvin Company</p>',
-            '<p class="en">（第二版）董洁林 著 · Javvin Company</p>\n<p class="en">ISBN：978-1-60267-030-3</p>', 1)
+            '<p class="en">（第二版）董洁林 著 · Javvin Company</p>\n<p class="en">ISBN：978-1-60267-030-3</p>\n<p class="tagline">从吃饱穿暖到人工智能，沿着人类欲望的线索，重新理解科技如何改变社会和历史。</p>', 1)
     else:
         books_sec = books_sec.replace(
             '<p class="en">by Jielin Dong · Javvin Company</p>',
-            '<p class="en">by Jielin Dong · Javvin Company</p>\n<p class="en">ISBN: 978-1-60267-031-0</p>', 1)
+            '<p class="en">by Jielin Dong · Javvin Company</p>\n<p class="en">ISBN: 978-1-60267-031-0</p>\n<p class="tagline">From food and clothing to artificial intelligence — following the thread of human desire to rethink how technology changes society and history.</p>', 1)
     bodies = {
         'home': hero_html + '\n' + cards(lang) + '\n' + footer(books_pg),
         'books': books_sec + '\n' + footer(books_pg),
