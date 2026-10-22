@@ -209,6 +209,11 @@
   .poster-lens { position: absolute; width: min(46%, 430px); aspect-ratio: 3/2; border: 4px solid #fff; border-radius: 4px; box-shadow: 0 14px 34px rgba(16,23,34,0.35); background-repeat: no-repeat; display: none; pointer-events: none; }
   .poster-viewer.ready .poster-lens { display: block; }
   .poster-hint { color: var(--muted); font-size: 0.95rem; text-align: center; margin-top: 0.6rem; }
+  .poster-price { font-size: 1.15rem; margin: 0.4rem 0 0.9rem; }
+  .poster-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 0.9rem 0 0.6rem; }
+  .poster-chips button { font: inherit; font-size: 0.92rem; padding: 0.35rem 0.95rem; border-radius: 999px; border: 1px solid var(--gold); background: transparent; color: var(--ink); cursor: pointer; }
+  .poster-chips button.active { background: var(--gold); color: #101722; }
+  .poster-detail img { width: 100%; border-radius: 6px; box-shadow: 0 10px 26px rgba(16,23,34,0.18); display: block; }
 </style>
 </head>
 <body class="en">
@@ -225,53 +230,42 @@
 <section class="block" id="posters">
 <h2>Posters</h2>
 <div class="poster-card">
-<div class="poster-viewer" id="poster-viewer">
-<img alt="Network Protocols Map — poster preview (intentionally blurred, with a sharp detail inset)" src="../assets/posters/network-protocols-map-promo.jpg"/>
-<div class="poster-lens" aria-hidden="true"></div>
-</div>
-<p class="poster-hint">Drag the sharp window — or move your mouse — to explore any part of the map.</p>
 <div class="poster-info">
 <h3>Network Protocols Map</h3>
 <p class="en">2009 Classic Edition · Revised 2026</p>
+<p class="poster-price">$19.99 · Digital download (PDF)</p>
+<a class="buy-btn" href="https://payhip.com/b/xO3uf" rel="noopener" target="_blank"><span>Buy the Digital Poster · $19.99</span></a>
+</div>
+<div class="poster-viewer"><img alt="Network Protocols Map — full poster preview (intentionally blurred)" src="../assets/posters/network-protocols-map-blur.jpg"/></div>
+<div class="poster-chips">
+<button class="active" data-detail="../assets/posters/network-protocols-map-detail-a.jpg" type="button">TCP/IP Services</button>
+<button data-detail="../assets/posters/network-protocols-map-detail-b.jpg" type="button">Routing &amp; Security</button>
+<button data-detail="../assets/posters/network-protocols-map-detail-c.jpg" type="button">WAN · ATM</button>
+</div>
+<div class="poster-detail"><img alt="Sharp detail from the Network Protocols Map" id="poster-detail-img" src="../assets/posters/network-protocols-map-detail-a.jpg"/></div>
+<p class="poster-hint">Selected sharp details — switch views with the buttons above.</p>
+<div class="poster-info">
 <p>Explore the layers and connections behind network communication—all in one map.</p>
 <p>Organized around the seven-layer OSI model and the four-layer TCP/IP model, the Network Protocols Map brings together technologies for the Internet, LANs, WANs, wireless networking, voice communication, storage networks, and security. Its visual layout helps readers locate protocols within the network stack and understand their relationships.</p>
 <p>Before 2010, Javvin sold tens of thousands of copies of this popular map. The 2026 revision preserves the classic structure while correcting terminology and technical descriptions, removing selected deprecated technologies, and introducing a softer color palette and a redesigned masthead.</p>
 <p>The map features core TCP/IP technologies alongside historical protocol families such as NetWare, AppleTalk, and SNA, offering a perspective on the evolution of networking. Retained legacy technologies appear in gray. This is a revision of the classic map, rather than a comprehensive catalog of today’s networking technologies.</p>
 <p>A reference and display poster for networking students, educators, engineers, and technology history enthusiasts—suited to classrooms, study areas, and workspaces.</p>
 <p>Digital download · Landscape, 36 × 24 inches (approx. 91.4 × 61 cm) · High-resolution 300 DPI PDF · Ready to print and frame</p>
+<p>English-language poster. Digital download; no physical item shipped.</p>
 <a class="buy-btn" href="https://payhip.com/b/xO3uf" rel="noopener" target="_blank"><span>Buy the Digital Poster · $19.99</span></a>
 </div>
 </div>
 <script>
 (function(){
-  var v = document.getElementById('poster-viewer'); if(!v) return;
-  var img = v.querySelector('img'), lens = v.querySelector('.poster-lens');
-  var DETAIL = '../assets/posters/network-protocols-map-detail.jpg';
-  var BLUR = '../assets/posters/network-protocols-map-blur.jpg';
-  var det = new Image();
-  det.onload = function(){
-    img.src = BLUR;
-    lens.style.backgroundImage = 'url(' + DETAIL + ')';
-    v.classList.add('ready');
-    move(v.clientWidth*0.68, v.clientHeight*0.60);
-  };
-  det.src = DETAIL;
-  function move(cx, cy){
-    var W = v.clientWidth, H = v.clientHeight, lw = lens.clientWidth, lh = lens.clientHeight;
-    if(!W || !lw) return;
-    var x = Math.max(lw/2, Math.min(W - lw/2, cx)), y = Math.max(lh/2, Math.min(H - lh/2, cy));
-    lens.style.left = (x - lw/2) + 'px'; lens.style.top = (y - lh/2) + 'px';
-    var k = det.naturalWidth / W;
-    lens.style.backgroundSize = (W*k) + 'px ' + (H*k) + 'px';
-    lens.style.backgroundPosition = (-(x*k - lw/2)) + 'px ' + (-(y*k - lh/2)) + 'px';
-  }
-  var down = false;
-  function pos(e){ var r = v.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; }
-  v.addEventListener('pointerdown', function(e){ down = true; try{ v.setPointerCapture(e.pointerId); }catch(_){} var q = pos(e); move(q[0], q[1]); e.preventDefault(); });
-  v.addEventListener('pointermove', function(e){ if(down || e.pointerType === 'mouse'){ var q = pos(e); move(q[0], q[1]); } });
-  v.addEventListener('pointerup', function(){ down = false; });
-  v.addEventListener('pointercancel', function(){ down = false; });
-  window.addEventListener('resize', function(){ var r = lens.getBoundingClientRect(), vr = v.getBoundingClientRect(); move(r.left - vr.left + r.width/2, r.top - vr.top + r.height/2); });
+  var img = document.getElementById('poster-detail-img'); if(!img) return;
+  var chips = document.querySelectorAll('.poster-chips button');
+  chips.forEach(function(b){
+    b.addEventListener('click', function(){
+      chips.forEach(function(x){ x.classList.remove('active'); });
+      b.classList.add('active');
+      img.src = b.getAttribute('data-detail');
+    });
+  });
 })();
 </script>
 </section>

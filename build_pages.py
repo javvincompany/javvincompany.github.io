@@ -64,6 +64,13 @@ if '.poster-viewer' not in EXTRA_CSS:
         '  .poster-lens { position: absolute; width: min(46%, 430px); aspect-ratio: 3/2; border: 4px solid #fff; border-radius: 4px; box-shadow: 0 14px 34px rgba(16,23,34,0.35); background-repeat: no-repeat; display: none; pointer-events: none; }\n'
         '  .poster-viewer.ready .poster-lens { display: block; }\n'
         '  .poster-hint { color: var(--muted); font-size: 0.95rem; text-align: center; margin-top: 0.6rem; }\n</style>')
+if '.poster-chips' not in EXTRA_CSS:
+    EXTRA_CSS = EXTRA_CSS.replace('</style>',
+        '  .poster-price { font-size: 1.15rem; margin: 0.4rem 0 0.9rem; }\n'
+        '  .poster-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 0.9rem 0 0.6rem; }\n'
+        '  .poster-chips button { font: inherit; font-size: 0.92rem; padding: 0.35rem 0.95rem; border-radius: 999px; border: 1px solid var(--gold); background: transparent; color: var(--ink); cursor: pointer; }\n'
+        '  .poster-chips button.active { background: var(--gold); color: #101722; }\n'
+        '  .poster-detail img { width: 100%; border-radius: 6px; box-shadow: 0 10px 26px rgba(16,23,34,0.18); display: block; }\n</style>')
 
 import json as _json
 def toc_block(lang):
