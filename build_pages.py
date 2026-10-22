@@ -57,6 +57,13 @@ if '.poster-card' not in EXTRA_CSS:
         '  .poster-info h3 { font-size: 1.5rem; letter-spacing: 0.06em; margin-bottom: 0.25rem; }\n'
         '  .poster-info .en { color: var(--muted); font-style: italic; margin-bottom: 1rem; }\n'
         '  .poster-info p { line-height: 1.75; margin-bottom: 0.9rem; }\n</style>')
+if '.poster-viewer' not in EXTRA_CSS:
+    EXTRA_CSS = EXTRA_CSS.replace('</style>',
+        '  .poster-viewer { position: relative; border-radius: 6px; overflow: hidden; box-shadow: 0 16px 40px rgba(16,23,34,0.22); line-height: 0; touch-action: none; cursor: grab; }\n'
+        '  .poster-viewer img { width: 100%; display: block; user-select: none; -webkit-user-drag: none; }\n'
+        '  .poster-lens { position: absolute; width: min(46%, 430px); aspect-ratio: 3/2; border: 4px solid #fff; border-radius: 4px; box-shadow: 0 14px 34px rgba(16,23,34,0.35); background-repeat: no-repeat; display: none; pointer-events: none; }\n'
+        '  .poster-viewer.ready .poster-lens { display: block; }\n'
+        '  .poster-hint { color: var(--muted); font-size: 0.95rem; text-align: center; margin-top: 0.6rem; }\n</style>')
 
 import json as _json
 def toc_block(lang):
