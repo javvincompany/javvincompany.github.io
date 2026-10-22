@@ -165,6 +165,18 @@ BOOK_JSONLD = {
 }
 
 
+
+def license_block(lang):
+    if lang == 'en':
+        return ('<section class="block" id="license">\n<h2>License Terms</h2>\n<div class="about-text">\n'
+                '<p><strong>Digital posters.</strong> Each purchase is a license for one buyer. Personal use: print up to 2 copies (at home, at a print shop, or through an online print service), displayed in one place — your home, one classroom, or one workplace. Institutions using a poster at multiple locations: please buy one license per location. Commercial use: please contact us at javvincompany@gmail.com. Please don’t share or pass on the file, upload it to a public website, or sell the file or printed copies.</p>\n'
+                '<p><strong>Ebooks.</strong> Each purchase is a license for one reader. You may read the ebook on your own devices. Please don’t share or pass on the file, upload it to a public website, or resell it.</p>\n'
+                '</div>\n</section>')
+    return ('<section class="block" id="license">\n<h2>授权条款</h2>\n<div class="about-text">\n'
+            '<p><strong>电子图谱。</strong>每次购买为一份授权，限购买者本人。个人使用：可打印不超过 2 份（在家、打印店或在线打印服务均可），展示于一处：家中、一个教室或一个工作场所。机构多点使用：请每个点购买一份授权。商用：请联系 javvincompany@gmail.com。请勿分享或转传文件、勿上传至任何公开网站、勿出售文件或印品。</p>\n'
+            '<p><strong>电子书。</strong>每次购买为一份授权，限购买者本人阅读，可在本人设备上使用。请勿分享或转传文件、勿上传至任何公开网站、勿转售。</p>\n'
+            '</div>\n</section>')
+
 def bottom_buy(lang):
     if lang == 'en':
         return ('<section class="block buy-bottom" id="buy-bottom">\n<div class="book-info">\n'
@@ -327,7 +339,7 @@ def build(lang, out_dir):
         'books': books_sec + '\n' + bottom_buy(lang) + '\n' + footer(books_pg),
         'posters': section(get_page('posters.html', zh), 'posters') + '\n' + footer(books_pg),
         'articles': section(get_page('articles.html', zh), 'articles') + '\n' + footer(books_pg),
-        'about': section(get_page('about.html', zh), 'about') + '\n' + returns + '\n' + footer(books_pg),
+        'about': section(get_page('about.html', zh), 'about') + '\n' + license_block(lang) + '\n' + returns + '\n' + footer(books_pg),
     }
     if lang == 'en':
         bodies = {k: v.replace('"assets/', '"../assets/') for k, v in bodies.items()}
