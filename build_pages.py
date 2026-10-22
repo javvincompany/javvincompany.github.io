@@ -18,7 +18,7 @@ zh_books = (ROOT / 'zh' / 'books.html').read_text()
 STYLE = re.search(r'<style>.*?</style>', en_home, re.S).group(0)
 # smaller covers (idempotent: match whatever current values are)
 STYLE = re.sub(r'(\.hero img \{\s*width: min\()\d+px', r'\g<1>280px', STYLE)
-STYLE = re.sub(r'(\.book-card img \{\s*width: min\()\d+px', r'\g<1>180px', STYLE)
+STYLE = re.sub(r'(\.book-card img \{\s*width: min\()\d+px', r'\g<1>150px', STYLE)
 EXTRA_CSS = re.search(r'<style>\s*\.cards.*?</style>', en_home, re.S).group(0)
 if '.tagline' not in EXTRA_CSS:
     EXTRA_CSS = EXTRA_CSS.replace('</style>',
@@ -71,6 +71,10 @@ if '.poster-chips' not in EXTRA_CSS:
         '  .poster-chips button { font: inherit; font-size: 0.92rem; padding: 0.35rem 0.95rem; border-radius: 999px; border: 1px solid var(--gold); background: transparent; color: var(--ink); cursor: pointer; }\n'
         '  .poster-chips button.active { background: var(--gold); color: #101722; }\n'
         '  .poster-detail img { width: 100%; border-radius: 6px; box-shadow: 0 10px 26px rgba(16,23,34,0.18); display: block; }\n</style>')
+if '.book-price' not in EXTRA_CSS:
+    EXTRA_CSS = EXTRA_CSS.replace('</style>',
+        '  .book-price { font-size: 1.2rem; margin: 0.6rem 0 0.4rem; }\n'
+        '  .buy-bottom { text-align: left; }\n</style>')
 
 import json as _json
 def toc_block(lang):
@@ -136,8 +140,8 @@ BOOK_JSONLD = {
         'author': {'@type': 'Person', 'name': 'Jielin Dong'},
         'publisher': {'@type': 'Organization', 'name': 'Javvin Company'},
         'inLanguage': 'en', 'isbn': '9781602670310',
-        'bookFormat': 'https://schema.org/Paperback', 'bookEdition': 'Second edition',
-        'numberOfPages': 482, 'datePublished': '2027-01-01',
+        'bookFormat': 'https://schema.org/EBook', 'bookEdition': 'Second edition',
+        'numberOfPages': 484,
         'image': BASE + 'assets/covers/cover-en-front.jpg',
         'url': BASE + 'en/books.html',
         'offers': {'@type': 'Offer', 'url': 'https://payhip.com/b/LdW15',
@@ -150,8 +154,8 @@ BOOK_JSONLD = {
         'author': {'@type': 'Person', 'name': '董洁林'},
         'publisher': {'@type': 'Organization', 'name': 'Javvin Company'},
         'inLanguage': 'zh', 'isbn': '9781602670303',
-        'bookFormat': 'https://schema.org/Paperback', 'bookEdition': '第二版',
-        'numberOfPages': 424, 'datePublished': '2027-01-01',
+        'bookFormat': 'https://schema.org/EBook', 'bookEdition': '第二版',
+        'numberOfPages': 426,
         'image': BASE + 'assets/covers/cover-front.jpg',
         'url': BASE + 'zh/books.html',
         'offers': {'@type': 'Offer', 'url': 'https://payhip.com/b/ioAfP',
@@ -159,6 +163,20 @@ BOOK_JSONLD = {
                    'availability': 'https://schema.org/InStock', 'category': '电子书（PDF）'},
     },
 }
+
+
+def bottom_buy(lang):
+    if lang == 'en':
+        return ('<section class="block buy-bottom" id="buy-bottom">\n<div class="book-info">\n'
+                '<p class="book-price">$12.99</p>\n'
+                '<a class="buy-btn" href="https://payhip.com/b/LdW15" rel="noopener" target="_blank"><span>Buy the English Ebook · $12.99</span></a>\n'
+                '<p class="sample-link"><a href="https://payhip.com/b/RXgzv" rel="noopener" target="_blank">Read a free sample (PDF, 19 pages)</a></p>\n'
+                '</div>\n</section>')
+    return ('<section class="block buy-bottom" id="buy-bottom">\n<div class="book-info">\n'
+            '<p class="book-price">$12.99</p>\n'
+            '<a class="buy-btn" href="https://payhip.com/b/ioAfP" rel="noopener" target="_blank"><span>购买中文电子版 · $12.99</span></a>\n'
+            '<p class="sample-link"><a href="https://payhip.com/b/P4XcA" rel="noopener" target="_blank">免费试读（18 页，填写邮箱领取）</a></p>\n'
+            '</div>\n</section>')
 
 def header(lang, page, fname):
     if lang == 'en':
@@ -191,6 +209,8 @@ def head(lang, page, fname, title, desc, og_title):
                   % json.dumps(BOOK_JSONLD[lang], ensure_ascii=False, indent=2))
     og_img = BASE + ('assets/covers/cover-en-front.jpg' if lang == 'en'
                      else 'assets/covers/cover-front.jpg')
+    if page == 'posters':
+        og_img = BASE + 'assets/posters/network-protocols-map-share.jpg'
     return f'''<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -232,8 +252,8 @@ META = {
                  EN_BOOK_DESC, 'Javvin Company — The Power of Desire: A Brief History of Scientific &amp; Technological Innovation'),
         'books': ('books.html', 'Books — Javvin Company', EN_BOOK_DESC,
                   'Javvin Company — The Power of Desire: A Brief History of Scientific &amp; Technological Innovation'),
-        'posters': ('posters.html', 'Posters — Javvin Company',
-                    'Digital posters (PDF) from Javvin Company — download and print yourself.', 'Javvin Company — Posters'),
+        'posters': ('posters.html', 'Network Protocols Map — Digital Poster | Javvin Company',
+                    'Digital posters (PDF) from Javvin Company — download and print yourself.', 'Network Protocols Map — Digital Poster | Javvin Company'),
         'articles': ('articles.html', 'Articles — Javvin Company',
                      'Forewords to The Power of Desire by Xue Lan, Yan Yan, and Sun Xiaochun — Javvin Company.', 'Javvin Company — Articles'),
         'about': ('about.html', 'About — Javvin Company',
@@ -244,8 +264,8 @@ META = {
                  'Javvin 公司 — 《欲望的力量：人类科技创新简史》（第二版）'),
         'books': ('books.html', '书籍 — Javvin 公司', ZH_BOOK_DESC,
                   'Javvin 公司 — 《欲望的力量：人类科技创新简史》（第二版）'),
-        'posters': ('posters.html', '图谱 — Javvin 公司',
-                    'Javvin 公司电子图谱 — 购买后下载高清 PDF，自行打印装裱。', 'Javvin 公司 — 图谱'),
+        'posters': ('posters.html', '网络协议全景图 — 电子图谱 | Javvin 公司',
+                    'Javvin 公司电子图谱 — 购买后下载高清 PDF，自行打印装裱。', '网络协议全景图 — 电子图谱 | Javvin 公司'),
         'articles': ('articles.html', '文章 — Javvin 公司',
                      '薛澜、阎焱、孙小淳为《欲望的力量：人类科技创新简史》撰写的推荐序。', 'Javvin 公司 — 文章'),
         'about': ('about.html', '关于 — Javvin 公司',
@@ -301,20 +321,10 @@ def build(lang, out_dir):
         returns = ('<section class="block" id="returns">\n<h2>Return Policy</h2>\n<div class="about-text">\n'
                    '<p>All sales of digital products (ebooks and digital posters) are final upon completion of delivery; delivered digital products are non-refundable. We guarantee successful delivery of your files — if a download fails or a file is corrupted, we will re-deliver it at no additional charge. Print editions are sold through third-party retailers, and returns and refunds for print editions are governed by the policies of the retailer from which the print edition was purchased.</p>\n'
                    '</div>\n</section>')
-    # visible ISBN line in the book info (strip earlier injected lines first)
-    books_sec = re.sub(r'\n?<p class="en">(Print edition ISBN:|纸质版 ISBN：|ISBN[:：])[^<]*</p>', '', books_sec)
-    books_sec = re.sub(r'\n?<p class="tagline">[^<]*</p>', '', books_sec)
-    if zh:
-        books_sec = books_sec.replace(
-            '<p class="en">（第二版）董洁林 著 · Javvin Company</p>',
-            '<p class="en">（第二版）董洁林 著 · Javvin Company</p>\n<p class="en">ISBN：978-1-60267-030-3</p>\n<p class="tagline">从吃饱穿暖到人工智能，沿着人类欲望的线索，重新理解科技如何改变社会和历史。</p>', 1)
-    else:
-        books_sec = books_sec.replace(
-            '<p class="en">by Jielin Dong · Javvin Company</p>',
-            '<p class="en">by Jielin Dong · Javvin Company</p>\n<p class="en">ISBN: 978-1-60267-031-0</p>\n<p class="tagline">From food and clothing to artificial intelligence — following the thread of human desire to rethink how technology changes society and history.</p>', 1)
+    # book-info layout (byline / price+buy+sample / spec line / tagline) is canonical in the source pages
     bodies = {
         'home': hero_html + '\n' + cards(lang) + '\n' + praise_block(lang) + '\n' + footer(books_pg),
-        'books': books_sec + '\n' + footer(books_pg),
+        'books': books_sec + '\n' + bottom_buy(lang) + '\n' + footer(books_pg),
         'posters': section(get_page('posters.html', zh), 'posters') + '\n' + footer(books_pg),
         'articles': section(get_page('articles.html', zh), 'articles') + '\n' + footer(books_pg),
         'about': section(get_page('about.html', zh), 'about') + '\n' + returns + '\n' + footer(books_pg),
