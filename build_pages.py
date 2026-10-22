@@ -49,6 +49,14 @@ if 'hero-btn.alt' not in EXTRA_CSS:
         '    .hero img { width: min(190px, 55vw); }\n'
         '    .hero-btn.alt { margin-left: 0; margin-top: 0.75rem; }\n'
         '  }\n</style>')
+if '.poster-card' not in EXTRA_CSS:
+    EXTRA_CSS = EXTRA_CSS.replace('</style>',
+        '  .poster-card { max-width: 780px; margin: 0 auto; }\n'
+        '  .poster-card img { width: 100%; border-radius: 6px; box-shadow: 0 16px 40px rgba(16,23,34,0.22); display: block; }\n'
+        '  .poster-info { margin-top: 1.4rem; }\n'
+        '  .poster-info h3 { font-size: 1.5rem; letter-spacing: 0.06em; margin-bottom: 0.25rem; }\n'
+        '  .poster-info .en { color: var(--muted); font-style: italic; margin-bottom: 1rem; }\n'
+        '  .poster-info p { line-height: 1.75; margin-bottom: 0.9rem; }\n</style>')
 
 import json as _json
 def toc_block(lang):
@@ -190,12 +198,12 @@ def head(lang, page, fname, title, desc, og_title):
 def cards(lang):
     if lang == 'en':
         items = [('books.html', 'Books', 'The Power of Desire — ebook (PDF) sold here.'),
-                 ('posters.html', 'Posters', 'Coming soon.'),
+                 ('posters.html', 'Posters', 'Network Protocols Map — digital poster (PDF), $19.99.'),
                  ('articles.html', 'Articles', 'Forewords by Xue Lan, Yan Yan, and Sun Xiaochun.'),
                  ('about.html', 'About', 'About Javvin Company and how to reach us.')]
     else:
         items = [('books.html', '书籍', '《欲望的力量：人类科技创新简史》（第二版）电子版。'),
-                 ('posters.html', '图谱', '即将上线。'),
+                 ('posters.html', '图谱', '网络协议全景图 — 电子图谱（PDF），$19.99。'),
                  ('articles.html', '文章', '薛澜、阎焱、孙小淳三篇推荐序。'),
                  ('about.html', '关于', 'Javvin 公司简介与联系方式。')]
     inner = '\n'.join('<a class="card" href="%s"><h3>%s</h3><p>%s</p></a>' % i for i in items)
