@@ -306,7 +306,7 @@ META = {
         'articles': ('articles.html', 'Articles & Forewords — Xue Lan, Yan Yan, Sun Xiaochun | Javvin Company',
                      'Forewords and essays on The Power of Desire: A Brief History of Scientific & Technological Innovation — by Xue Lan (Tsinghua), Yan Yan (SAIF Partners), and Sun Xiaochun (UCAS).', 'Articles & Forewords | Javvin Company'),
         'about': ('about.html', 'About Javvin Company — AI-Native Publisher in San Francisco',
-                  'Javvin Company is an AI-native publishing company in San Francisco — every workflow empowered by AI — publishing books and posters on technological innovation.', 'Javvin Company — About'),
+                  'Javvin Company is an AI-native publisher based in San Francisco, specializing in books and posters on technological innovation. AI supports every stage of its work.', 'Javvin Company — About'),
     },
     'zh': {
         'home': ('index.html', 'Javvin 公司 — 《欲望的力量：人类科技创新简史》', ZH_BOOK_DESC,
@@ -318,7 +318,7 @@ META = {
         'articles': ('articles.html', '文章与推荐序 — 薛澜、阎焱、孙小淳 | Javvin 公司',
                      '薛澜、阎焱、孙小淳为《欲望的力量：人类科技创新简史》撰写的三篇推荐序全文。', 'Javvin 公司 — 文章与推荐序'),
         'about': ('about.html', '关于 Javvin 公司 — AI 原生出版社（旧金山）',
-                  'Javvin 公司是一家位于旧金山的 AI 原生出版社，全流程由人工智能赋能，专注于出版科技创新主题的图书与图谱。', 'Javvin 公司 — 关于'),
+                  'Javvin 公司是一家位于美国旧金山的 AI 原生出版社，专注于出版科技创新主题的图书与图谱；从编辑、设计到制作、营销与运营，人工智能支持公司工作的每一个环节。', 'Javvin 公司 — 关于'),
     },
 }
 
