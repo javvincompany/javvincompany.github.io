@@ -202,11 +202,11 @@ BOOK_JSONLD = {
 def license_block(lang):
     if lang == 'en':
         return ('<section class="block" id="license">\n<h2>License Terms</h2>\n<div class="about-text">\n'
-                '<p><strong>Digital posters.</strong> Each purchase is a license for one buyer. Personal use: print up to 2 copies (at home, at a print shop, or through an online print service), displayed in one place — your home, one classroom, or one workplace. Institutions using a poster at multiple locations: please buy one license per location. Commercial use: please contact us at javvincompany@gmail.com. Please don’t share or pass on the file, upload it to a public website, or sell the file or printed copies.</p>\n'
+                '<p><strong>Digital posters.</strong> Each purchase is a license for one buyer. Personal use: print up to 2 copies (at home, at a print shop, or through an online print service), displayed in one place — your home, one classroom, or one workplace. Institutions using a poster at multiple locations: please buy one license per location. Commercial use: please contact us at help@javvin.ai. Please don’t share or pass on the file, upload it to a public website, or sell the file or printed copies.</p>\n'
                 '<p><strong>Ebooks.</strong> Each purchase is a license for one reader. You may read the ebook on your own devices. Please don’t share or pass on the file, upload it to a public website, or resell it.</p>\n'
                 '</div>\n</section>')
     return ('<section class="block" id="license">\n<h2>授权条款</h2>\n<div class="about-text">\n'
-            '<p><strong>电子图谱。</strong>每次购买为一份授权，限购买者本人。个人使用：可打印不超过 2 份（在家、打印店或在线打印服务均可），展示于一处：家中、一个教室或一个工作场所。机构多点使用：请每个点购买一份授权。商用：请联系 javvincompany@gmail.com。请勿分享或转传文件、勿上传至任何公开网站、勿出售文件或印品。</p>\n'
+            '<p><strong>电子图谱。</strong>每次购买为一份授权，限购买者本人。个人使用：可打印不超过 2 份（在家、打印店或在线打印服务均可），展示于一处：家中、一个教室或一个工作场所。机构多点使用：请每个点购买一份授权。商用：请联系 help@javvin.ai。请勿分享或转传文件、勿上传至任何公开网站、勿出售文件或印品。</p>\n'
             '<p><strong>电子书。</strong>每次购买为一份授权，限购买者本人阅读，可在本人设备上使用。请勿分享或转传文件、勿上传至任何公开网站、勿转售。</p>\n'
             '</div>\n</section>')
 
@@ -488,12 +488,12 @@ def build(lang, out_dir):
     if zh:
         returns = ('<section class="block" id="returns">\n<h2>退货政策</h2>\n<div class="about-text">\n'
                    '<p>电子产品（电子书与电子图谱）一经交付完成，概不退货退款。本店保证文件成功交付：如下载失败或文件损坏，将免费重新交付。</p>\n'
-                   '<p>印刷版采用按需印刷（Print-on-Demand）方式：您下单后，专门为您印制并寄送。如果您从本网站购买的印刷版出现印刷或装订瑕疵、需要退换，请联系 javvincompany@gmail.com。如果您从其他网站或书店购买印刷版，其退换依出售该印刷版之零售商的政策办理。</p>\n'
+                   '<p>印刷版采用按需印刷（Print-on-Demand）方式：您下单后，专门为您印制并寄送。如果您从本网站购买的印刷版出现印刷或装订瑕疵、需要退换，请联系 help@javvin.ai。如果您从其他网站或书店购买印刷版，其退换依出售该印刷版之零售商的政策办理。</p>\n'
                    '</div>\n</section>')
     else:
         returns = ('<section class="block" id="returns">\n<h2>Return Policy</h2>\n<div class="about-text">\n'
                    '<p>All sales of digital products (ebooks and digital posters) are final upon completion of delivery; delivered digital products are non-refundable. We guarantee successful delivery of your files — if a download fails or a file is corrupted, we will re-deliver it at no additional charge.</p>\n'
-                   '<p>Print editions are produced by print-on-demand: when you place an order, a copy is printed especially for you and shipped to you. If a print copy purchased from this website has printing or binding defects and you need a return or exchange, please contact javvincompany@gmail.com. If you purchased the print edition from another website or bookstore, its return or exchange is governed by the policy of the retailer that sold it.</p>\n'
+                   '<p>Print editions are produced by print-on-demand: when you place an order, a copy is printed especially for you and shipped to you. If a print copy purchased from this website has printing or binding defects and you need a return or exchange, please contact help@javvin.ai. If you purchased the print edition from another website or bookstore, its return or exchange is governed by the policy of the retailer that sold it.</p>\n'
                    '</div>\n</section>')
     # book-info layout (byline / price+buy+sample / spec line / tagline) is canonical in the source pages
     bodies = {
