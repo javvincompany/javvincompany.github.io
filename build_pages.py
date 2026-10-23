@@ -297,7 +297,7 @@ META = {
         'books': ('books.html', '《欲望的力量：人类科技创新简史》（第二版）— 董洁林 | Javvin 公司', ZH_BOOK_DESC,
                   'Javvin 公司 — 《欲望的力量：人类科技创新简史》（第二版）'),
         'posters': ('posters.html', '网络协议全景图 — 电子图谱 | Javvin 公司',
-                    'Javvin 公司电子图谱 — 购买后下载高清 PDF，自行打印装裱。', '网络协议全景图 — 电子图谱 | Javvin 公司'),
+                    '《网络协议全景图》（2009 经典版·2026 修订）— Javvin 公司电子图谱：高清 PDF，购买后下载，自行打印装裱。', '网络协议全景图 — 电子图谱 | Javvin 公司'),
         'articles': ('articles.html', '文章与推荐序 — 薛澜、阎焱、孙小淳 | Javvin 公司',
                      '薛澜、阎焱、孙小淳为《欲望的力量：人类科技创新简史》撰写的三篇推荐序全文。', 'Javvin 公司 — 文章与推荐序'),
         'about': ('about.html', '关于 Javvin 公司 — 旧金山独立出版社',
