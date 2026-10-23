@@ -76,6 +76,17 @@ if '.cover-fig' not in EXTRA_CSS:
         '  .cover-fig { margin: 0; text-align: center; }\n'
         '  .hero .cover-fig figcaption { color: #e8e2d4; font-size: 1.05rem; line-height: 1.75; letter-spacing: 0.03em; max-width: 320px; margin: 1rem auto 0; }\n'
         '  .book-card .cover-fig figcaption { color: var(--ink); font-size: 1.08rem; line-height: 1.7; letter-spacing: 0.03em; max-width: 280px; margin: 0.9rem auto 0; }\n</style>')
+if '.art-list' not in EXTRA_CSS:
+    EXTRA_CSS = EXTRA_CSS.replace('</style>',
+        '  .art-list { display: grid; gap: 1.1rem; }\n'
+        '  .art-card { display: block; border: 1px solid rgba(16,23,34,0.14); border-radius: 8px; padding: 1.2rem 1.4rem; text-decoration: none; color: var(--ink); background: rgba(255,255,255,0.35); }\n'
+        '  .art-card:hover { border-color: var(--gold); }\n'
+        '  .art-card h3 { margin: 0 0 0.3rem; font-size: 1.3rem; }\n'
+        '  .art-card .byline { margin: 0 0 0.6rem; }\n'
+        '  .art-card .art-guide { line-height: 1.7; margin: 0 0 0.7rem; }\n'
+        '  .art-more { color: var(--gold); font-size: 0.98rem; }\n'
+        '  .article-page h1 { font-size: 1.9rem; line-height: 1.35; margin-bottom: 0.4rem; }\n'
+        '  .back-link { margin-top: 2rem; }\n</style>')
 if '.book-price' not in EXTRA_CSS:
     EXTRA_CSS = EXTRA_CSS.replace('</style>',
         '  .book-price { font-size: 1.2rem; margin: 0.6rem 0 0.4rem; }\n'
@@ -215,13 +226,16 @@ def header(lang, page, fname):
             '<img alt="Javvin Company" src="../assets/javvin-wordmark.svg"/></a>\n<nav>\n%s\n%s\n</nav>\n</header>'
             % (links, lang_html))
 
-def head(lang, page, fname, title, desc, og_title):
+def head(lang, page, fname, title, desc, og_title, keywords='', jsonld_override=None):
     seg = '' if page == 'home' else fname
     canon = BASE + lang + '/' + seg
     alt_en = BASE + 'en/' + seg
     alt_zh = BASE + 'zh/' + seg
     jsonld = ''
-    if page in ('home', 'books'):
+    if jsonld_override is not None:
+        jsonld = ('\n<script type="application/ld+json">\n%s\n</script>'
+                  % json.dumps(jsonld_override, ensure_ascii=False, indent=2))
+    elif page in ('home', 'books'):
         jsonld = ('\n<script type="application/ld+json">\n%s\n</script>'
                   % json.dumps(BOOK_JSONLD[lang], ensure_ascii=False, indent=2))
     og_img = BASE + ('assets/covers/cover-en-front.jpg' if lang == 'en'
@@ -233,6 +247,7 @@ def head(lang, page, fname, title, desc, og_title):
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>{title}</title>
 <meta content="{desc}" name="description"/>
+<meta content="{keywords}" name="keywords"/>
 <meta content="UjqM5b327ctUoN0HMQ91Dvwp_7B0VCA48ALKU27OKyU" name="google-site-verification"/>
 <link href="{canon}" rel="canonical"/><link href="{alt_en}" hreflang="x-default" rel="alternate"/><link href="{alt_zh}" hreflang="zh" rel="alternate"/><link href="{alt_en}" hreflang="en" rel="alternate"/>
 <meta content="website" property="og:type"/>
@@ -267,28 +282,102 @@ META = {
     'en': {
         'home': ('index.html', 'Javvin Company — The Power of Desire: A Brief History of Scientific &amp; Technological Innovation',
                  EN_BOOK_DESC, 'Javvin Company — The Power of Desire: A Brief History of Scientific &amp; Technological Innovation'),
-        'books': ('books.html', 'Books — Javvin Company', EN_BOOK_DESC,
+        'books': ('books.html', 'The Power of Desire — The Book | Javvin Company', EN_BOOK_DESC,
                   'Javvin Company — The Power of Desire: A Brief History of Scientific &amp; Technological Innovation'),
         'posters': ('posters.html', 'Network Protocols Map — Digital Poster | Javvin Company',
-                    'Digital posters (PDF) from Javvin Company — download and print yourself.', 'Network Protocols Map — Digital Poster | Javvin Company'),
-        'articles': ('articles.html', 'Articles — Javvin Company',
-                     'Forewords to The Power of Desire by Xue Lan, Yan Yan, and Sun Xiaochun — Javvin Company.', 'Javvin Company — Articles'),
-        'about': ('about.html', 'About — Javvin Company',
+                    'Network Protocols Map (2009 classic, revised 2026) — a high-resolution digital poster (PDF) from Javvin Company: download, print, and frame it yourself.', 'Network Protocols Map — Digital Poster | Javvin Company'),
+        'articles': ('articles.html', 'Articles & Forewords — Xue Lan, Yan Yan, Sun Xiaochun | Javvin Company',
+                     'Forewords and essays on The Power of Desire: A Brief History of Scientific & Technological Innovation — by Xue Lan (Tsinghua), Yan Yan (SAIF Partners), and Sun Xiaochun (UCAS).', 'Articles & Forewords | Javvin Company'),
+        'about': ('about.html', 'About Javvin Company — Independent Publisher in San Francisco',
                   'Javvin Company is an independent publisher in San Francisco, specializing in books and posters on technological innovation.', 'Javvin Company — About'),
     },
     'zh': {
         'home': ('index.html', 'Javvin 公司 — 《欲望的力量：人类科技创新简史》', ZH_BOOK_DESC,
                  'Javvin 公司 — 《欲望的力量：人类科技创新简史》（第二版）'),
-        'books': ('books.html', '书籍 — Javvin 公司', ZH_BOOK_DESC,
+        'books': ('books.html', '《欲望的力量：人类科技创新简史》（第二版）— 董洁林 | Javvin 公司', ZH_BOOK_DESC,
                   'Javvin 公司 — 《欲望的力量：人类科技创新简史》（第二版）'),
         'posters': ('posters.html', '网络协议全景图 — 电子图谱 | Javvin 公司',
                     'Javvin 公司电子图谱 — 购买后下载高清 PDF，自行打印装裱。', '网络协议全景图 — 电子图谱 | Javvin 公司'),
-        'articles': ('articles.html', '文章 — Javvin 公司',
-                     '薛澜、阎焱、孙小淳为《欲望的力量：人类科技创新简史》撰写的推荐序。', 'Javvin 公司 — 文章'),
-        'about': ('about.html', '关于 — Javvin 公司',
+        'articles': ('articles.html', '文章与推荐序 — 薛澜、阎焱、孙小淳 | Javvin 公司',
+                     '薛澜、阎焱、孙小淳为《欲望的力量：人类科技创新简史》撰写的三篇推荐序全文。', 'Javvin 公司 — 文章与推荐序'),
+        'about': ('about.html', '关于 Javvin 公司 — 旧金山独立出版社',
                   'Javvin 公司是一家位于旧金山的独立出版社，专注于出版科技创新主题的图书与图谱。', 'Javvin 公司 — 关于'),
     },
 }
+
+
+KEYWORDS = {
+    'en': {
+        'home': 'Javvin Company, The Power of Desire, history of technological innovation, history of innovation, Jielin Dong, science and technology history, ebook',
+        'books': 'The Power of Desire, Jielin Dong, history of innovation, history of technological innovation, human needs, ebook PDF, ISBN 9781602670310',
+        'posters': 'Network Protocols Map, network protocols poster, TCP/IP poster, OSI model, digital poster PDF, printable wall chart, Javvin',
+        'articles': 'Xue Lan, Yan Yan, Sun Xiaochun, foreword, book review, The Power of Desire, history of innovation, Javvin Company',
+        'about': 'Javvin Company, independent publisher, San Francisco publisher, Jielin Dong, books on technological innovation',
+    },
+    'zh': {
+        'home': 'Javvin公司, 欲望的力量, 人类科技创新简史, 董洁林, 科技创新史, 科技史, 电子书',
+        'books': '欲望的力量, 人类科技创新简史, 董洁林, 第二版, 科技创新史, 人类需求, 电子书PDF, ISBN 9781602670303',
+        'posters': '网络协议全景图, 网络协议图, TCP/IP, OSI模型, 电子图谱, 知识图谱, PDF下载打印, Javvin',
+        'articles': '薛澜, 阎焱, 孙小淳, 推荐序, 书评, 欲望的力量, 人类科技创新简史, 科技创新史',
+        'about': 'Javvin公司, 独立出版社, 旧金山出版社, 董洁林, 科技创新图书',
+    },
+}
+
+# slug, page title (h1), byline, one-sentence guide, author short name, keywords
+ARTICLES = {
+    'en': [
+        ('xue-lan', 'A Small Boat on the Great River of Human Innovation',
+         'Xue Lan (Professor at Tsinghua University and Dean of Schwarzman College, Tsinghua University)',
+         'Tsinghua scholar Xue Lan on how the book retells the history of innovation — human needs as its thread, vivid stories and rigorous data as its method.',
+         'Xue Lan', 'Xue Lan, Tsinghua University, Schwarzman College, foreword, history of innovation, The Power of Desire, Jielin Dong'),
+        ('yan-yan', 'A Minority Voice Worth Cherishing in the Landscape of Ideas',
+         'Yan Yan (Founding Managing Partner of SAIF Partners)',
+         'Investor Yan Yan on incremental innovation versus major breakthroughs and the coming AI revolution — and why this book is a minority voice worth cherishing.',
+         'Yan Yan', 'Yan Yan, SAIF Partners, incremental innovation, major breakthroughs, artificial intelligence, foreword, The Power of Desire'),
+        ('sun-xiaochun', 'Why Do Humans Innovate',
+         'Sun Xiaochun (Professor, School of Humanities, University of Chinese Academy of Sciences; Former President of the Chinese Society for the History of Science and Technology)',
+         'Historian of science Sun Xiaochun on the book\'s grand thought experiment — needs as warp, innovation as weft — and on an author who keeps revising her own views.',
+         'Sun Xiaochun', 'Sun Xiaochun, history of science and technology, human needs, technological innovation, foreword, The Power of Desire'),
+    ],
+    'zh': [
+        ('xue-lan', '人类创新历史长河中的一叶轻舟',
+         '薛澜（清华大学教授，清华大学苏世民书院院长）',
+         '薛澜以创新研究学者的视角，解读本书如何以人类需求为线索、用故事与数据重构万年科技创新史。',
+         '薛澜', '薛澜, 清华大学, 苏世民书院, 推荐序, 科技创新史, 欲望的力量, 董洁林'),
+        ('yan-yan', '思想谱系里珍贵的少数派声音',
+         '阎焱（赛富基金创始管理合伙人）',
+         '阎焱从投资人的视角谈渐进式创新与重大突破、人工智能带来的新变革，称本书是思想谱系里珍贵的少数派声音。',
+         '阎焱', '阎焱, 赛富基金, 渐进式创新, 重大突破, 人工智能, 推荐序, 欲望的力量'),
+        ('sun-xiaochun', '人类为什么要创新——《欲望的力量：人类科技创新简史》第二版推荐序',
+         '孙小淳（中国科学院大学人文学院教授，中国科学技术史学会原理事长）',
+         '孙小淳以科技史家的眼光，评述本书以需求为经、创新为纬的思想实验与作者不断修正自我的治学态度。',
+         '孙小淳', '孙小淳, 科技史, 人类需求, 科技创新, 推荐序, 欲望的力量, 第二版'),
+    ],
+}
+
+def articles_index(lang):
+    zh = (lang == 'zh')
+    items = []
+    for slug, title, byline, guide, _a, _k in ARTICLES[lang]:
+        more = '阅读全文 →' if zh else 'Read the full article →'
+        items.append('<a class="art-card" href="articles-%s.html"><h3>%s</h3>'
+                     '<p class="byline">%s</p><p class="art-guide">%s</p>'
+                     '<span class="art-more">%s</span></a>' % (slug, title, byline, guide, more))
+    h2 = '文章' if zh else 'Articles'
+    return ('<section class="block" id="articles">\n<h2>%s</h2>\n<div class="art-list">\n%s\n</div>\n</section>'
+            % (h2, '\n'.join(items)))
+
+def article_jsonld(lang, art, fname):
+    slug, title, _b, guide, author, _k = art
+    return {'@context': 'https://schema.org', '@type': 'Article',
+            'headline': title,
+            'author': {'@type': 'Person', 'name': author},
+            'publisher': {'@type': 'Organization', 'name': 'Javvin Company'},
+            'inLanguage': lang, 'description': guide,
+            'mainEntityOfPage': BASE + lang + '/' + fname,
+            'about': {'@type': 'Book',
+                      'name': ('欲望的力量：人类科技创新简史' if lang == 'zh'
+                               else 'The Power of Desire: A Brief History of Scientific & Technological Innovation')}}
 
 def build(lang, out_dir):
     zh = (lang == 'zh')
@@ -349,18 +438,39 @@ def build(lang, out_dir):
         'home': hero_html + '\n' + cards(lang) + '\n' + praise_block(lang) + '\n' + footer(books_pg),
         'books': books_sec + '\n' + bottom_buy(lang) + '\n' + footer(books_pg),
         'posters': section(get_page('posters.html', zh), 'posters') + '\n' + footer(books_pg),
-        'articles': section(get_page('articles.html', zh), 'articles') + '\n' + footer(books_pg),
+        'articles': articles_index(lang) + '\n' + footer(books_pg),
         'about': section(get_page('about.html', zh), 'about') + '\n' + license_block(lang) + '\n' + returns + '\n' + footer(books_pg),
     }
     if lang == 'en':
         bodies = {k: v.replace('"assets/', '"../assets/') for k, v in bodies.items()}
     for name, (fname, title, desc, ogt) in META[lang].items():
-        hd = head(lang, name, fname, title, desc, ogt)
+        hd = head(lang, name, fname, title, desc, ogt, keywords=KEYWORDS[lang][name])
         body_attr = ' class="en"' if lang == 'en' else ''
         html = ('<!DOCTYPE html>\n<html lang="%s">\n%s\n<body%s>\n%s\n%s\n</body>\n</html>\n'
                 % ('en' if lang == 'en' else 'zh-CN', hd, body_attr,
                    header(lang, name, fname), bodies[name]))
         out_dir.mkdir(parents=True, exist_ok=True)
+        (out_dir / fname).write_text(html)
+        print('wrote', out_dir / fname, len(html))
+    # standalone article pages (split out of the Articles page 2026-10-23 at her request)
+    for art in ARTICLES[lang]:
+        slug, atitle, _byline, guide, author, akw = art
+        fname = 'articles-%s.html' % slug
+        frag = (ROOT / 'articles-src' / ('%s-%s.html' % (lang, slug))).read_text().strip()
+        frag = frag.replace('<h3>', '<h1>', 1).replace('</h3>', '</h1>', 1)
+        back = ('<p class="back-link"><a href="articles.html">← 返回文章列表</a></p>' if zh
+                else '<p class="back-link"><a href="articles.html">← Back to Articles</a></p>')
+        body = ('<section class="block article-page" id="article">\n%s\n%s\n</section>\n%s'
+                % (frag, back, footer(books_pg)))
+        if lang == 'en':
+            body = body.replace('"assets/', '"../assets/')
+        t = ('%s — %s | Javvin 公司' % (atitle, author)) if zh else ('%s — %s | Javvin Company' % (atitle, author))
+        hd = head(lang, 'article', fname, t, guide, t, keywords=akw,
+                  jsonld_override=article_jsonld(lang, art, fname))
+        body_attr = ' class="en"' if lang == 'en' else ''
+        html = ('<!DOCTYPE html>\n<html lang="%s">\n%s\n<body%s>\n%s\n%s\n</body>\n</html>\n'
+                % ('en' if lang == 'en' else 'zh-CN', hd, body_attr,
+                   header(lang, 'article', fname), body))
         (out_dir / fname).write_text(html)
         print('wrote', out_dir / fname, len(html))
 
