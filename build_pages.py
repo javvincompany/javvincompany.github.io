@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Rebuild javvincompany.github.io into /en/ and /zh/ trees (one page per menu
+# Rebuild javvin.ai into /en/ and /zh/ trees (one page per menu
 # category per language), each page with its own title/description/lang tags,
 # plus schema.org Book JSON-LD (with ISBN) on home + books pages.
 # Content blocks are taken from the deployed split pages (build #1 outputs),
@@ -165,7 +165,7 @@ def footer(html):
 def get_page(fname, zh=False):
     return (ROOT / 'zh' / fname if zh else ROOT / 'en' / fname).read_text()
 
-BASE = 'https://javvincompany.github.io/'
+BASE = 'https://javvin.ai/'
 BOOK_JSONLD = {
     'en': {
         '@context': 'https://schema.org', '@type': 'Book',
@@ -544,7 +544,7 @@ STUB = '''<!DOCTYPE html>
 <head>
 <meta charset="utf-8"/>
 <title>Javvin Company</title>
-<link href="https://javvincompany.github.io/en/{seg}" rel="canonical"/>
+<link href="https://javvin.ai/en/{seg}" rel="canonical"/>
 <meta content="0; url=/en/{seg}" http-equiv="refresh"/>
 <meta content="noindex" name="robots"/>
 </head>
