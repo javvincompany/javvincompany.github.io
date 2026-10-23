@@ -71,6 +71,11 @@ if '.poster-chips' not in EXTRA_CSS:
         '  .poster-chips button { font: inherit; font-size: 0.92rem; padding: 0.35rem 0.95rem; border-radius: 999px; border: 1px solid var(--gold); background: transparent; color: var(--ink); cursor: pointer; }\n'
         '  .poster-chips button.active { background: var(--gold); color: #101722; }\n'
         '  .poster-detail img { width: 100%; border-radius: 6px; box-shadow: 0 10px 26px rgba(16,23,34,0.18); display: block; }\n</style>')
+if '.cover-fig' not in EXTRA_CSS:
+    EXTRA_CSS = EXTRA_CSS.replace('</style>',
+        '  .cover-fig { margin: 0; text-align: center; }\n'
+        '  .hero .cover-fig figcaption { color: #e8e2d4; font-size: 1.05rem; line-height: 1.75; letter-spacing: 0.03em; max-width: 320px; margin: 1rem auto 0; }\n'
+        '  .book-card .cover-fig figcaption { color: var(--ink); font-size: 1.08rem; line-height: 1.7; letter-spacing: 0.03em; max-width: 280px; margin: 0.9rem auto 0; }\n</style>')
 if '.book-price' not in EXTRA_CSS:
     EXTRA_CSS = EXTRA_CSS.replace('</style>',
         '  .book-price { font-size: 1.2rem; margin: 0.6rem 0 0.4rem; }\n'
@@ -290,11 +295,15 @@ def build(lang, out_dir):
     home = zh_home if zh else en_home
     books_pg = zh_books if zh else en_books
     hero_html = hero(home)
-    # core tagline in the hero (strip earlier injected line first)
+    # tagline sits under the cover image as its caption (strip earlier placements first)
     hero_html = re.sub(r'\n?<p class="hero-tagline">[^<]*</p>', '', hero_html)
-    hero_tag = ('<p class="hero-tagline">从吃饱穿暖到人工智能，沿着人类欲望的线索，重新理解科技如何改变社会和历史。</p>\n' if zh
-                else '<p class="hero-tagline">From food and clothing to artificial intelligence — following the thread of human desire to rethink how technology changes society and history.</p>\n')
-    hero_html = hero_html.replace('<a class="hero-btn"', hero_tag + '<a class="hero-btn"', 1)
+    hero_html = re.sub(r'<figcaption class="cover-caption">[^<]*</figcaption>', '', hero_html)
+    hero_html = hero_html.replace('<figure class="cover-fig">', '').replace('</figure>', '')
+    hero_cap = ('从吃饱穿暖到人工智能，沿着人类欲望的线索，重新理解科技如何改变社会和历史。' if zh
+                else 'From food and clothing to artificial intelligence — following the thread of human desire to rethink how technology changes society and history.')
+    hero_html = re.sub(r'(<img[^>]*covers/[^>]*>)',
+                       r'<figure class="cover-fig">\1<figcaption class="cover-caption">%s</figcaption></figure>' % hero_cap,
+                       hero_html, count=1)
     # free-sample button next to the explore button (strip earlier injected one first)
     hero_html = re.sub(r'\n?<a class="hero-btn alt"[^>]*>[^<]*</a>', '', hero_html)
     if zh:
