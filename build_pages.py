@@ -443,8 +443,9 @@ def build(lang, out_dir):
     books_pg = zh_books if zh else en_books
     hero_html = hero(home)
     hero_html = re.sub(r'\n?<span class="nr-badge">[^<]*</span>', '', hero_html)
+    badge_txt = '最新发布' if zh else 'New Release'
     hero_html = hero_html.replace('<div class="hero-text">',
-                                  '<div class="hero-text">\n<span class="nr-badge">New Release</span>', 1)
+                                  '<div class="hero-text">\n<span class="nr-badge">%s</span>' % badge_txt, 1)
     # tagline sits under the cover image as its caption (strip earlier placements first)
     hero_html = re.sub(r'\n?<p class="hero-tagline">[^<]*</p>', '', hero_html)
     hero_html = re.sub(r'<figcaption class="cover-caption">[^<]*</figcaption>', '', hero_html)
