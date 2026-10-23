@@ -76,6 +76,9 @@ if '.cover-fig' not in EXTRA_CSS:
         '  .cover-fig { margin: 0; text-align: center; }\n'
         '  .hero .cover-fig figcaption { color: #e8e2d4; font-size: 1.05rem; line-height: 1.75; letter-spacing: 0.03em; max-width: 320px; margin: 1rem auto 0; }\n'
         '  .book-card .cover-fig figcaption { color: var(--ink); font-size: 1.08rem; line-height: 1.7; letter-spacing: 0.03em; max-width: 280px; margin: 0.9rem auto 0; }\n</style>')
+if '.nr-badge' not in EXTRA_CSS:
+    EXTRA_CSS = EXTRA_CSS.replace('</style>',
+        '  .nr-badge { display: inline-block; background: var(--gold); color: #101722; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase; padding: 0.32rem 0.85rem; border-radius: 999px; margin-bottom: 0.9rem; }\n</style>')
 if '.prod-grid' not in EXTRA_CSS:
     EXTRA_CSS = EXTRA_CSS.replace('</style>',
         '  html { scroll-behavior: smooth; }\n'
@@ -154,7 +157,7 @@ def section(html, sid):
     return re.search(r'<section class="block" id="%s">.*?</section>' % sid, html, re.S).group(0)
 
 def hero(html):
-    return re.search(r'<div class="hero">.*?(?=<div class="cards">)', html, re.S).group(0).rstrip() + '\n'
+    return re.search(r'<div class="hero">.*?(?=<section class="block"|<div class="cards">)', html, re.S).group(0).rstrip() + '\n'
 
 def footer(html):
     return re.search(r'<footer>.*?</footer>', html, re.S).group(0)
@@ -439,6 +442,9 @@ def build(lang, out_dir):
     home = zh_home if zh else en_home
     books_pg = zh_books if zh else en_books
     hero_html = hero(home)
+    hero_html = re.sub(r'\n?<span class="nr-badge">[^<]*</span>', '', hero_html)
+    hero_html = hero_html.replace('<div class="hero-text">',
+                                  '<div class="hero-text">\n<span class="nr-badge">New Release</span>', 1)
     # tagline sits under the cover image as its caption (strip earlier placements first)
     hero_html = re.sub(r'\n?<p class="hero-tagline">[^<]*</p>', '', hero_html)
     hero_html = re.sub(r'<figcaption class="cover-caption">[^<]*</figcaption>', '', hero_html)
