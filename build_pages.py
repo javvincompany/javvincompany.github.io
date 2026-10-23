@@ -305,8 +305,8 @@ META = {
                     'Network Protocols Map (2009 classic, revised 2026) — a high-resolution digital poster (PDF) from Javvin Company: download, print, and frame it yourself.', 'Network Protocols Map — Digital Poster | Javvin Company'),
         'articles': ('articles.html', 'Articles & Forewords — Xue Lan, Yan Yan, Sun Xiaochun | Javvin Company',
                      'Forewords and essays on The Power of Desire: A Brief History of Scientific & Technological Innovation — by Xue Lan (Tsinghua), Yan Yan (SAIF Partners), and Sun Xiaochun (UCAS).', 'Articles & Forewords | Javvin Company'),
-        'about': ('about.html', 'About Javvin Company — Independent Publisher in San Francisco',
-                  'Javvin Company is an independent publisher in San Francisco, specializing in books and posters on technological innovation.', 'Javvin Company — About'),
+        'about': ('about.html', 'About Javvin Company — AI-Native, One-Person Publisher in San Francisco',
+                  'Javvin Company is an AI-native, one-person publishing company in San Francisco — every workflow empowered by AI — publishing books and posters on technological innovation.', 'Javvin Company — About'),
     },
     'zh': {
         'home': ('index.html', 'Javvin 公司 — 《欲望的力量：人类科技创新简史》', ZH_BOOK_DESC,
@@ -317,8 +317,8 @@ META = {
                     '《网络协议全景图》（2009 经典版·2026 修订）— Javvin 公司电子图谱：高清 PDF，购买后下载，自行打印装裱。', '网络协议全景图 — 电子图谱 | Javvin 公司'),
         'articles': ('articles.html', '文章与推荐序 — 薛澜、阎焱、孙小淳 | Javvin 公司',
                      '薛澜、阎焱、孙小淳为《欲望的力量：人类科技创新简史》撰写的三篇推荐序全文。', 'Javvin 公司 — 文章与推荐序'),
-        'about': ('about.html', '关于 Javvin 公司 — 旧金山独立出版社',
-                  'Javvin 公司是一家位于旧金山的独立出版社，专注于出版科技创新主题的图书与图谱。', 'Javvin 公司 — 关于'),
+        'about': ('about.html', '关于 Javvin 公司 — AI 原生一人出版社（旧金山）',
+                  'Javvin 公司是一家位于旧金山的 AI 原生一人出版社，全流程由人工智能赋能，专注于出版科技创新主题的图书与图谱。', 'Javvin 公司 — 关于'),
     },
 }
 
@@ -329,14 +329,14 @@ KEYWORDS = {
         'books': 'The Power of Desire, Jielin Dong, history of innovation, history of technological innovation, human needs, ebook PDF, ISBN 9781602670310',
         'posters': 'Network Protocols Map, network protocols poster, TCP/IP poster, OSI model, digital poster PDF, printable wall chart, Javvin',
         'articles': 'Xue Lan, Yan Yan, Sun Xiaochun, foreword, book review, The Power of Desire, history of innovation, Javvin Company',
-        'about': 'Javvin Company, independent publisher, San Francisco publisher, Jielin Dong, books on technological innovation',
+        'about': 'Javvin Company, AI-native publisher, one-person publishing company, independent publisher, San Francisco publisher, Jielin Dong, books on technological innovation',
     },
     'zh': {
         'home': 'Javvin公司, 欲望的力量, 人类科技创新简史, 董洁林, 科技创新史, 科技史, 电子书',
         'books': '欲望的力量, 人类科技创新简史, 董洁林, 第二版, 科技创新史, 人类需求, 电子书PDF, ISBN 9781602670303',
         'posters': '网络协议全景图, 网络协议图, TCP/IP, OSI模型, 电子图谱, 知识图谱, PDF下载打印, Javvin',
         'articles': '薛澜, 阎焱, 孙小淳, 推荐序, 书评, 欲望的力量, 人类科技创新简史, 科技创新史',
-        'about': 'Javvin公司, 独立出版社, 旧金山出版社, 董洁林, 科技创新图书',
+        'about': 'Javvin公司, AI原生出版社, 一人出版社, 独立出版社, 旧金山出版社, 董洁林, 科技创新图书',
     },
 }
 
