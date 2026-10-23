@@ -259,6 +259,18 @@
   .art-more { color: var(--gold); font-size: 0.98rem; }
   .article-page h1 { font-size: 1.9rem; line-height: 1.35; margin-bottom: 0.4rem; }
   .back-link { margin-top: 2rem; }
+  html { scroll-behavior: smooth; }
+  .prod-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; }
+  @media (max-width: 720px) { .prod-grid { grid-template-columns: 1fr; } }
+  .prod-card { border: 1px solid rgba(16,23,34,0.14); border-radius: 10px; padding: 1.2rem 1.3rem 1.35rem; background: rgba(255,255,255,0.35); }
+  .prod-card .prod-img { width: 100%; height: 230px; border-radius: 6px; display: block; margin-bottom: 1rem; background: #fff; }
+  .prod-card .prod-img.book { object-fit: contain; }
+  .prod-card .prod-img.poster { object-fit: cover; }
+  .prod-card h3 { margin: 0 0 0.35rem; font-size: 1.35rem; line-height: 1.4; }
+  .prod-card .prod-sub { color: var(--muted); line-height: 1.65; margin: 0 0 0.6rem; }
+  .prod-card .prod-price { font-size: 1.2rem; margin: 0.3rem 0 0.9rem; }
+  .prod-actions { display: flex; align-items: center; gap: 1.1rem; flex-wrap: wrap; }
+  .prod-actions .detail-link { color: var(--gold); text-decoration: none; font-size: 1rem; }
 </style>
 </head>
 <body class="en">
@@ -292,12 +304,21 @@
 </div>
 </div>
 
-<div class="cards">
-<a class="card" href="books.html"><h3>Books</h3><p>The Power of Desire — ebook (PDF) sold here.</p></a>
-<a class="card" href="posters.html"><h3>Posters</h3><p>Network Protocols Map — digital poster (PDF), $19.99.</p></a>
-<a class="card" href="articles.html"><h3>Articles</h3><p>Forewords by Xue Lan, Yan Yan, and Sun Xiaochun.</p></a>
-<a class="card" href="about.html"><h3>About</h3><p>About Javvin Company and how to reach us.</p></a>
+<section class="block" id="products">
+<h2>Our Products</h2>
+<div class="prod-grid">
+<div class="prod-card"><img class="prod-img book" src="../assets/covers/cover-en-front.jpg" alt="Cover of The Power of Desire, second edition"/><h3>The Power of Desire</h3><p class="prod-sub">A Brief History of Scientific &amp; Technological Innovation, by Jielin Dong · Ebook (PDF), second edition; print edition by print-on-demand.</p><p class="prod-price">$12.99</p><div class="prod-actions"><a class="buy-btn" href="https://payhip.com/b/LdW15" rel="noopener" target="_blank"><span>Buy the Ebook</span></a><a class="detail-link" href="books.html">Details →</a></div></div>
+<div class="prod-card"><img class="prod-img poster" src="../assets/posters/network-protocols-map-promo.jpg" alt="Network Protocols Map"/><h3>Network Protocols Map</h3><p class="prod-sub">Digital poster (PDF) — 2009 classic, revised 2026 · 36×24 in, download and print it yourself.</p><p class="prod-price">$19.99</p><div class="prod-actions"><a class="buy-btn" href="https://payhip.com/b/xO3uf" rel="noopener" target="_blank"><span>Buy the Poster</span></a><a class="detail-link" href="posters.html">Details →</a></div></div>
 </div>
+</section>
+<section class="block" id="home-articles">
+<h2>Articles & Forewords</h2>
+<div class="art-list">
+<a class="art-card" href="articles-xue-lan.html"><h3>A Small Boat on the Great River of Human Innovation</h3><p class="byline">Xue Lan (Professor at Tsinghua University and Dean of Schwarzman College, Tsinghua University)</p><p class="art-guide">Tsinghua scholar Xue Lan on how the book retells the history of innovation — human needs as its thread, vivid stories and rigorous data as its method.</p><span class="art-more">Read the full article →</span></a>
+<a class="art-card" href="articles-yan-yan.html"><h3>A Minority Voice Worth Cherishing in the Landscape of Ideas</h3><p class="byline">Yan Yan (Founding Managing Partner of SAIF Partners)</p><p class="art-guide">Investor Yan Yan on incremental innovation versus major breakthroughs and the coming AI revolution — and why this book is a minority voice worth cherishing.</p><span class="art-more">Read the full article →</span></a>
+<a class="art-card" href="articles-sun-xiaochun.html"><h3>Why Do Humans Innovate</h3><p class="byline">Sun Xiaochun (Professor, School of Humanities, University of Chinese Academy of Sciences; Former President of the Chinese Society for the History of Science and Technology)</p><p class="art-guide">Historian of science Sun Xiaochun on the book's grand thought experiment — needs as warp, innovation as weft — and on an author who keeps revising her own views.</p><span class="art-more">Read the full article →</span></a>
+</div>
+</section>
 <section class="block" id="praise">
 <h2>Praise for the Book</h2>
 <div class="praise"><p>“Elegant prose, compelling stories, and rigorous analysis—an achievement that invites comparison with Sapiens.”</p><p class="who">— Xue Lan, Dean of Schwarzman College, Tsinghua University</p></div>

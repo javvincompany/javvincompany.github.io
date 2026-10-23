@@ -259,6 +259,18 @@
   .art-more { color: var(--gold); font-size: 0.98rem; }
   .article-page h1 { font-size: 1.9rem; line-height: 1.35; margin-bottom: 0.4rem; }
   .back-link { margin-top: 2rem; }
+  html { scroll-behavior: smooth; }
+  .prod-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; }
+  @media (max-width: 720px) { .prod-grid { grid-template-columns: 1fr; } }
+  .prod-card { border: 1px solid rgba(16,23,34,0.14); border-radius: 10px; padding: 1.2rem 1.3rem 1.35rem; background: rgba(255,255,255,0.35); }
+  .prod-card .prod-img { width: 100%; height: 230px; border-radius: 6px; display: block; margin-bottom: 1rem; background: #fff; }
+  .prod-card .prod-img.book { object-fit: contain; }
+  .prod-card .prod-img.poster { object-fit: cover; }
+  .prod-card h3 { margin: 0 0 0.35rem; font-size: 1.35rem; line-height: 1.4; }
+  .prod-card .prod-sub { color: var(--muted); line-height: 1.65; margin: 0 0 0.6rem; }
+  .prod-card .prod-price { font-size: 1.2rem; margin: 0.3rem 0 0.9rem; }
+  .prod-actions { display: flex; align-items: center; gap: 1.1rem; flex-wrap: wrap; }
+  .prod-actions .detail-link { color: var(--gold); text-decoration: none; font-size: 1rem; }
 </style>
 </head>
 <body>
@@ -291,12 +303,21 @@
 </div>
 </div>
 
-<div class="cards">
-<a class="card" href="books.html"><h3>书籍</h3><p>《欲望的力量：人类科技创新简史》（第二版）电子版。</p></a>
-<a class="card" href="posters.html"><h3>图谱</h3><p>网络协议全景图 — 电子图谱（PDF），$19.99。</p></a>
-<a class="card" href="articles.html"><h3>文章</h3><p>薛澜、阎焱、孙小淳三篇推荐序。</p></a>
-<a class="card" href="about.html"><h3>关于</h3><p>Javvin 公司简介与联系方式。</p></a>
+<section class="block" id="products">
+<h2>产品</h2>
+<div class="prod-grid">
+<div class="prod-card"><img class="prod-img book" src="../assets/covers/cover-front.jpg" alt="《欲望的力量：人类科技创新简史》第二版封面"/><h3>《欲望的力量：人类科技创新简史》（第二版）</h3><p class="prod-sub">董洁林著 · 电子书（PDF），本站购买后下载；纸质版按需印刷。</p><p class="prod-price">$12.99</p><div class="prod-actions"><a class="buy-btn" href="https://payhip.com/b/ioAfP" rel="noopener" target="_blank"><span>购买电子书</span></a><a class="detail-link" href="books.html">详细介绍 →</a></div></div>
+<div class="prod-card"><img class="prod-img poster" src="../assets/posters/network-protocols-map-promo.jpg" alt="网络协议全景图"/><h3>网络协议全景图</h3><p class="prod-sub">Network Protocols Map · 电子图谱（PDF），2009 经典版 · 2026 修订，横版 36×24 英寸，自行打印装裱。</p><p class="prod-price">$19.99</p><div class="prod-actions"><a class="buy-btn" href="https://payhip.com/b/xO3uf" rel="noopener" target="_blank"><span>购买图谱</span></a><a class="detail-link" href="posters.html">详细介绍 →</a></div></div>
 </div>
+</section>
+<section class="block" id="home-articles">
+<h2>文章与推荐序</h2>
+<div class="art-list">
+<a class="art-card" href="articles-xue-lan.html"><h3>人类创新历史长河中的一叶轻舟</h3><p class="byline">薛澜（清华大学教授，清华大学苏世民书院院长）</p><p class="art-guide">薛澜以创新研究学者的视角，解读本书如何以人类需求为线索、用故事与数据重构万年科技创新史。</p><span class="art-more">阅读全文 →</span></a>
+<a class="art-card" href="articles-yan-yan.html"><h3>思想谱系里珍贵的少数派声音</h3><p class="byline">阎焱（赛富基金创始管理合伙人）</p><p class="art-guide">阎焱从投资人的视角谈渐进式创新与重大突破、人工智能带来的新变革，称本书是思想谱系里珍贵的少数派声音。</p><span class="art-more">阅读全文 →</span></a>
+<a class="art-card" href="articles-sun-xiaochun.html"><h3>人类为什么要创新——《欲望的力量：人类科技创新简史》第二版推荐序</h3><p class="byline">孙小淳（中国科学院大学人文学院教授，中国科学技术史学会原理事长）</p><p class="art-guide">孙小淳以科技史家的眼光，评述本书以需求为经、创新为纬的思想实验与作者不断修正自我的治学态度。</p><span class="art-more">阅读全文 →</span></a>
+</div>
+</section>
 <section class="block" id="praise">
 <h2>各界推荐</h2>
 <div class="praise"><p>“把传统的科技创新编年史解构，再用优美的文笔、引人入胜的故事和严谨的学术分析按照新的体系重建。”</p><p class="who">——薛澜 · 清华大学苏世民书院院长</p></div>

@@ -76,6 +76,20 @@ if '.cover-fig' not in EXTRA_CSS:
         '  .cover-fig { margin: 0; text-align: center; }\n'
         '  .hero .cover-fig figcaption { color: #e8e2d4; font-size: 1.05rem; line-height: 1.75; letter-spacing: 0.03em; max-width: 320px; margin: 1rem auto 0; }\n'
         '  .book-card .cover-fig figcaption { color: var(--ink); font-size: 1.08rem; line-height: 1.7; letter-spacing: 0.03em; max-width: 280px; margin: 0.9rem auto 0; }\n</style>')
+if '.prod-grid' not in EXTRA_CSS:
+    EXTRA_CSS = EXTRA_CSS.replace('</style>',
+        '  html { scroll-behavior: smooth; }\n'
+        '  .prod-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; }\n'
+        '  @media (max-width: 720px) { .prod-grid { grid-template-columns: 1fr; } }\n'
+        '  .prod-card { border: 1px solid rgba(16,23,34,0.14); border-radius: 10px; padding: 1.2rem 1.3rem 1.35rem; background: rgba(255,255,255,0.35); }\n'
+        '  .prod-card .prod-img { width: 100%; height: 230px; border-radius: 6px; display: block; margin-bottom: 1rem; background: #fff; }\n'
+        '  .prod-card .prod-img.book { object-fit: contain; }\n'
+        '  .prod-card .prod-img.poster { object-fit: cover; }\n'
+        '  .prod-card h3 { margin: 0 0 0.35rem; font-size: 1.35rem; line-height: 1.4; }\n'
+        '  .prod-card .prod-sub { color: var(--muted); line-height: 1.65; margin: 0 0 0.6rem; }\n'
+        '  .prod-card .prod-price { font-size: 1.2rem; margin: 0.3rem 0 0.9rem; }\n'
+        '  .prod-actions { display: flex; align-items: center; gap: 1.1rem; flex-wrap: wrap; }\n'
+        '  .prod-actions .detail-link { color: var(--gold); text-decoration: none; font-size: 1rem; }\n</style>')
 if '.art-list' not in EXTRA_CSS:
     EXTRA_CSS = EXTRA_CSS.replace('</style>',
         '  .art-list { display: grid; gap: 1.1rem; }\n'
@@ -356,16 +370,9 @@ ARTICLES = {
 }
 
 def articles_index(lang):
-    zh = (lang == 'zh')
-    items = []
-    for slug, title, byline, guide, _a, _k in ARTICLES[lang]:
-        more = '阅读全文 →' if zh else 'Read the full article →'
-        items.append('<a class="art-card" href="articles-%s.html"><h3>%s</h3>'
-                     '<p class="byline">%s</p><p class="art-guide">%s</p>'
-                     '<span class="art-more">%s</span></a>' % (slug, title, byline, guide, more))
-    h2 = '文章' if zh else 'Articles'
+    h2 = '文章' if lang == 'zh' else 'Articles'
     return ('<section class="block" id="articles">\n<h2>%s</h2>\n<div class="art-list">\n%s\n</div>\n</section>'
-            % (h2, '\n'.join(items)))
+            % (h2, art_cards(lang)))
 
 def article_jsonld(lang, art, fname):
     slug, title, _b, guide, author, _k = art
@@ -378,6 +385,54 @@ def article_jsonld(lang, art, fname):
             'about': {'@type': 'Book',
                       'name': ('欲望的力量：人类科技创新简史' if lang == 'zh'
                                else 'The Power of Desire: A Brief History of Scientific & Technological Innovation')}}
+
+
+def art_cards(lang):
+    zh = (lang == 'zh')
+    items = []
+    for slug, title, byline, guide, _a, _k in ARTICLES[lang]:
+        more = '阅读全文 →' if zh else 'Read the full article →'
+        items.append('<a class="art-card" href="articles-%s.html"><h3>%s</h3>'
+                     '<p class="byline">%s</p><p class="art-guide">%s</p>'
+                     '<span class="art-more">%s</span></a>' % (slug, title, byline, guide, more))
+    return '\n'.join(items)
+
+def products_block(lang):
+    if lang == 'zh':
+        return ('<section class="block" id="products">\n<h2>产品</h2>\n<div class="prod-grid">\n'
+                '<div class="prod-card"><img class="prod-img book" src="../assets/covers/cover-front.jpg" alt="《欲望的力量：人类科技创新简史》第二版封面"/>'
+                '<h3>《欲望的力量：人类科技创新简史》（第二版）</h3>'
+                '<p class="prod-sub">董洁林著 · 电子书（PDF），本站购买后下载；纸质版按需印刷。</p>'
+                '<p class="prod-price">$12.99</p>'
+                '<div class="prod-actions"><a class="buy-btn" href="https://payhip.com/b/ioAfP" rel="noopener" target="_blank"><span>购买电子书</span></a>'
+                '<a class="detail-link" href="books.html">详细介绍 →</a></div></div>\n'
+                '<div class="prod-card"><img class="prod-img poster" src="../assets/posters/network-protocols-map-promo.jpg" alt="网络协议全景图"/>'
+                '<h3>网络协议全景图</h3>'
+                '<p class="prod-sub">Network Protocols Map · 电子图谱（PDF），2009 经典版 · 2026 修订，横版 36×24 英寸，自行打印装裱。</p>'
+                '<p class="prod-price">$19.99</p>'
+                '<div class="prod-actions"><a class="buy-btn" href="https://payhip.com/b/xO3uf" rel="noopener" target="_blank"><span>购买图谱</span></a>'
+                '<a class="detail-link" href="posters.html">详细介绍 →</a></div></div>\n'
+                '</div>\n</section>')
+    return ('<section class="block" id="products">\n<h2>Our Products</h2>\n<div class="prod-grid">\n'
+            '<div class="prod-card"><img class="prod-img book" src="../assets/covers/cover-en-front.jpg" alt="Cover of The Power of Desire, second edition"/>'
+            '<h3>The Power of Desire</h3>'
+            '<p class="prod-sub">A Brief History of Scientific &amp; Technological Innovation, by Jielin Dong · Ebook (PDF), second edition; print edition by print-on-demand.</p>'
+            '<p class="prod-price">$12.99</p>'
+            '<div class="prod-actions"><a class="buy-btn" href="https://payhip.com/b/LdW15" rel="noopener" target="_blank"><span>Buy the Ebook</span></a>'
+            '<a class="detail-link" href="books.html">Details →</a></div></div>\n'
+            '<div class="prod-card"><img class="prod-img poster" src="../assets/posters/network-protocols-map-promo.jpg" alt="Network Protocols Map"/>'
+            '<h3>Network Protocols Map</h3>'
+            '<p class="prod-sub">Digital poster (PDF) — 2009 classic, revised 2026 · 36×24 in, download and print it yourself.</p>'
+            '<p class="prod-price">$19.99</p>'
+            '<div class="prod-actions"><a class="buy-btn" href="https://payhip.com/b/xO3uf" rel="noopener" target="_blank"><span>Buy the Poster</span></a>'
+            '<a class="detail-link" href="posters.html">Details →</a></div></div>\n'
+            '</div>\n</section>')
+
+def home_articles(lang):
+    zh = (lang == 'zh')
+    h2 = '文章与推荐序' if zh else 'Articles & Forewords'
+    return ('<section class="block" id="home-articles">\n<h2>%s</h2>\n<div class="art-list">\n%s\n</div>\n</section>'
+            % (h2, art_cards(lang)))
 
 def build(lang, out_dir):
     zh = (lang == 'zh')
@@ -435,7 +490,7 @@ def build(lang, out_dir):
                    '</div>\n</section>')
     # book-info layout (byline / price+buy+sample / spec line / tagline) is canonical in the source pages
     bodies = {
-        'home': hero_html + '\n' + cards(lang) + '\n' + praise_block(lang) + '\n' + footer(books_pg),
+        'home': hero_html + '\n' + products_block(lang) + '\n' + home_articles(lang) + '\n' + praise_block(lang) + '\n' + footer(books_pg),
         'books': books_sec + '\n' + bottom_buy(lang) + '\n' + footer(books_pg),
         'posters': section(get_page('posters.html', zh), 'posters') + '\n' + footer(books_pg),
         'articles': articles_index(lang) + '\n' + footer(books_pg),

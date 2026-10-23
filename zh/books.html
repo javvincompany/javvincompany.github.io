@@ -259,6 +259,18 @@
   .art-more { color: var(--gold); font-size: 0.98rem; }
   .article-page h1 { font-size: 1.9rem; line-height: 1.35; margin-bottom: 0.4rem; }
   .back-link { margin-top: 2rem; }
+  html { scroll-behavior: smooth; }
+  .prod-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; }
+  @media (max-width: 720px) { .prod-grid { grid-template-columns: 1fr; } }
+  .prod-card { border: 1px solid rgba(16,23,34,0.14); border-radius: 10px; padding: 1.2rem 1.3rem 1.35rem; background: rgba(255,255,255,0.35); }
+  .prod-card .prod-img { width: 100%; height: 230px; border-radius: 6px; display: block; margin-bottom: 1rem; background: #fff; }
+  .prod-card .prod-img.book { object-fit: contain; }
+  .prod-card .prod-img.poster { object-fit: cover; }
+  .prod-card h3 { margin: 0 0 0.35rem; font-size: 1.35rem; line-height: 1.4; }
+  .prod-card .prod-sub { color: var(--muted); line-height: 1.65; margin: 0 0 0.6rem; }
+  .prod-card .prod-price { font-size: 1.2rem; margin: 0.3rem 0 0.9rem; }
+  .prod-actions { display: flex; align-items: center; gap: 1.1rem; flex-wrap: wrap; }
+  .prod-actions .detail-link { color: var(--gold); text-decoration: none; font-size: 1rem; }
 </style>
 </head>
 <body>
