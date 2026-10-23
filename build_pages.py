@@ -336,11 +336,13 @@ def build(lang, out_dir):
     # return policy lives on the About page (moved there 2026-10-21 at her request)
     if zh:
         returns = ('<section class="block" id="returns">\n<h2>退货政策</h2>\n<div class="about-text">\n'
-                   '<p>电子产品（电子书与电子图谱）一经交付完成，概不退货退款。本店保证文件成功交付：如下载失败或文件损坏，将免费重新交付。印刷版由第三方零售商出售，其退货与退款依出售该印刷版之零售商的政策办理。</p>\n'
+                   '<p>电子产品（电子书与电子图谱）一经交付完成，概不退货退款。本店保证文件成功交付：如下载失败或文件损坏，将免费重新交付。</p>\n'
+                   '<p>印刷版采用按需印刷（Print-on-Demand）方式：您下单后，专门为您印制并寄送。如果您从本网站购买的印刷版出现印刷或装订瑕疵、需要退换，请联系 javvincompany@gmail.com。如果您从其他网站或书店购买印刷版，其退换依出售该印刷版之零售商的政策办理。</p>\n'
                    '</div>\n</section>')
     else:
         returns = ('<section class="block" id="returns">\n<h2>Return Policy</h2>\n<div class="about-text">\n'
-                   '<p>All sales of digital products (ebooks and digital posters) are final upon completion of delivery; delivered digital products are non-refundable. We guarantee successful delivery of your files — if a download fails or a file is corrupted, we will re-deliver it at no additional charge. Print editions are sold through third-party retailers, and returns and refunds for print editions are governed by the policies of the retailer from which the print edition was purchased.</p>\n'
+                   '<p>All sales of digital products (ebooks and digital posters) are final upon completion of delivery; delivered digital products are non-refundable. We guarantee successful delivery of your files — if a download fails or a file is corrupted, we will re-deliver it at no additional charge.</p>\n'
+                   '<p>Print editions are produced by print-on-demand: when you place an order, a copy is printed especially for you and shipped to you. If a print copy purchased from this website has printing or binding defects and you need a return or exchange, please contact javvincompany@gmail.com. If you purchased the print edition from another website or bookstore, its return or exchange is governed by the policy of the retailer that sold it.</p>\n'
                    '</div>\n</section>')
     # book-info layout (byline / price+buy+sample / spec line / tagline) is canonical in the source pages
     bodies = {
