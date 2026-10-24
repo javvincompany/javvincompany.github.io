@@ -402,7 +402,7 @@ def art_cards(lang):
 
 def products_block(lang):
     if lang == 'zh':
-        return ('<section class="block" id="products">\n<h2>产品</h2>\n<div class="prod-grid">\n'
+        return ('<section class="block" id="products">\n<h2>作品</h2>\n<div class="prod-grid">\n'
                 '<div class="prod-card"><img class="prod-img book" src="../assets/covers/cover-front.jpg" alt="《欲望的力量：人类科技创新简史》第二版封面"/>'
                 '<h3>《欲望的力量：人类科技创新简史》（第二版）</h3>'
                 '<p class="prod-sub">董洁林著 · 电子书（PDF），本站购买后下载；纸质版按需印刷。</p>'
@@ -416,7 +416,7 @@ def products_block(lang):
                 '<div class="prod-actions"><a class="buy-btn" href="https://payhip.com/b/xO3uf" rel="noopener" target="_blank"><span>购买图谱</span></a>'
                 '<a class="detail-link" href="posters.html">详细介绍 →</a></div></div>\n'
                 '</div>\n</section>')
-    return ('<section class="block" id="products">\n<h2>Our Products</h2>\n<div class="prod-grid">\n'
+    return ('<section class="block" id="products">\n<h2>Publications</h2>\n<div class="prod-grid">\n'
             '<div class="prod-card"><img class="prod-img book" src="../assets/covers/cover-en-front.jpg" alt="Cover of The Power of Desire, second edition"/>'
             '<h3>The Power of Desire</h3>'
             '<p class="prod-sub">A Brief History of Scientific &amp; Technological Innovation, by Jielin Dong · Ebook (PDF), second edition; print edition by print-on-demand.</p>'
