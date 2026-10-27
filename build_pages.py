@@ -473,15 +473,17 @@ def build(lang, out_dir):
     # author bio section after the book introduction
     if zh:
         bio = ('<section class="block" id="author">\n<h2>作者简介</h2>\n<div class="about-text">\n'
-               '<p>董洁林博士是一位学者和评论家，研究领域涵盖科技史、创新政策与全球科技竞争。她是《华尔街日报》和《金融时报》中文版的长期撰稿人，发表文章众多，并著有五部著作。</p>\n'
-               '<p>董博士曾在清华大学和苏州大学担任学术与研究职务。在清华大学，她曾任中国科学学与科技政策研究院兼职研究员，并任技术创新研究中心兼职教授、学术委员会委员。在苏州大学，她曾任特聘教授、企业创新与发展研究中心主任。她的职业生涯还包括在朗讯、思科、Network Associates 等科技公司担任管理职务，以及在金融服务机构和科研院所任职。她曾出任多家科技初创企业的董事。</p>\n'
-               '<p>董博士 1988 年获卡内基梅隆大学物理学博士学位，1982 年获中山大学学士学位。她通过竞争极为激烈的 CUSPEA（中美联合培养物理研究生）项目赴美攻读研究生。</p>\n'
+               '<p>董洁林博士是一位学者和作家，研究与写作领域涵盖科学技术史、创新政策和全球科技竞争。她长期为《华尔街日报》和《金融时报》中文版撰稿，已出版五部著作及多篇文章。她也是 Javvin Company（<a href="https://javvin.ai/">Javvin.ai</a>）的创始人。</p>\n'
+               '<p>董洁林博士曾在清华大学和苏州大学担任教学与研究职务。在清华大学，她曾任中国科技政策研究中心兼职研究员，以及技术创新研究中心兼职教授、学术委员会委员。在苏州大学，她曾任特聘教授、企业创新与发展研究中心主任。她还曾在朗讯、思科和 Network Associates 等科技公司担任管理职务，并在金融服务机构和科研院所工作。此外，她曾担任多家科技创业公司的董事。</p>\n'
+               '<p>董洁林博士于1988年获得美国卡内基梅隆大学物理学博士学位，1982年获得中山大学理学学士学位。她通过竞争激烈的中美联合招考物理研究生项目（CUSPEA）赴美深造。</p>\n'
+               '<p><strong>社交媒体</strong><br/>X：<a href="https://x.com/D931931" rel="noopener" target="_blank">@D931931</a> ｜ LinkedIn：<a href="https://www.linkedin.com/in/jielin-dong-04b4b515/" rel="noopener" target="_blank">Jielin Dong</a></p>\n'
                '</div>\n</section>')
     else:
         bio = ('<section class="block" id="author">\n<h2>About the Author</h2>\n<div class="about-text">\n'
-               '<p>Dr. Jielin Dong is a scholar and commentator whose work spans the history of science and technology, innovation policy, and global technology competition. She is a regular contributor to the Chinese editions of The Wall Street Journal and the Financial Times. She has published numerous articles and five books.</p>\n'
-               '<p>Dr. Dong has held academic and research appointments at Tsinghua University and Soochow University. At Tsinghua, she has served as a part-time research fellow at the China Institute for Science and Technology Policy and as a part-time professor and academic committee member at the Research Center for Technological Innovation. At Soochow, she has served as a distinguished professor and director of the Center for Enterprise Innovation and Development. Her career also includes management roles at technology companies, including Lucent, Cisco, and Network Associates, as well as positions in financial services and scientific research institutes. She has served on the boards of several technology startups.</p>\n'
-               '<p>Dr. Dong earned her Ph.D. in physics from Carnegie Mellon University in 1988 and her B.S. from Sun Yat-sen University in 1982. She went to the United States for graduate study through the highly competitive CUSPEA program.</p>\n'
+               '<p>Dr. Jielin Dong is a scholar and author whose work focuses on the history of science and technology, innovation policy, and global technology competition. A regular contributor to the Chinese editions of The Wall Street Journal and the Financial Times, she has published five books and numerous articles. She is the founder of Javvin Company (<a href="https://javvin.ai/">Javvin.ai</a>).</p>\n'
+               '<p>Dr. Dong has held academic and research appointments at Tsinghua University and Soochow University. At Tsinghua, she has served as a part-time research fellow at the China Institute for Science and Technology Policy, and as a part-time professor and academic committee member at the Research Center for Technological Innovation. At Soochow, she has served as a distinguished professor and director of the Center for Enterprise Innovation and Development. Her career also includes management roles at Lucent, Cisco, and Network Associates, as well as positions in financial services and scientific research institutes. She has also served on the boards of several technology startups.</p>\n'
+               '<p>Dr. Dong earned her Ph.D. in physics from Carnegie Mellon University in 1988 and her B.S. from Sun Yat-sen University in 1982. She pursued graduate study in the United States through the highly competitive CUSPEA program.</p>\n'
+               '<p><strong>Social media</strong><br/>X: <a href="https://x.com/D931931" rel="noopener" target="_blank">@D931931</a> &nbsp;|&nbsp; LinkedIn: <a href="https://www.linkedin.com/in/jielin-dong-04b4b515/" rel="noopener" target="_blank">Jielin Dong</a></p>\n'
                '</div>\n</section>')
     books_sec = books_sec + '\n' + toc_block(lang) + '\n' + praise_block(lang) + '\n' + bio
     # return policy lives on the About page (moved there 2026-10-21 at her request)
