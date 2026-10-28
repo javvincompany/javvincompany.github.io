@@ -276,6 +276,14 @@ def head(lang, page, fname, title, desc, og_title, keywords='', jsonld_override=
 <meta content="{og_img}" property="og:image"/>{jsonld}
 {STYLE}
 {EXTRA_CSS}
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KYM6J31ZQ2"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){{dataLayer.push(arguments);}}
+gtag('js', new Date());
+gtag('config', 'G-KYM6J31ZQ2');
+</script>
 </head>'''
 
 def cards(lang):
