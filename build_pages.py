@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # Rebuild javvin.ai into /en/ and /zh/ trees (one page per menu
 # category per language), each page with its own title/description/lang tags,
-# plus schema.org Book JSON-LD (with ISBN) on home + books pages.
+# plus schema.org Book JSON-LD (with ISBN) on home + book detail pages.
 # Content blocks are taken from the deployed split pages (build #1 outputs),
 # which carry the canonical titles:
 #   EN: The Power of Desire: A Brief History of Scientific & Technological Innovation
@@ -9,11 +9,11 @@
 import re, pathlib, json
 
 ROOT = pathlib.Path('/home/hatch/workspace/website')
-# Sources: the current /en/ and /zh/ trees (root files are redirect stubs now)
+# Sources: the current /en/ and /zh/ trees (root files are redirect stubs now).
+# Book detail bodies live in books-src/ fragments (one per language per book);
+# books.html itself is now a listing page built from the BOOKS registry.
 en_home = (ROOT / 'en' / 'index.html').read_text()
-en_books = (ROOT / 'en' / 'books.html').read_text()
 zh_home = (ROOT / 'zh' / 'index.html').read_text()
-zh_books = (ROOT / 'zh' / 'books.html').read_text()
 
 STYLE = re.search(r'<style>.*?</style>', en_home, re.S).group(0)
 # smaller covers (idempotent: match whatever current values are)
@@ -176,7 +176,7 @@ BOOK_JSONLD = {
         'bookFormat': 'https://schema.org/EBook', 'bookEdition': 'Second edition',
         'numberOfPages': 484,
         'image': BASE + 'assets/covers/cover-en-front.jpg',
-        'url': BASE + 'en/books.html',
+        'url': BASE + 'en/books-power-of-desire.html',
         'offers': {'@type': 'Offer', 'url': 'https://payhip.com/b/LdW15',
                    'price': '12.99', 'priceCurrency': 'USD',
                    'availability': 'https://schema.org/InStock', 'category': 'Ebook (PDF)'},
@@ -190,7 +190,7 @@ BOOK_JSONLD = {
         'bookFormat': 'https://schema.org/EBook', 'bookEdition': '第二版',
         'numberOfPages': 426,
         'image': BASE + 'assets/covers/cover-front.jpg',
-        'url': BASE + 'zh/books.html',
+        'url': BASE + 'zh/books-power-of-desire.html',
         'offers': {'@type': 'Offer', 'url': 'https://payhip.com/b/ioAfP',
                    'price': '12.99', 'priceCurrency': 'USD',
                    'availability': 'https://schema.org/InStock', 'category': '电子书（PDF）'},
@@ -252,7 +252,7 @@ def head(lang, page, fname, title, desc, og_title, keywords='', jsonld_override=
     if jsonld_override is not None:
         jsonld = ('\n<script type="application/ld+json">\n%s\n</script>'
                   % json.dumps(jsonld_override, ensure_ascii=False, indent=2))
-    elif page in ('home', 'books'):
+    elif page == 'home':
         jsonld = ('\n<script type="application/ld+json">\n%s\n</script>'
                   % json.dumps(BOOK_JSONLD[lang], ensure_ascii=False, indent=2))
     og_img = BASE + ('assets/covers/cover-en-front.jpg' if lang == 'en'
@@ -307,8 +307,9 @@ META = {
     'en': {
         'home': ('index.html', 'Javvin Company — The Power of Desire: A Brief History of Scientific &amp; Technological Innovation',
                  EN_BOOK_DESC, 'Javvin Company — The Power of Desire: A Brief History of Scientific &amp; Technological Innovation'),
-        'books': ('books.html', 'The Power of Desire — The Book | Javvin Company', EN_BOOK_DESC,
-                  'Javvin Company — The Power of Desire: A Brief History of Scientific &amp; Technological Innovation'),
+        'books': ('books.html', 'Books | Javvin Company',
+                  'Books by Jielin Dong, published by Javvin Company — including The Power of Desire: A Brief History of Scientific &amp; Technological Innovation.',
+                  'Books | Javvin Company'),
         'posters': ('posters.html', 'Network Protocols Map — Digital Poster | Javvin Company',
                     'Network Protocols Map (2009 classic, revised 2026) — a high-resolution digital poster (PDF) from Javvin Company: download, print, and frame it yourself.', 'Network Protocols Map — Digital Poster | Javvin Company'),
         'articles': ('articles.html', 'Articles & Forewords — Xue Lan, Yan Yan, Sun Xiaochun | Javvin Company',
@@ -319,8 +320,9 @@ META = {
     'zh': {
         'home': ('index.html', 'Javvin 公司 — 《欲望的力量：人类科技创新简史》', ZH_BOOK_DESC,
                  'Javvin 公司 — 《欲望的力量：人类科技创新简史》（第二版）'),
-        'books': ('books.html', '《欲望的力量：人类科技创新简史》（第二版）— 董洁林 | Javvin 公司', ZH_BOOK_DESC,
-                  'Javvin 公司 — 《欲望的力量：人类科技创新简史》（第二版）'),
+        'books': ('books.html', '书籍 | Javvin 公司',
+                  'Javvin 公司出版的图书 — 董洁林作品，包括《欲望的力量：人类科技创新简史》。',
+                  '书籍 | Javvin 公司'),
         'posters': ('posters.html', '网络协议全景图 — 电子图谱 | Javvin 公司',
                     '《网络协议全景图》（2009 经典版·2026 修订）— Javvin 公司电子图谱：高清 PDF，购买后下载，自行打印装裱。', '网络协议全景图 — 电子图谱 | Javvin 公司'),
         'articles': ('articles.html', '文章与推荐序 — 薛澜、阎焱、孙小淳 | Javvin 公司',
@@ -334,14 +336,14 @@ META = {
 KEYWORDS = {
     'en': {
         'home': 'Javvin Company, The Power of Desire, history of technological innovation, history of innovation, Jielin Dong, science and technology history, ebook',
-        'books': 'The Power of Desire, Jielin Dong, history of innovation, history of technological innovation, human needs, ebook PDF, ISBN 9781602670310',
+        'books': 'Javvin Company books, Jielin Dong books, history of innovation books, ebooks',
         'posters': 'Network Protocols Map, network protocols poster, TCP/IP poster, OSI model, digital poster PDF, printable wall chart, Javvin',
         'articles': 'Xue Lan, Yan Yan, Sun Xiaochun, foreword, book review, The Power of Desire, history of innovation, Javvin Company',
         'about': 'Javvin Company, AI-native publisher, independent publisher, San Francisco publisher, Jielin Dong, books on technological innovation',
     },
     'zh': {
         'home': 'Javvin公司, 欲望的力量, 人类科技创新简史, 董洁林, 科技创新史, 科技史, 电子书',
-        'books': '欲望的力量, 人类科技创新简史, 董洁林, 第二版, 科技创新史, 人类需求, 电子书PDF, ISBN 9781602670303',
+        'books': 'Javvin公司图书, 董洁林图书, 科技创新史, 电子书',
         'posters': '网络协议全景图, 网络协议图, TCP/IP, OSI模型, 电子图谱, 知识图谱, PDF下载打印, Javvin',
         'articles': '薛澜, 阎焱, 孙小淳, 推荐序, 书评, 欲望的力量, 人类科技创新简史, 科技创新史',
         'about': 'Javvin公司, AI原生出版社, 独立出版社, 旧金山出版社, 董洁林, 科技创新图书',
@@ -408,6 +410,51 @@ def art_cards(lang):
                      '<span class="art-more">%s</span></a>' % (slug, title, byline, guide, more))
     return '\n'.join(items)
 
+# slug, card title, card subline, cover, cover alt, price, buy url, buy label,
+# detail-link label, detail page title, detail description, detail og title, keywords
+# (the slug is shared across languages so the language switch links match)
+BOOKS = {
+    'en': [
+        ('power-of-desire',
+         'The Power of Desire',
+         'A Brief History of Scientific &amp; Technological Innovation, by Jielin Dong · Ebook (PDF), second edition; print edition by print-on-demand.',
+         '../assets/covers/cover-en-front.jpg', 'Cover of The Power of Desire, second edition',
+         '$12.99', 'https://payhip.com/b/LdW15', 'Buy the Ebook', 'Details →',
+         'The Power of Desire — The Book | Javvin Company', EN_BOOK_DESC,
+         'Javvin Company — The Power of Desire: A Brief History of Scientific &amp; Technological Innovation',
+         'The Power of Desire, Jielin Dong, history of innovation, history of technological innovation, human needs, ebook PDF, ISBN 9781602670310'),
+    ],
+    'zh': [
+        ('power-of-desire',
+         '《欲望的力量：人类科技创新简史》（第二版）',
+         '董洁林著 · 电子书（PDF），本站购买后下载；纸质版按需印刷。',
+         '../assets/covers/cover-front.jpg', '《欲望的力量：人类科技创新简史》第二版封面',
+         '$12.99', 'https://payhip.com/b/ioAfP', '购买电子书', '详细介绍 →',
+         '《欲望的力量：人类科技创新简史》（第二版）— 董洁林 | Javvin 公司', ZH_BOOK_DESC,
+         'Javvin 公司 — 《欲望的力量：人类科技创新简史》（第二版）',
+         '欲望的力量, 人类科技创新简史, 董洁林, 第二版, 科技创新史, 人类需求, 电子书PDF, ISBN 9781602670303'),
+    ],
+}
+
+def book_cards(lang):
+    items = []
+    for (slug, title, sub, cover, alt, price, buy, buy_label, more,
+         _dt, _dd, _og, _kw) in BOOKS[lang]:
+        items.append(
+            '<div class="prod-card"><img class="prod-img book" src="%s" alt="%s"/>'
+            '<h3>%s</h3>'
+            '<p class="prod-sub">%s</p>'
+            '<p class="prod-price">%s</p>'
+            '<div class="prod-actions"><a class="buy-btn" href="%s" rel="noopener" target="_blank"><span>%s</span></a>'
+            '<a class="detail-link" href="books-%s.html">%s</a></div></div>'
+            % (cover, alt, title, sub, price, buy, buy_label, slug, more))
+    return ''.join(items)
+
+def books_index(lang):
+    h2 = '书籍' if lang == 'zh' else 'Books'
+    return ('<section class="block" id="books"><h2>%s</h2><div class="prod-grid">%s</div></section>'
+            % (h2, book_cards(lang)))
+
 def products_block(lang):
     if lang == 'zh':
         return ('<section class="block" id="products">\n<h2>作品</h2>\n<div class="prod-grid">\n'
@@ -416,7 +463,7 @@ def products_block(lang):
                 '<p class="prod-sub">董洁林著 · 电子书（PDF），本站购买后下载；纸质版按需印刷。</p>'
                 '<p class="prod-price">$12.99</p>'
                 '<div class="prod-actions"><a class="buy-btn" href="https://payhip.com/b/ioAfP" rel="noopener" target="_blank"><span>购买电子书</span></a>'
-                '<a class="detail-link" href="books.html">详细介绍 →</a></div></div>\n'
+                '<a class="detail-link" href="books-power-of-desire.html">详细介绍 →</a></div></div>\n'
                 '<div class="prod-card"><img class="prod-img poster" src="../assets/posters/network-protocols-map-promo.jpg" alt="网络协议全景图"/>'
                 '<h3>网络协议全景图</h3>'
                 '<p class="prod-sub">Network Protocols Map · 电子图谱（PDF），2009 经典版 · 2026 修订，横版 36×24 英寸，自行打印装裱。</p>'
@@ -430,7 +477,7 @@ def products_block(lang):
             '<p class="prod-sub">A Brief History of Scientific &amp; Technological Innovation, by Jielin Dong · Ebook (PDF), second edition; print edition by print-on-demand.</p>'
             '<p class="prod-price">$12.99</p>'
             '<div class="prod-actions"><a class="buy-btn" href="https://payhip.com/b/LdW15" rel="noopener" target="_blank"><span>Buy the Ebook</span></a>'
-            '<a class="detail-link" href="books.html">Details →</a></div></div>\n'
+            '<a class="detail-link" href="books-power-of-desire.html">Details →</a></div></div>\n'
             '<div class="prod-card"><img class="prod-img poster" src="../assets/posters/network-protocols-map-promo.jpg" alt="Network Protocols Map"/>'
             '<h3>Network Protocols Map</h3>'
             '<p class="prod-sub">Digital poster (PDF) — 2009 classic, revised 2026 · 36×24 in, download and print it yourself.</p>'
@@ -448,7 +495,6 @@ def home_articles(lang):
 def build(lang, out_dir):
     zh = (lang == 'zh')
     home = zh_home if zh else en_home
-    books_pg = zh_books if zh else en_books
     hero_html = hero(home)
     hero_html = re.sub(r'\n?<span class="nr-badge">[^<]*</span>', '', hero_html)
     badge_txt = '最新发布' if zh else 'New Release'
@@ -471,13 +517,12 @@ def build(lang, out_dir):
     else:
         sample_btn = '\n<a class="hero-btn alt" href="https://payhip.com/b/RXgzv" rel="noopener" target="_blank">Read a Free Sample</a>'
         explore = '<a class="hero-btn" href="books.html">Explore the Book</a>'
-    hero_html = hero_html.replace(explore, explore + sample_btn, 1)
+    hero_html = hero_html.replace(explore, explore.replace('books.html', 'books-power-of-desire.html') + sample_btn, 1)
     # visible ISBN line in the hero meta list (strip earlier injected lines first)
     hero_html = re.sub(r'\n?<li><span class="k">ISBN</span>[^<]*</li>', '', hero_html)
     isbn_li = ('<li><span class="k">ISBN</span>978-1-60267-030-3</li>' if zh
                else '<li><span class="k">ISBN</span>978-1-60267-031-0</li>')
     hero_html = hero_html.replace('</ul>', isbn_li + '\n</ul>', 1)
-    books_sec = section(books_pg, 'books')
     # author bio section after the book introduction
     if zh:
         bio = ('<section class="block" id="author">\n<h2>作者简介</h2>\n<div class="about-text">\n'
@@ -493,7 +538,6 @@ def build(lang, out_dir):
                '<p>Dr. Dong earned her Ph.D. in physics from Carnegie Mellon University in 1988 and her B.S. from Sun Yat-sen University in 1982. She pursued graduate study in the United States through the highly competitive CUSPEA program.</p>\n'
                '<p><strong>Social media</strong><br/>X: <a href="https://x.com/D931931" rel="noopener" target="_blank">@D931931</a> &nbsp;|&nbsp; LinkedIn: <a href="https://www.linkedin.com/in/jielin-dong-04b4b515/" rel="noopener" target="_blank">Jielin Dong</a></p>\n'
                '</div>\n</section>')
-    books_sec = books_sec + '\n' + toc_block(lang) + '\n' + praise_block(lang) + '\n' + bio
     # return policy lives on the About page (moved there 2026-10-21 at her request)
     if zh:
         returns = ('<section class="block" id="returns">\n<h2>退货政策</h2>\n<div class="about-text">\n'
@@ -507,11 +551,11 @@ def build(lang, out_dir):
                    '</div>\n</section>')
     # book-info layout (byline / price+buy+sample / spec line / tagline) is canonical in the source pages
     bodies = {
-        'home': hero_html + '\n' + products_block(lang) + '\n' + home_articles(lang) + '\n' + praise_block(lang) + '\n' + footer(books_pg),
-        'books': books_sec + '\n' + bottom_buy(lang) + '\n' + footer(books_pg),
-        'posters': section(get_page('posters.html', zh), 'posters') + '\n' + footer(books_pg),
-        'articles': articles_index(lang) + '\n' + footer(books_pg),
-        'about': section(get_page('about.html', zh), 'about') + '\n' + license_block(lang) + '\n' + returns + '\n' + footer(books_pg),
+        'home': hero_html + '\n' + products_block(lang) + '\n' + home_articles(lang) + '\n' + praise_block(lang) + '\n' + footer(home),
+        'books': books_index(lang) + footer(home),
+        'posters': section(get_page('posters.html', zh), 'posters') + '\n' + footer(home),
+        'articles': articles_index(lang) + '\n' + footer(home),
+        'about': section(get_page('about.html', zh), 'about') + '\n' + license_block(lang) + '\n' + returns + '\n' + footer(home),
     }
     if lang == 'en':
         bodies = {k: v.replace('"assets/', '"../assets/') for k, v in bodies.items()}
@@ -533,7 +577,7 @@ def build(lang, out_dir):
         back = ('<p class="back-link"><a href="articles.html">← 返回文章列表</a></p>' if zh
                 else '<p class="back-link"><a href="articles.html">← Back to Articles</a></p>')
         body = ('<section class="block article-page" id="article">\n%s\n%s\n</section>\n%s'
-                % (frag, back, footer(books_pg)))
+                % (frag, back, footer(home)))
         if lang == 'en':
             body = body.replace('"assets/', '"../assets/')
         t = ('%s — %s | Javvin 公司' % (atitle, author)) if zh else ('%s — %s | Javvin Company' % (atitle, author))
@@ -543,6 +587,33 @@ def build(lang, out_dir):
         html = ('<!DOCTYPE html>\n<html lang="%s">\n%s\n<body%s>\n%s\n%s\n</body>\n</html>\n'
                 % ('en' if lang == 'en' else 'zh-CN', hd, body_attr,
                    header(lang, 'article', fname), body))
+        (out_dir / fname).write_text(html)
+        print('wrote', out_dir / fname, len(html))
+
+    # standalone book pages (split out of the Books page 2026-10-29 at her request)
+    for bk in BOOKS[lang]:
+        (slug, _ct, _cs, _cv, _al, _pr, _buy, _bl, _more,
+         dtitle, desc, ogt, kw) = bk
+        fname = 'books-%s.html' % slug
+        frag = (ROOT / 'books-src' / ('%s-%s.html' % (lang, slug))).read_text().strip()
+        back = ('<p class="back-link"><a href="books.html">← 返回书籍列表</a></p>' if zh
+                else '<p class="back-link"><a href="books.html">← Back to Books</a></p>')
+        body = frag + toc_block(lang) + praise_block(lang) + bio + bottom_buy(lang) + back + footer(home)
+        if lang == 'en':
+            body = body.replace('"assets/', '"../assets/')
+        hd = head(lang, 'book', fname, dtitle, desc, ogt, keywords=kw,
+                  jsonld_override=BOOK_JSONLD[lang])
+        body_attr = ' class="en"' if lang == 'en' else ''
+        html = '''<!DOCTYPE html>
+<html lang="%s">
+%s
+<body%s>
+%s
+%s
+</body>
+</html>
+''' % ('en' if lang == 'en' else 'zh-CN', hd, body_attr,
+       header(lang, 'book', fname), body)
         (out_dir / fname).write_text(html)
         print('wrote', out_dir / fname, len(html))
 
