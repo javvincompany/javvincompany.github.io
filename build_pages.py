@@ -343,7 +343,7 @@ META = {
         'about': ('about.html', 'About Javvin Company — AI-Native Publisher in San Francisco',
                   'Javvin Company is an AI-native publisher based in San Francisco, specializing in books and posters on technological innovation. AI supports every stage of its work.', 'Javvin Company — About'),
         'for-authors': ('for-authors.html', 'Publish with Javvin — For Authors | Javvin Company',
-                        'Publish with Javvin. Your knowledge. Your experience. A book worth sharing. Javvin welcomes proposals from scientists, engineers, researchers, educators, and other professionals.', 'Publish with Javvin | Javvin Company'),
+                        'Publish with Javvin. Your knowledge. Your experience. Your story. A book worth sharing. Javvin welcomes proposals from scientists, engineers, researchers, educators, and other professionals.', 'Publish with Javvin | Javvin Company'),
     },
     'zh': {
         'home': ('index.html', 'Javvin 公司 — 《欲望的力量：人类科技创新简史》', ZH_BOOK_DESC,
@@ -358,7 +358,7 @@ META = {
         'about': ('about.html', '关于 Javvin 公司 — AI 原生出版社（旧金山）',
                   'Javvin 公司是一家位于美国旧金山的 AI 原生出版社，专注于出版科技创新主题的图书与图谱；从编辑、设计到制作、营销与运营，人工智能支持公司工作的每一个环节。', 'Javvin 公司 — 关于'),
         'for-authors': ('for-authors.html', '在 Javvin 出版 — 作者投稿 | Javvin 公司',
-                        '在 Javvin 出版。你的知识。你的经验。一本值得分享的书。Javvin 欢迎科学家、工程师、研究人员、教育工作者以及其他专业人士投稿。', '在 Javvin 出版 | Javvin 公司'),
+                        '在 Javvin 出版。你的知识。你的经验。你的故事。一本值得分享的书。Javvin 欢迎科学家、工程师、研究人员、教育工作者以及其他专业人士投稿。', '在 Javvin 出版 | Javvin 公司'),
     },
 }
 
@@ -553,7 +553,7 @@ def for_authors_body(lang):
     if lang == 'en':
         return '''<section class="block" id="for-authors">
 <h1>Publish with Javvin</h1>
-<p class="article-deck">Your knowledge. Your experience. A book worth sharing.</p>
+<p class="article-deck">Your knowledge. Your experience. Your story. A book worth sharing.</p>
 <p>You may have spent years solving difficult problems, developing new ideas, or building a career others could learn from. Perhaps you have a life story that deserves to be recorded.</p>
 <p>Javvin welcomes proposals from scientists, engineers, researchers, educators, and other professionals. We seek nonfiction that makes specialized knowledge accessible, offers a useful perspective, or preserves the experiences behind meaningful work.</p>
 <p><a class="buy-btn" href="MAILTO"><span>Submit a Book Proposal</span></a></p>
@@ -589,7 +589,7 @@ def for_authors_body(lang):
 </section>'''.replace('MAILTO', mailto)
     return '''<section class="block" id="for-authors">
 <h1>在 Javvin 出版</h1>
-<p class="article-deck">你的知识。你的经验。一本值得分享的书。</p>
+<p class="article-deck">你的知识。你的经验。你的故事。一本值得分享的书。</p>
 <p>你可能花了多年时间解决难题、提出新想法，或者积累了一番值得他人借鉴的职业生涯。也许，你有一段值得记录的人生故事。</p>
 <p>Javvin 欢迎科学家、工程师、研究人员、教育工作者以及其他专业人士投稿。我们寻找这样的非虚构作品：让专业知识变得易于理解，提供有用的视角，或者保存有意义的工作背后的经验。</p>
 <p><a class="buy-btn" href="MAILTO"><span>提交图书提案</span></a></p>
