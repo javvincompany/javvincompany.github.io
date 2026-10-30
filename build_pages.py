@@ -110,6 +110,9 @@ if '.author-wrap' not in EXTRA_CSS:
 if '.books-intro' not in EXTRA_CSS:
     EXTRA_CSS = EXTRA_CSS.replace('</style>',
         '  .books-intro { text-align: center; font-size: 1.08rem; line-height: 1.7; letter-spacing: 0.03em; margin: 0 0 1.6rem; } </style>')
+if '.editions' not in EXTRA_CSS:
+    EXTRA_CSS = EXTRA_CSS.replace('</style>',
+        '  .editions { width: 100%; border-collapse: collapse; margin: 0.5rem 0 1rem; } .editions th, .editions td { text-align: left; padding: 0.6rem 0.75rem; border-bottom: 1px solid #e2dacc; line-height: 1.6; } .editions th { letter-spacing: 0.06em; font-size: 0.95rem; } .editions td.price { white-space: nowrap; font-weight: bold; } </style>')
 if '.book-price' not in EXTRA_CSS:
     EXTRA_CSS = EXTRA_CSS.replace('</style>',
         '  .book-price { font-size: 1.2rem; margin: 0.6rem 0 0.4rem; }\n'
