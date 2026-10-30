@@ -242,7 +242,7 @@
   .prod-actions { display: flex; align-items: center; gap: 1.1rem; flex-wrap: wrap; }
   .prod-actions .detail-link { color: var(--gold); text-decoration: none; font-size: 1rem; }
   .nr-badge { display: inline-block; background: var(--gold); color: #101722; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase; padding: 0.32rem 0.85rem; border-radius: 999px; margin-bottom: 0.9rem; }
-  .author-wrap { display: flex; gap: 1.6rem; align-items: flex-start; } .author-photo { margin: 0; flex: 0 0 180px; } .author-photo img { width: 100%; border-radius: 6px; display: block; box-shadow: 0 10px 26px rgba(16,23,34,0.18); } @media (max-width: 640px) { .author-wrap { flex-direction: column; } .author-photo { flex-basis: auto; width: 170px; margin: 0 auto; } }   .books-intro { text-align: center; font-size: 1.08rem; line-height: 1.7; letter-spacing: 0.03em; margin: 0 0 1.6rem; }   .editions { width: 100%; border-collapse: collapse; margin: 0.5rem 0 1rem; } .editions th, .editions td { text-align: left; padding: 0.6rem 0.75rem; border-bottom: 1px solid #e2dacc; line-height: 1.6; } .editions th { letter-spacing: 0.06em; font-size: 0.95rem; } .editions td.price { white-space: nowrap; font-weight: bold; } </style>
+  .author-wrap { display: flex; gap: 1.6rem; align-items: flex-start; } .author-photo { margin: 0; flex: 0 0 180px; } .author-photo img { width: 100%; border-radius: 6px; display: block; box-shadow: 0 10px 26px rgba(16,23,34,0.18); } @media (max-width: 640px) { .author-wrap { flex-direction: column; } .author-photo { flex-basis: auto; width: 170px; margin: 0 auto; } }   .books-intro { text-align: center; font-size: 1.08rem; line-height: 1.7; letter-spacing: 0.03em; margin: 0 0 1.6rem; }   .editions { width: 100%; border-collapse: collapse; margin: 0.5rem 0 1rem; } .editions th, .editions td { text-align: left; padding: 0.6rem 0.75rem; border-bottom: 1px solid #e2dacc; line-height: 1.6; } .editions th { letter-spacing: 0.06em; font-size: 0.95rem; } .editions td.price { white-space: nowrap; font-weight: bold; }   .article-deck { font-size: 1.12rem; font-style: italic; line-height: 1.7; margin: 0 0 0.4rem; } .article-page .byline { margin: 0 0 1.6rem; } .fig-caption { font-weight: bold; text-align: center; margin: 1.8rem 0 0.6rem; line-height: 1.6; } .fig-note { font-size: 0.92rem; color: #5c5c5c; line-height: 1.7; margin: 0.4rem 0 1.2rem; } .pub-note { font-size: 0.92rem; color: #5c5c5c; margin-top: 2rem; } .article-fig { margin: 1.2rem 0; } .article-fig img { width: 100%; display: block; border-radius: 6px; } .products-box { position: fixed; right: 14px; top: 50%; transform: translateY(-50%); width: 192px; background: #fdfbf7; border: 1px solid #e2dacc; border-radius: 10px; box-shadow: 0 10px 30px rgba(16,23,34,0.16); padding: 0.9rem; z-index: 20; display: none; } .products-box h3 { font-size: 0.95rem; letter-spacing: 0.06em; margin: 0 0 0.5rem; text-align: center; } .products-box a { display: flex; gap: 0.6rem; align-items: flex-start; text-decoration: none; color: var(--ink); padding: 0.55rem 0; border-top: 1px solid #eee6d8; } .products-box a:first-of-type { border-top: none; } .products-box img { width: 52px; flex: 0 0 52px; border-radius: 4px; display: block; } .pb-title { font-size: 0.88rem; line-height: 1.45; display: block; font-weight: bold; } .pb-meta { font-size: 0.78rem; color: #6b6b6b; display: block; line-height: 1.45; } @media (min-width: 1280px) { .products-box { display: block; } } </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-KYM6J31ZQ2"></script>
 <script>
@@ -263,12 +263,19 @@ gtag('config', 'G-KYM6J31ZQ2');
 <div class="lang-switch"><a href="/en/articles.html">EN</a><a class="active" href="articles.html">中文</a></div>
 </nav>
 </header>
+<aside class="products-box">
+<h3>我们的产品</h3>
+<a href="books-power-of-desire.html"><img alt="欲望的力量" src="../assets/covers/cover-front.jpg"/><span><span class="pb-title">欲望的力量</span><span class="pb-meta">图书 · 电子书 $12.99</span></span></a>
+<a href="../en/books-network-protocols-handbook.html"><img alt="Network Protocols Handbook" src="../assets/covers/handbook-front.jpg"/><span><span class="pb-title">Network Protocols Handbook</span><span class="pb-meta">图书 · 三版本 $12.99 起</span></span></a>
+<a href="posters.html"><img alt="网络协议全景图" src="../assets/posters/network-protocols-map-share.jpg"/><span><span class="pb-title">网络协议全景图</span><span class="pb-meta">图谱 · $19.99</span></span></a>
+</aside>
 <section class="block" id="articles">
 <h2>文章</h2>
 <div class="art-list">
 <a class="art-card" href="articles-xue-lan.html"><h3>人类创新历史长河中的一叶轻舟</h3><p class="byline">薛澜（清华大学教授，清华大学苏世民书院院长）</p><p class="art-guide">薛澜以创新研究学者的视角，解读本书如何以人类需求为线索、用故事与数据重构万年科技创新史。</p><span class="art-more">阅读全文 →</span></a>
 <a class="art-card" href="articles-yan-yan.html"><h3>思想谱系里珍贵的少数派声音</h3><p class="byline">阎焱（赛富基金创始管理合伙人）</p><p class="art-guide">阎焱从投资人的视角谈渐进式创新与重大突破、人工智能带来的新变革，称本书是思想谱系里珍贵的少数派声音。</p><span class="art-more">阅读全文 →</span></a>
 <a class="art-card" href="articles-sun-xiaochun.html"><h3>人类为什么要创新——《欲望的力量：人类科技创新简史》第二版推荐序</h3><p class="byline">孙小淳（中国科学院大学人文学院教授，中国科学技术史学会原理事长）</p><p class="art-guide">孙小淳以科技史家的眼光，评述本书以需求为经、创新为纬的思想实验与作者不断修正自我的治学态度。</p><span class="art-more">阅读全文 →</span></a>
+<a class="art-card" href="articles-us-china-ai-battle.html"><h3>中美AI战局：谁的红利？谁的代价？</h3><p class="byline">董洁林</p><p class="art-guide">公司、国家与个人各有记分牌，且并不通约。</p><span class="art-more">阅读全文 →</span></a>
 </div>
 </section>
 <footer>

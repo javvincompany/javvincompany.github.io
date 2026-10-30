@@ -113,6 +113,9 @@ if '.books-intro' not in EXTRA_CSS:
 if '.editions' not in EXTRA_CSS:
     EXTRA_CSS = EXTRA_CSS.replace('</style>',
         '  .editions { width: 100%; border-collapse: collapse; margin: 0.5rem 0 1rem; } .editions th, .editions td { text-align: left; padding: 0.6rem 0.75rem; border-bottom: 1px solid #e2dacc; line-height: 1.6; } .editions th { letter-spacing: 0.06em; font-size: 0.95rem; } .editions td.price { white-space: nowrap; font-weight: bold; } </style>')
+if '.products-box' not in EXTRA_CSS:
+    EXTRA_CSS = EXTRA_CSS.replace('</style>',
+        '  .article-deck { font-size: 1.12rem; font-style: italic; line-height: 1.7; margin: 0 0 0.4rem; } .article-page .byline { margin: 0 0 1.6rem; } .fig-caption { font-weight: bold; text-align: center; margin: 1.8rem 0 0.6rem; line-height: 1.6; } .fig-note { font-size: 0.92rem; color: #5c5c5c; line-height: 1.7; margin: 0.4rem 0 1.2rem; } .pub-note { font-size: 0.92rem; color: #5c5c5c; margin-top: 2rem; } .article-fig { margin: 1.2rem 0; } .article-fig img { width: 100%; display: block; border-radius: 6px; } .products-box { position: fixed; right: 14px; top: 50%; transform: translateY(-50%); width: 192px; background: #fdfbf7; border: 1px solid #e2dacc; border-radius: 10px; box-shadow: 0 10px 30px rgba(16,23,34,0.16); padding: 0.9rem; z-index: 20; display: none; } .products-box h3 { font-size: 0.95rem; letter-spacing: 0.06em; margin: 0 0 0.5rem; text-align: center; } .products-box a { display: flex; gap: 0.6rem; align-items: flex-start; text-decoration: none; color: var(--ink); padding: 0.55rem 0; border-top: 1px solid #eee6d8; } .products-box a:first-of-type { border-top: none; } .products-box img { width: 52px; flex: 0 0 52px; border-radius: 4px; display: block; } .pb-title { font-size: 0.88rem; line-height: 1.45; display: block; font-weight: bold; } .pb-meta { font-size: 0.78rem; color: #6b6b6b; display: block; line-height: 1.45; } @media (min-width: 1280px) { .products-box { display: block; } } </style>')
 if '.book-price' not in EXTRA_CSS:
     EXTRA_CSS = EXTRA_CSS.replace('</style>',
         '  .book-price { font-size: 1.2rem; margin: 0.6rem 0 0.4rem; }\n'
@@ -248,9 +251,19 @@ def header(lang, page, fname):
         lang_html = ('<div class="lang-switch"><a href="%s">EN</a>'
                      '<a class="active" href="%s">中文</a></div>' % (other, self_link))
     links = '\n'.join('<a href="%s"><span>%s</span></a>' % (h, t) for h, t in nav)
+    if lang == 'en':
+        box = ('<aside class="products-box">\n<h3>Our Products</h3>\n'
+               '<a href="books-power-of-desire.html"><img alt="The Power of Desire" src="../assets/covers/cover-en-front.jpg"/><span><span class="pb-title">The Power of Desire</span><span class="pb-meta">Book · eBook $12.99</span></span></a>\n'
+               '<a href="books-network-protocols-handbook.html"><img alt="Network Protocols Handbook" src="../assets/covers/handbook-front.jpg"/><span><span class="pb-title">Network Protocols Handbook</span><span class="pb-meta">Book · 3 editions from $12.99</span></span></a>\n'
+               '<a href="posters.html"><img alt="Network Protocols Map" src="../assets/posters/network-protocols-map-share.jpg"/><span><span class="pb-title">Network Protocols Map</span><span class="pb-meta">Poster · $19.99</span></span></a>\n</aside>')
+    else:
+        box = ('<aside class="products-box">\n<h3>我们的产品</h3>\n'
+               '<a href="books-power-of-desire.html"><img alt="欲望的力量" src="../assets/covers/cover-front.jpg"/><span><span class="pb-title">欲望的力量</span><span class="pb-meta">图书 · 电子书 $12.99</span></span></a>\n'
+               '<a href="../en/books-network-protocols-handbook.html"><img alt="Network Protocols Handbook" src="../assets/covers/handbook-front.jpg"/><span><span class="pb-title">Network Protocols Handbook</span><span class="pb-meta">图书 · 三版本 $12.99 起</span></span></a>\n'
+               '<a href="posters.html"><img alt="网络协议全景图" src="../assets/posters/network-protocols-map-share.jpg"/><span><span class="pb-title">网络协议全景图</span><span class="pb-meta">图谱 · $19.99</span></span></a>\n</aside>')
     return ('<header>\n<a aria-label="Javvin Company" class="logo" href="./">'
-            '<img alt="Javvin Company" src="../assets/javvin-wordmark.svg"/></a>\n<nav>\n%s\n%s\n</nav>\n</header>'
-            % (links, lang_html))
+            '<img alt="Javvin Company" src="../assets/javvin-wordmark.svg"/></a>\n<nav>\n%s\n%s\n</nav>\n</header>\n%s'
+            % (links, lang_html, box))
 
 def head(lang, page, fname, title, desc, og_title, keywords='', jsonld_override=None):
     seg = '' if page == 'home' else fname
@@ -365,29 +378,37 @@ ARTICLES = {
         ('xue-lan', 'A Small Boat on the Great River of Human Innovation',
          'Xue Lan (Professor at Tsinghua University and Dean of Schwarzman College, Tsinghua University)',
          'Tsinghua scholar Xue Lan on how the book retells the history of innovation — human needs as its thread, vivid stories and rigorous data as its method.',
-         'Xue Lan', 'Xue Lan, Tsinghua University, Schwarzman College, foreword, history of innovation, The Power of Desire, Jielin Dong'),
+         'Xue Lan', 'Xue Lan, Tsinghua University, Schwarzman College, foreword, history of innovation, The Power of Desire, Jielin Dong, human needs, history of science and technology, innovation history, Maslow, Needham Question, second edition, book foreword, innovation studies, China innovation, artificial intelligence and innovation, incremental innovation, major breakthroughs'),
         ('yan-yan', 'A Minority Voice Worth Cherishing in the Landscape of Ideas',
          'Yan Yan (Founding Managing Partner of SAIF Partners)',
          'Investor Yan Yan on incremental innovation versus major breakthroughs and the coming AI revolution — and why this book is a minority voice worth cherishing.',
-         'Yan Yan', 'Yan Yan, SAIF Partners, incremental innovation, major breakthroughs, artificial intelligence, foreword, The Power of Desire'),
+         'Yan Yan', 'Yan Yan, SAIF Partners, incremental innovation, major breakthroughs, artificial intelligence, foreword, The Power of Desire, venture capital, investment, innovation ecosystem, AI revolution, technology investment, entrepreneurship, disruptive innovation, China technology, book foreword, second edition'),
         ('sun-xiaochun', 'Why Do Humans Innovate',
          'Sun Xiaochun (Professor, School of Humanities, University of Chinese Academy of Sciences; Former President of the Chinese Society for the History of Science and Technology)',
          'Historian of science Sun Xiaochun on the book\'s grand thought experiment — needs as warp, innovation as weft — and on an author who keeps revising her own views.',
-         'Sun Xiaochun', 'Sun Xiaochun, history of science and technology, human needs, technological innovation, foreword, The Power of Desire'),
+         'Sun Xiaochun', 'Sun Xiaochun, history of science and technology, human needs, technological innovation, foreword, The Power of Desire, history of science, Chinese Academy of Sciences, needs-based innovation, innovation classification, science and technology achievements, book foreword, second edition'),
+        ('us-china-ai-battle', 'The US-China AI Battle: Whose Dividend? Whose Price?',
+         'Jielin Dong',
+         'Companies, countries, and individuals have different scoreboards, and they are not commensurable.',
+         'Jielin Dong', 'The US-China AI Battle, Whose Dividend Whose Price, Jielin Dong, US-China AI competition, AI competition, open weights, open-weight models, AI ecosystem, six-layer AI ecosystem, Harness, AI applications, token prices, token price decline, AI computing power, FP16, EFLOPS, AI chips, NVIDIA, DeepSeek, Qwen, Moonshot AI, Zhipu, Meta, Muse Spark, Anthropic, Hugging Face, OpenRouter, Vercel, AI governance, AI safety, model distillation, AI infrastructure, data centers, AI borders, AI regulation, Economic Observer, AI dividends, AI and jobs, AI productivity, AGI, model consolidation, AI capital, enterprise AI, AI monetization'),
     ],
     'zh': [
         ('xue-lan', '人类创新历史长河中的一叶轻舟',
          '薛澜（清华大学教授，清华大学苏世民书院院长）',
          '薛澜以创新研究学者的视角，解读本书如何以人类需求为线索、用故事与数据重构万年科技创新史。',
-         '薛澜', '薛澜, 清华大学, 苏世民书院, 推荐序, 科技创新史, 欲望的力量, 董洁林'),
+         '薛澜', '薛澜, 清华大学, 苏世民书院, 推荐序, 科技创新史, 欲望的力量, 董洁林, 人类需求, 科技史, 创新史, 马斯洛, 李约瑟问题, 第二版, 创新研究, 中国创新, 人工智能与创新, 渐进式创新, 重大突破'),
         ('yan-yan', '思想谱系里珍贵的少数派声音',
          '阎焱（赛富基金创始管理合伙人）',
          '阎焱从投资人的视角谈渐进式创新与重大突破、人工智能带来的新变革，称本书是思想谱系里珍贵的少数派声音。',
-         '阎焱', '阎焱, 赛富基金, 渐进式创新, 重大突破, 人工智能, 推荐序, 欲望的力量'),
+         '阎焱', '阎焱, 赛富基金, 渐进式创新, 重大突破, 人工智能, 推荐序, 欲望的力量, 风险投资, 投资, 创新生态, AI变革, 科技投资, 创业, 颠覆式创新, 中国科技, 第二版'),
         ('sun-xiaochun', '人类为什么要创新——《欲望的力量：人类科技创新简史》第二版推荐序',
          '孙小淳（中国科学院大学人文学院教授，中国科学技术史学会原理事长）',
          '孙小淳以科技史家的眼光，评述本书以需求为经、创新为纬的思想实验与作者不断修正自我的治学态度。',
-         '孙小淳', '孙小淳, 科技史, 人类需求, 科技创新, 推荐序, 欲望的力量, 第二版'),
+         '孙小淳', '孙小淳, 科技史, 人类需求, 科技创新, 推荐序, 欲望的力量, 第二版, 中国科学院大学, 需求创新, 创新分类, 科技成就'),
+        ('us-china-ai-battle', '中美AI战局：谁的红利？谁的代价？',
+         '董洁林',
+         '公司、国家与个人各有记分牌，且并不通约。',
+         '董洁林', '中美AI战局, 谁的红利谁的代价, 董洁林, 中美AI竞争, AI竞争, 开放权重, 开放权重模型, AI生态, 六层生态, Harness, AI应用, Token价格, Token降价, AI算力, FP16, EFLOPS, AI芯片, 英伟达, NVIDIA, 深度求索, DeepSeek, 千问, Qwen, 月之暗面, 智谱, Meta, Muse Spark, Anthropic, Hugging Face, OpenRouter, Vercel, AI治理, AI安全, 模型蒸馏, AI基础设施, 数据中心, AI疆域, AI监管, 经济观察报, AI红利, AI与就业, 生产率, AGI, 模型整合, AI资本, 企业AI, AI变现'),
     ],
 }
 
@@ -404,9 +425,11 @@ def article_jsonld(lang, art, fname):
             'publisher': {'@type': 'Organization', 'name': 'Javvin Company'},
             'inLanguage': lang, 'description': guide,
             'mainEntityOfPage': BASE + lang + '/' + fname,
-            'about': {'@type': 'Book',
-                      'name': ('欲望的力量：人类科技创新简史' if lang == 'zh'
-                               else 'The Power of Desire: A Brief History of Scientific & Technological Innovation')}}
+            'about': ({'@type': 'Thing', 'name': ('中美AI竞争' if lang == 'zh' else 'US-China AI competition')}
+                      if slug == 'us-china-ai-battle' else
+                      {'@type': 'Book',
+                       'name': ('欲望的力量：人类科技创新简史' if lang == 'zh'
+                                else 'The Power of Desire: A Brief History of Scientific & Technological Innovation')})}
 
 
 def art_cards(lang):
