@@ -495,13 +495,13 @@ def book_cards(lang):
         buy_html = ('<a class="buy-btn" href="%s" rel="noopener" target="_blank"><span>%s</span></a>'
                     % (buy, buy_label)) if buy else ''
         items.append(
-            '<div class="prod-card"><img class="prod-img book" src="%s" alt="%s"/>'
+            '<div class="prod-card"><a href="books-%s.html"><img class="prod-img book" src="%s" alt="%s"/></a>'
             '<h3>%s</h3>'
             '<p class="prod-sub">%s</p>'
             '%s'
             '<div class="prod-actions">%s'
             '<a class="detail-link" href="books-%s.html">%s</a></div></div>'
-            % (cover, alt, title, sub, price_html, buy_html, slug, more))
+            % (slug, cover, alt, title, sub, price_html, buy_html, slug, more))
     return ''.join(items)
 
 def books_index(lang):
