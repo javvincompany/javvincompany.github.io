@@ -429,6 +429,15 @@ BOOKS = {
          'The Power of Desire — The Book | Javvin Company', EN_BOOK_DESC,
          'Javvin Company — The Power of Desire: A Brief History of Scientific &amp; Technological Innovation',
          'The Power of Desire, Jielin Dong, history of innovation, history of technological innovation, human needs, ebook PDF, ISBN 9781602670310'),
+        ('network-protocols-handbook',
+         'Network Protocols Handbook',
+         'Understanding Connectivity Across the Internet, Cloud, and AI Systems, by Jielin Dong · Fifth Edition · January 2027',
+         '../assets/covers/handbook-front.jpg', 'Cover of Network Protocols Handbook, Fifth Edition',
+         '', '', '', 'Details →',
+         'Network Protocols Handbook, Fifth Edition — Jielin Dong | Javvin Company',
+         'Network Protocols Handbook, Fifth Edition follows a request from a device to a cloud service or an AI data center and back, and explains the protocols at each step: Ethernet, Wi-Fi, IP, routing, and DNS; TCP, QUIC, and HTTP; encryption and identity; container and cloud networks.',
+         'Javvin Company — Network Protocols Handbook, Fifth Edition',
+         'Network Protocols Handbook, fifth edition, Ethernet, Wi-Fi, IP, routing, DNS, TCP, QUIC, HTTP, MCP, A2A, RDMA, Ultra Ethernet, Jielin Dong, ISBN 9781602670327'),
     ],
     'zh': [
         ('power-of-desire',
@@ -446,14 +455,17 @@ def book_cards(lang):
     items = []
     for (slug, title, sub, cover, alt, price, buy, buy_label, more,
          _dt, _dd, _og, _kw) in BOOKS[lang]:
+        price_html = '<p class="prod-price">%s</p>' % price if price else ''
+        buy_html = ('<a class="buy-btn" href="%s" rel="noopener" target="_blank"><span>%s</span></a>'
+                    % (buy, buy_label)) if buy else ''
         items.append(
             '<div class="prod-card"><img class="prod-img book" src="%s" alt="%s"/>'
             '<h3>%s</h3>'
             '<p class="prod-sub">%s</p>'
-            '<p class="prod-price">%s</p>'
-            '<div class="prod-actions"><a class="buy-btn" href="%s" rel="noopener" target="_blank"><span>%s</span></a>'
+            '%s'
+            '<div class="prod-actions">%s'
             '<a class="detail-link" href="books-%s.html">%s</a></div></div>'
-            % (cover, alt, title, sub, price, buy, buy_label, slug, more))
+            % (cover, alt, title, sub, price_html, buy_html, slug, more))
     return ''.join(items)
 
 def books_index(lang):
@@ -602,6 +614,8 @@ def build(lang, out_dir):
     for bk in BOOKS[lang]:
         (slug, _ct, _cs, _cv, _al, _pr, _buy, _bl, _more,
          dtitle, desc, ogt, kw) = bk
+        if slug == 'network-protocols-handbook':
+            continue  # written by build_handbook_page below (own TOC/bio, no buy)
         fname = 'books-%s.html' % slug
         frag = (ROOT / 'books-src' / ('%s-%s.html' % (lang, slug))).read_text().strip()
         back = ('<p class="back-link"><a href="books.html">← 返回书籍列表</a></p>' if zh
@@ -630,8 +644,51 @@ def build(lang, out_dir):
         (out_dir / fname).write_text(html)
         print('wrote', out_dir / fname, len(html))
 
+def build_handbook_page():
+    # English-only book page (2026-10-30): not built by the detail loop above,
+    # which appends the Power of Desire TOC/praise/buy blocks. Its TOC lives
+    # in the fragment; its author bio below is the back-cover text; no price,
+    # no buy button (none set yet).
+    fname = 'books-network-protocols-handbook.html'
+    frag = (ROOT / 'books-src' / 'en-network-protocols-handbook.html').read_text().strip()
+    author_html = ('<section class="block" id="author">\n<h2>About the Author</h2>\n'
+        '<div class="author-wrap"><figure class="author-photo"><img src="../assets/author-jielin-dong.jpg" alt="Portrait of Dr. Jielin Dong"/></figure><div class="about-text">\n'
+        '<p>Dr. Jielin Dong’s networking experience includes work at Cisco Systems, Lucent Technologies, and Network Associates. She also served as a professor of the history of science and technology.</p>\n'
+        '</div></div>\n</section>')
+    back = '<p class="back-link"><a href="books.html">← Back to Books</a></p>'
+    body = frag + author_html + back + footer(en_home)
+    desc = 'Network Protocols Handbook, Fifth Edition follows a request from a device to a cloud service or an AI data center and back, and explains the protocols at each step: Ethernet, Wi-Fi, IP, routing, and DNS; TCP, QUIC, and HTTP; encryption and identity; container and cloud networks.'
+    jsonld = {'@context': 'https://schema.org', '@type': 'Book',
+        'name': 'Network Protocols Handbook',
+        'bookEdition': 'Fifth Edition',
+        'author': {'@type': 'Person', 'name': 'Jielin Dong'},
+        'publisher': {'@type': 'Organization', 'name': 'Javvin Company'},
+        'inLanguage': 'en', 'isbn': '9781602670327',
+        'datePublished': '2027-01', 'numberOfPages': 324,
+        'image': BASE + 'assets/covers/handbook-front.jpg',
+        'url': BASE + 'en/books-network-protocols-handbook.html',
+        'description': desc}
+    hd = head('en', 'book', fname,
+              'Network Protocols Handbook, Fifth Edition — Jielin Dong | Javvin Company',
+              desc,
+              'Javvin Company — Network Protocols Handbook, Fifth Edition',
+              keywords='Network Protocols Handbook, fifth edition, Ethernet, Wi-Fi, IP, routing, DNS, TCP, QUIC, HTTP, MCP, A2A, RDMA, Ultra Ethernet, Jielin Dong, ISBN 9781602670327',
+              jsonld_override=jsonld)
+    html = ('<!DOCTYPE html>\n<html lang="en">\n%s\n<body class="en">\n%s\n%s\n</body>\n</html>\n'
+            % (hd, header('en', 'book', fname), body))
+    # No Chinese edition yet: point the language switch at the Chinese
+    # Books listing, drop the zh alternate, and use the handbook cover art.
+    html = html.replace('<a href="/zh/books-network-protocols-handbook.html">中文</a>',
+                        '<a href="/zh/books.html">中文</a>')
+    html = html.replace('<link href="https://javvin.ai/zh/books-network-protocols-handbook.html" hreflang="zh" rel="alternate"/>', '')
+    html = html.replace('https://javvin.ai/assets/covers/cover-en-front.jpg',
+                        'https://javvin.ai/assets/covers/handbook-front.jpg')
+    (ROOT / 'en' / fname).write_text(html)
+    print('wrote', ROOT / 'en' / fname, len(html))
+
 build('en', ROOT / 'en')
 build('zh', ROOT / 'zh')
+build_handbook_page()
 
 STUB = '''<!DOCTYPE html>
 <html lang="en">
