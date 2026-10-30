@@ -107,6 +107,9 @@ if '.art-list' not in EXTRA_CSS:
 if '.author-wrap' not in EXTRA_CSS:
     EXTRA_CSS = EXTRA_CSS.replace('</style>',
         '  .author-wrap { display: flex; gap: 1.6rem; align-items: flex-start; } .author-photo { margin: 0; flex: 0 0 180px; } .author-photo img { width: 100%; border-radius: 6px; display: block; box-shadow: 0 10px 26px rgba(16,23,34,0.18); } @media (max-width: 640px) { .author-wrap { flex-direction: column; } .author-photo { flex-basis: auto; width: 170px; margin: 0 auto; } } </style>')
+if '.books-intro' not in EXTRA_CSS:
+    EXTRA_CSS = EXTRA_CSS.replace('</style>',
+        '  .books-intro { text-align: center; font-size: 1.08rem; line-height: 1.7; letter-spacing: 0.03em; margin: 0 0 1.6rem; } </style>')
 if '.book-price' not in EXTRA_CSS:
     EXTRA_CSS = EXTRA_CSS.replace('</style>',
         '  .book-price { font-size: 1.2rem; margin: 0.6rem 0 0.4rem; }\n'
@@ -455,8 +458,10 @@ def book_cards(lang):
 
 def books_index(lang):
     h2 = '书籍' if lang == 'zh' else 'Books'
-    return ('<section class="block" id="books"><h2>%s</h2><div class="prod-grid">%s</div></section>'
-            % (h2, book_cards(lang)))
+    intro = ('从吃饱穿暖到人工智能，沿着人类欲望的线索，重新理解科技如何改变社会和历史。' if lang == 'zh'
+             else 'From food and clothing to artificial intelligence — following the thread of human desire to rethink how technology changes society and history.')
+    return ('<section class="block" id="books"><h2>%s</h2><p class="books-intro">%s</p><div class="prod-grid">%s</div></section>'
+            % (h2, intro, book_cards(lang)))
 
 def products_block(lang):
     if lang == 'zh':
