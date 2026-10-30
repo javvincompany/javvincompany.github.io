@@ -669,6 +669,12 @@ def build(lang, out_dir):
 </html>
 ''' % ('en' if lang == 'en' else 'zh-CN', hd, body_attr,
        header(lang, 'book', fname), body)
+        if lang == 'en':
+            html = html.replace('https://javvin.ai/assets/covers/cover-en-front.jpg',
+                                'https://javvin.ai/assets/covers/cover-en-3d.jpg')
+        else:
+            html = html.replace('https://javvin.ai/assets/covers/cover-front.jpg',
+                                'https://javvin.ai/assets/covers/cover-3d.jpg')
         (out_dir / fname).write_text(html)
         print('wrote', out_dir / fname, len(html))
 
