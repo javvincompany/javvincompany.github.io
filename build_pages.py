@@ -693,7 +693,7 @@ def build_handbook_page():
         'publisher': {'@type': 'Organization', 'name': 'Javvin Company'},
         'inLanguage': 'en', 'isbn': '9781602670327',
         'datePublished': '2027-01', 'numberOfPages': 324,
-        'image': BASE + 'assets/covers/handbook-front.jpg',
+        'image': BASE + 'assets/covers/handbook-3d.jpg',
         'url': BASE + 'en/books-network-protocols-handbook.html',
         'description': desc}
     hd = head('en', 'book', fname,
@@ -710,7 +710,7 @@ def build_handbook_page():
                         '<a href="/zh/books.html">中文</a>')
     html = html.replace('<link href="https://javvin.ai/zh/books-network-protocols-handbook.html" hreflang="zh" rel="alternate"/>', '')
     html = html.replace('https://javvin.ai/assets/covers/cover-en-front.jpg',
-                        'https://javvin.ai/assets/covers/handbook-front.jpg')
+                        'https://javvin.ai/assets/covers/handbook-3d.jpg')
     (ROOT / 'en' / fname).write_text(html)
     print('wrote', ROOT / 'en' / fname, len(html))
 
