@@ -254,12 +254,12 @@ def header(lang, page, fname):
     if lang == 'en':
         box = ('<aside class="products-box">\n<h3>Our Products</h3>\n'
                '<a href="books-power-of-desire.html"><img alt="The Power of Desire" src="../assets/covers/cover-en-front.jpg"/><span><span class="pb-title">The Power of Desire</span><span class="pb-meta">Book · eBook $12.99</span></span></a>\n'
-               '<a href="books-network-protocols-handbook.html"><img alt="Network Protocols Handbook" src="../assets/covers/handbook-front.jpg"/><span><span class="pb-title">Network Protocols Handbook</span><span class="pb-meta">Book · 3 editions from $12.99</span></span></a>\n'
+               '<a href="books-network-protocols-handbook.html"><img alt="Network Protocols Handbook" src="../assets/covers/handbook-front.jpg"/><span><span class="pb-title">Network Protocols Handbook</span><span class="pb-meta">Book</span></span></a>\n'
                '<a href="posters.html"><img alt="Network Protocols Map" src="../assets/posters/network-protocols-map-share.jpg"/><span><span class="pb-title">Network Protocols Map</span><span class="pb-meta">Poster · $19.99</span></span></a>\n</aside>')
     else:
         box = ('<aside class="products-box">\n<h3>我们的产品</h3>\n'
                '<a href="books-power-of-desire.html"><img alt="欲望的力量" src="../assets/covers/cover-front.jpg"/><span><span class="pb-title">欲望的力量</span><span class="pb-meta">图书 · 电子书 $12.99</span></span></a>\n'
-               '<a href="../en/books-network-protocols-handbook.html"><img alt="Network Protocols Handbook" src="../assets/covers/handbook-front.jpg"/><span><span class="pb-title">Network Protocols Handbook</span><span class="pb-meta">图书 · 三版本 $12.99 起</span></span></a>\n'
+               '<a href="../en/books-network-protocols-handbook.html"><img alt="Network Protocols Handbook" src="../assets/covers/handbook-front.jpg"/><span><span class="pb-title">Network Protocols Handbook</span><span class="pb-meta">图书</span></span></a>\n'
                '<a href="posters.html"><img alt="网络协议全景图" src="../assets/posters/network-protocols-map-share.jpg"/><span><span class="pb-title">网络协议全景图</span><span class="pb-meta">图谱 · $19.99</span></span></a>\n</aside>')
     if page == 'home':
         box = ''
