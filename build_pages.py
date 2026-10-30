@@ -104,6 +104,9 @@ if '.art-list' not in EXTRA_CSS:
         '  .art-more { color: var(--gold); font-size: 0.98rem; }\n'
         '  .article-page h1 { font-size: 1.9rem; line-height: 1.35; margin-bottom: 0.4rem; }\n'
         '  .back-link { margin-top: 2rem; }\n</style>')
+if '.author-wrap' not in EXTRA_CSS:
+    EXTRA_CSS = EXTRA_CSS.replace('</style>',
+        '  .author-wrap { display: flex; gap: 1.6rem; align-items: flex-start; } .author-photo { margin: 0; flex: 0 0 180px; } .author-photo img { width: 100%; border-radius: 6px; display: block; box-shadow: 0 10px 26px rgba(16,23,34,0.18); } @media (max-width: 640px) { .author-wrap { flex-direction: column; } .author-photo { flex-basis: auto; width: 170px; margin: 0 auto; } } </style>')
 if '.book-price' not in EXTRA_CSS:
     EXTRA_CSS = EXTRA_CSS.replace('</style>',
         '  .book-price { font-size: 1.2rem; margin: 0.6rem 0 0.4rem; }\n'
@@ -598,7 +601,12 @@ def build(lang, out_dir):
         frag = (ROOT / 'books-src' / ('%s-%s.html' % (lang, slug))).read_text().strip()
         back = ('<p class="back-link"><a href="books.html">← 返回书籍列表</a></p>' if zh
                 else '<p class="back-link"><a href="books.html">← Back to Books</a></p>')
-        body = frag + toc_block(lang) + praise_block(lang) + bio + bottom_buy(lang) + back + footer(home)
+        author_alt = '董洁林博士肖像' if zh else 'Portrait of Dr. Jielin Dong'
+        bio_html = bio.replace('<div class="about-text">',
+            '<div class="author-wrap"><figure class="author-photo"><img src="../assets/author-jielin-dong.jpg" alt="%s"/></figure><div class="about-text">' % author_alt, 1)
+        _head, _sep, _tail = bio_html.rpartition('</div>')
+        bio_html = _head + '</div></div>' + _tail
+        body = frag + toc_block(lang) + praise_block(lang) + bio_html + bottom_buy(lang) + back + footer(home)
         if lang == 'en':
             body = body.replace('"assets/', '"../assets/')
         hd = head(lang, 'book', fname, dtitle, desc, ogt, keywords=kw,
