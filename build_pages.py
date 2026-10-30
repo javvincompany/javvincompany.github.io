@@ -256,12 +256,12 @@ def header(lang, page, fname):
     if lang == 'en':
         box = ('<aside class="products-box">\n<h3>Our Products</h3>\n'
                '<a href="books-power-of-desire.html"><img alt="The Power of Desire" src="../assets/covers/cover-en-front.jpg"/><span><span class="pb-title">The Power of Desire</span><span class="pb-meta">Book · eBook $12.99</span></span></a>\n'
-               '<a href="books-network-protocols-handbook.html"><img alt="Network Protocols Handbook" src="../assets/covers/handbook-front.jpg"/><span><span class="pb-title">Network Protocols Handbook</span><span class="pb-meta">Book</span></span></a>\n'
+               '<a href="books-network-protocols-handbook.html"><img alt="Network Protocols Handbook" src="../assets/covers/handbook-front.jpg"/><span><span class="pb-title">Network Protocols Handbook</span><span class="pb-meta">Book · eBook $24.95</span></span></a>\n'
                '<a href="posters.html"><img alt="Network Protocols Map" src="../assets/posters/network-protocols-map-share.jpg"/><span><span class="pb-title">Network Protocols Map</span><span class="pb-meta">Poster · $19.99</span></span></a>\n</aside>')
     else:
         box = ('<aside class="products-box">\n<h3>我们的产品</h3>\n'
                '<a href="books-power-of-desire.html"><img alt="欲望的力量" src="../assets/covers/cover-front.jpg"/><span><span class="pb-title">欲望的力量</span><span class="pb-meta">图书 · 电子书 $12.99</span></span></a>\n'
-               '<a href="../en/books-network-protocols-handbook.html"><img alt="Network Protocols Handbook" src="../assets/covers/handbook-front.jpg"/><span><span class="pb-title">Network Protocols Handbook</span><span class="pb-meta">图书</span></span></a>\n'
+               '<a href="../en/books-network-protocols-handbook.html"><img alt="Network Protocols Handbook" src="../assets/covers/handbook-front.jpg"/><span><span class="pb-title">Network Protocols Handbook</span><span class="pb-meta">图书 · 电子书 $24.95</span></span></a>\n'
                '<a href="posters.html"><img alt="网络协议全景图" src="../assets/posters/network-protocols-map-share.jpg"/><span><span class="pb-title">网络协议全景图</span><span class="pb-meta">图谱 · $19.99</span></span></a>\n</aside>')
     if page == 'home':
         box = ''
@@ -469,7 +469,7 @@ BOOKS = {
          'Network Protocols Handbook',
          'Understanding Connectivity Across the Internet, Cloud, and AI Systems, by Jielin Dong · Fifth Edition · January 2027',
          '../assets/covers/handbook-front.jpg', 'Cover of Network Protocols Handbook, Fifth Edition',
-         '', '', '', 'Details →',
+         '$24.95', 'https://payhip.com/b/rG6sm', 'Buy the PDF', 'Details →',
          'Network Protocols Handbook, Fifth Edition — Jielin Dong | Javvin Company',
          'Network Protocols Handbook, Fifth Edition follows a request from a device to a cloud service or an AI data center and back, and explains the protocols at each step: Ethernet, Wi-Fi, IP, routing, and DNS; TCP, QUIC, and HTTP; encryption and identity; container and cloud networks.',
          'Javvin Company — Network Protocols Handbook, Fifth Edition',
@@ -767,8 +767,8 @@ def build(lang, out_dir):
 def build_handbook_page():
     # English-only book page (2026-10-30): not built by the detail loop above,
     # which appends the Power of Desire TOC/praise/buy blocks. Its TOC lives
-    # in the fragment; its author bio below is the back-cover text; no price,
-    # no buy button (none set yet).
+    # in the fragment; its author bio below is the back-cover text; price and
+    # buy button live in the fragment (Payhip PDF $24.95, since 2026-10-30).
     fname = 'books-network-protocols-handbook.html'
     frag = (ROOT / 'books-src' / 'en-network-protocols-handbook.html').read_text().strip()
     author_html = ('<section class="block" id="author">\n<h2>About the Author</h2>\n'
