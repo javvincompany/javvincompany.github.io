@@ -261,6 +261,8 @@ def header(lang, page, fname):
                '<a href="books-power-of-desire.html"><img alt="欲望的力量" src="../assets/covers/cover-front.jpg"/><span><span class="pb-title">欲望的力量</span><span class="pb-meta">图书 · 电子书 $12.99</span></span></a>\n'
                '<a href="../en/books-network-protocols-handbook.html"><img alt="Network Protocols Handbook" src="../assets/covers/handbook-front.jpg"/><span><span class="pb-title">Network Protocols Handbook</span><span class="pb-meta">图书 · 三版本 $12.99 起</span></span></a>\n'
                '<a href="posters.html"><img alt="网络协议全景图" src="../assets/posters/network-protocols-map-share.jpg"/><span><span class="pb-title">网络协议全景图</span><span class="pb-meta">图谱 · $19.99</span></span></a>\n</aside>')
+    if page == 'home':
+        box = ''
     return ('<header>\n<a aria-label="Javvin Company" class="logo" href="./">'
             '<img alt="Javvin Company" src="../assets/javvin-wordmark.svg"/></a>\n<nav>\n%s\n%s\n</nav>\n</header>\n%s'
             % (links, lang_html, box))
