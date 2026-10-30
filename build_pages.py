@@ -238,16 +238,16 @@ def bottom_buy(lang):
 def header(lang, page, fname):
     if lang == 'en':
         nav = [('books.html', 'Books'), ('posters.html', 'Posters'),
-               ('articles.html', 'Articles'), ('about.html', 'About'),
-               ('for-authors.html', 'For Authors')]
+               ('articles.html', 'Articles'), ('for-authors.html', 'For Authors'),
+               ('about.html', 'About')]
         self_link = './' if page == 'home' else fname
         other = '/zh/' if page == 'home' else '/zh/' + fname
         lang_html = ('<div class="lang-switch"><a class="active" href="%s">EN</a>'
                      '<a href="%s">中文</a></div>' % (self_link, other))
     else:
         nav = [('books.html', '书籍'), ('posters.html', '图谱'),
-               ('articles.html', '文章'), ('about.html', '关于'),
-               ('for-authors.html', '作者投稿')]
+               ('articles.html', '文章'), ('for-authors.html', '作者投稿'),
+               ('about.html', '关于')]
         self_link = './' if page == 'home' else fname
         other = '/en/' if page == 'home' else '/en/' + fname
         lang_html = ('<div class="lang-switch"><a href="%s">EN</a>'
