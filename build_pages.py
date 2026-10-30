@@ -564,7 +564,7 @@ def for_authors_body(lang):
 <p>Books exploring discoveries, inventions, technological change, and their effects on business and society.</p>
 <h3>Biographies and memoirs</h3>
 <p>The lives and careers of scientists, engineers, entrepreneurs, educators, and other professionals—including people whose contributions deserve wider recognition. We welcome personal memoirs and biographies written by others, with appropriate attention to sources, permissions, and privacy.</p>
-<p>Your proposal may be a specialist reference, an accessible introduction, a career memoir, or a deeply researched life story. We value a clear purpose, a defined readership, and an author with something substantive to share.</p>
+<p class="welcome-close">Your proposal may be a specialist reference, an accessible introduction, a career memoir, or a deeply researched life story. We value a clear purpose, a defined readership, and an author with something substantive to share.</p>
 <h2>An Author's Perspective on Publishing</h2>
 <p>A strong book requires careful choices: what to include, how to organize it, which details to verify, and how to keep readers engaged without losing the author's voice.</p>
 <p>Javvin understands these challenges through its own publishing work. Our Network Protocols Handbook, first published in 2004 and now in its fifth edition, reflects a sustained commitment to making complex knowledge useful to readers.</p>
@@ -600,7 +600,7 @@ def for_authors_body(lang):
 <p>探讨发现、发明、技术变革及其对商业和社会影响的图书。</p>
 <h3>传记与回忆录</h3>
 <p>科学家、工程师、企业家、教育工作者及其他专业人士的人生与职业生涯——包括那些贡献值得更广泛认可的人物。我们欢迎个人回忆录，也欢迎由他人撰写的传记，同时会恰当注意资料来源、授权与隐私。</p>
-<p>你的提案可以是一部专业参考书、一本通俗易懂的入门书、一部职业回忆录，或者一部经过深入研究的人生故事。我们看重明确的写作目的、清晰的读者定位，以及言之有物的作者。</p>
+<p class="welcome-close">你的提案可以是一部专业参考书、一本通俗易懂的入门书、一部职业回忆录，或者一部经过深入研究的人生故事。我们看重明确的写作目的、清晰的读者定位，以及言之有物的作者。</p>
 <h2>从作者的角度看出版</h2>
 <p>一本好书需要谨慎的取舍：收录什么、如何组织、核实哪些细节，以及如何在不丢失作者声音的前提下吸引读者。</p>
 <p>Javvin 通过自身的出版工作理解这些挑战。我们的《Network Protocols Handbook》首版于 2004 年，现已出至第五版，体现了我们长期以来致力于让复杂知识对读者真正有用的承诺。</p>
