@@ -238,14 +238,16 @@ def bottom_buy(lang):
 def header(lang, page, fname):
     if lang == 'en':
         nav = [('books.html', 'Books'), ('posters.html', 'Posters'),
-               ('articles.html', 'Articles'), ('about.html', 'About')]
+               ('articles.html', 'Articles'), ('about.html', 'About'),
+               ('for-authors.html', 'For Authors')]
         self_link = './' if page == 'home' else fname
         other = '/zh/' if page == 'home' else '/zh/' + fname
         lang_html = ('<div class="lang-switch"><a class="active" href="%s">EN</a>'
                      '<a href="%s">中文</a></div>' % (self_link, other))
     else:
         nav = [('books.html', '书籍'), ('posters.html', '图谱'),
-               ('articles.html', '文章'), ('about.html', '关于')]
+               ('articles.html', '文章'), ('about.html', '关于'),
+               ('for-authors.html', '作者投稿')]
         self_link = './' if page == 'home' else fname
         other = '/en/' if page == 'home' else '/en/' + fname
         lang_html = ('<div class="lang-switch"><a href="%s">EN</a>'
@@ -340,6 +342,8 @@ META = {
                      'Forewords and essays on The Power of Desire: A Brief History of Scientific & Technological Innovation — by Xue Lan (Tsinghua), Yan Yan (SAIF Partners), and Sun Xiaochun (UCAS).', 'Articles & Forewords | Javvin Company'),
         'about': ('about.html', 'About Javvin Company — AI-Native Publisher in San Francisco',
                   'Javvin Company is an AI-native publisher based in San Francisco, specializing in books and posters on technological innovation. AI supports every stage of its work.', 'Javvin Company — About'),
+        'for-authors': ('for-authors.html', 'Publish with Javvin — For Authors | Javvin Company',
+                        'Publish with Javvin. Your knowledge. Your experience. A book worth sharing. Javvin welcomes proposals from scientists, engineers, researchers, educators, and other professionals.', 'Publish with Javvin | Javvin Company'),
     },
     'zh': {
         'home': ('index.html', 'Javvin 公司 — 《欲望的力量：人类科技创新简史》', ZH_BOOK_DESC,
@@ -353,6 +357,8 @@ META = {
                      '薛澜、阎焱、孙小淳为《欲望的力量：人类科技创新简史》撰写的三篇推荐序全文。', 'Javvin 公司 — 文章与推荐序'),
         'about': ('about.html', '关于 Javvin 公司 — AI 原生出版社（旧金山）',
                   'Javvin 公司是一家位于美国旧金山的 AI 原生出版社，专注于出版科技创新主题的图书与图谱；从编辑、设计到制作、营销与运营，人工智能支持公司工作的每一个环节。', 'Javvin 公司 — 关于'),
+        'for-authors': ('for-authors.html', '在 Javvin 出版 — 作者投稿 | Javvin 公司',
+                        '在 Javvin 出版。你的知识。你的经验。一本值得分享的书。Javvin 欢迎科学家、工程师、研究人员、教育工作者以及其他专业人士投稿。', '在 Javvin 出版 | Javvin 公司'),
     },
 }
 
@@ -364,6 +370,7 @@ KEYWORDS = {
         'posters': 'Network Protocols Map, network protocols poster, TCP/IP poster, OSI model, digital poster PDF, printable wall chart, Javvin',
         'articles': 'Xue Lan, Yan Yan, Sun Xiaochun, foreword, book review, The Power of Desire, history of innovation, Javvin Company',
         'about': 'Javvin Company, AI-native publisher, independent publisher, San Francisco publisher, Jielin Dong, books on technological innovation',
+        'for-authors': 'For Authors, publish with Javvin, book proposal, submit a book proposal, Javvin Company, nonfiction publisher, technology books, professional handbooks, science books, innovation books, biographies, memoirs, author submissions, manuscript proposal, independent publisher, San Francisco publisher',
     },
     'zh': {
         'home': 'Javvin公司, 欲望的力量, 人类科技创新简史, 董洁林, 科技创新史, 科技史, 电子书',
@@ -371,6 +378,7 @@ KEYWORDS = {
         'posters': '网络协议全景图, 网络协议图, TCP/IP, OSI模型, 电子图谱, 知识图谱, PDF下载打印, Javvin',
         'articles': '薛澜, 阎焱, 孙小淳, 推荐序, 书评, 欲望的力量, 人类科技创新简史, 科技创新史',
         'about': 'Javvin公司, AI原生出版社, 独立出版社, 旧金山出版社, 董洁林, 科技创新图书',
+        'for-authors': '作者投稿, 在 Javvin 出版, 图书提案, 提交图书提案, Javvin公司, 非虚构出版, 科技图书, 专业手册, 科学图书, 创新图书, 传记, 回忆录, 手稿提案, 独立出版社, 旧金山出版社',
     },
 }
 
@@ -540,6 +548,83 @@ def home_articles(lang):
     return ('<section class="block" id="home-articles">\n<h2>%s</h2>\n<div class="art-list">\n%s\n</div>\n</section>'
             % (h2, art_cards(lang)))
 
+def for_authors_body(lang):
+    mailto = 'mailto:help@javvin.ai?subject=Book%20Proposal%20%E2%80%94%20'
+    if lang == 'en':
+        return '''<section class="block" id="for-authors">
+<h1>Publish with Javvin</h1>
+<p class="article-deck">Your knowledge. Your experience. A book worth sharing.</p>
+<p>You may have spent years solving difficult problems, developing new ideas, or building a career others could learn from. Perhaps you have a life story that deserves to be recorded.</p>
+<p>Javvin welcomes proposals from scientists, engineers, researchers, educators, and other professionals. We seek nonfiction that makes specialized knowledge accessible, offers a useful perspective, or preserves the experiences behind meaningful work.</p>
+<p><a class="buy-btn" href="MAILTO"><span>Submit a Book Proposal</span></a></p>
+<h2>Books We Welcome</h2>
+<h3>Technology and professional knowledge</h3>
+<p>Practical guides, handbooks, and educational books covering computing, networking, cybersecurity, artificial intelligence, engineering, and other professional fields.</p>
+<h3>Science, technology, and innovation</h3>
+<p>Books exploring discoveries, inventions, technological change, and their effects on business and society.</p>
+<h3>Biographies and memoirs</h3>
+<p>The lives and careers of scientists, engineers, entrepreneurs, educators, and other professionals—including people whose contributions deserve wider recognition. We welcome personal memoirs and biographies written by others, with appropriate attention to sources, permissions, and privacy.</p>
+<p>Your proposal may be a specialist reference, an accessible introduction, a career memoir, or a deeply researched life story. We value a clear purpose, a defined readership, and an author with something substantive to share.</p>
+<h2>An Author's Perspective on Publishing</h2>
+<p>A strong book requires careful choices: what to include, how to organize it, which details to verify, and how to keep readers engaged without losing the author's voice.</p>
+<p>Javvin understands these challenges through its own publishing work. Our Network Protocols Handbook, first published in 2004 and now in its fifth edition, reflects a sustained commitment to making complex knowledge useful to readers.</p>
+<p>We bring that same attention to clarity, accuracy, and thoughtful presentation when considering new projects.</p>
+<h2>A Publishing Plan for Your Project</h2>
+<p>Every book has different needs. For selected proposals, we discuss the manuscript's readiness, intended audience, editorial requirements, design, publication formats, and distribution goals.</p>
+<p>Publishing services, fees, and commercial terms are negotiated individually for each project. Any author contribution, allocation of responsibilities, rights, and revenue arrangements will be set out in a written agreement before work begins.</p>
+<h2>Share Your Proposal</h2>
+<p>You do not need a completed manuscript to contact us. Please send:</p>
+<ul>
+<li>A brief description of your book and its intended readers.</li>
+<li>A proposed table of contents or chapter outline.</li>
+<li>A sample chapter or representative writing sample.</li>
+<li>A short biography explaining your connection to the subject.</li>
+<li>The manuscript's current status, approximate length, and expected completion date.</li>
+</ul>
+<p>For a biography or memoir, please also describe the principal subject, the materials available, and your relationship to the people whose stories you plan to tell.</p>
+<h2>Let's Discuss Your Book</h2>
+<p>Send your proposal to <a href="mailto:help@javvin.ai">help@javvin.ai</a>.</p>
+<p>Email subject: Book Proposal — [Your Book Title]</p>
+<p><a class="buy-btn" href="MAILTO"><span>Submit a Book Proposal</span></a></p>
+</section>'''.replace('MAILTO', mailto)
+    return '''<section class="block" id="for-authors">
+<h1>在 Javvin 出版</h1>
+<p class="article-deck">你的知识。你的经验。一本值得分享的书。</p>
+<p>你可能花了多年时间解决难题、提出新想法，或者积累了一番值得他人借鉴的职业生涯。也许，你有一段值得记录的人生故事。</p>
+<p>Javvin 欢迎科学家、工程师、研究人员、教育工作者以及其他专业人士投稿。我们寻找这样的非虚构作品：让专业知识变得易于理解，提供有用的视角，或者保存有意义的工作背后的经验。</p>
+<p><a class="buy-btn" href="MAILTO"><span>提交图书提案</span></a></p>
+<h2>我们欢迎的图书</h2>
+<h3>技术与专业知识</h3>
+<p>涵盖计算机、网络、网络安全、人工智能、工程及其他专业领域的实用指南、手册和教材。</p>
+<h3>科学与技术创新</h3>
+<p>探讨发现、发明、技术变革及其对商业和社会影响的图书。</p>
+<h3>传记与回忆录</h3>
+<p>科学家、工程师、企业家、教育工作者及其他专业人士的人生与职业生涯——包括那些贡献值得更广泛认可的人物。我们欢迎个人回忆录，也欢迎由他人撰写的传记，同时会恰当注意资料来源、授权与隐私。</p>
+<p>你的提案可以是一部专业参考书、一本通俗易懂的入门书、一部职业回忆录，或者一部经过深入研究的人生故事。我们看重明确的写作目的、清晰的读者定位，以及言之有物的作者。</p>
+<h2>从作者的角度看出版</h2>
+<p>一本好书需要谨慎的取舍：收录什么、如何组织、核实哪些细节，以及如何在不丢失作者声音的前提下吸引读者。</p>
+<p>Javvin 通过自身的出版工作理解这些挑战。我们的《Network Protocols Handbook》首版于 2004 年，现已出至第五版，体现了我们长期以来致力于让复杂知识对读者真正有用的承诺。</p>
+<p>在考虑新项目时，我们同样注重清晰、准确和用心的呈现。</p>
+<h2>为你的项目制订出版计划</h2>
+<p>每本书的需求各不相同。对于入选的提案，我们会讨论稿件的完成程度、目标读者、编辑要求、设计、出版形式和发行目标。</p>
+<p>出版服务、费用和商业条款按每个项目单独协商。任何作者出资、责任分工、权利和收益安排，都会在工作开始前以书面协议明确。</p>
+<h2>分享你的提案</h2>
+<p>联系我们不需要已经完成的手稿。请发送：</p>
+<ul>
+<li>图书简介及其目标读者。</li>
+<li>拟定的目录或章节大纲。</li>
+<li>样章或有代表性的写作样本。</li>
+<li>简短的个人简介，说明你与主题的关联。</li>
+<li>稿件目前的进度、大致篇幅和预计完成日期。</li>
+</ul>
+<p>如果是传记或回忆录，还请介绍主要人物、现有的资料，以及你与打算讲述其故事的人物之间的关系。</p>
+<h2>来谈谈你的书</h2>
+<p>请把提案发送至 <a href="mailto:help@javvin.ai">help@javvin.ai</a>。</p>
+<p>邮件主题：Book Proposal — [你的书名]</p>
+<p><a class="buy-btn" href="MAILTO"><span>提交图书提案</span></a></p>
+</section>'''.replace('MAILTO', mailto)
+
+
 def build(lang, out_dir):
     zh = (lang == 'zh')
     home = zh_home if zh else en_home
@@ -604,6 +689,7 @@ def build(lang, out_dir):
         'posters': section(get_page('posters.html', zh), 'posters') + '\n' + footer(home),
         'articles': articles_index(lang) + '\n' + footer(home),
         'about': section(get_page('about.html', zh), 'about') + '\n' + license_block(lang) + '\n' + returns + '\n' + footer(home),
+        'for-authors': for_authors_body(lang) + '\n' + footer(home),
     }
     if lang == 'en':
         bodies = {k: v.replace('"assets/', '"../assets/') for k, v in bodies.items()}
@@ -738,7 +824,7 @@ STUB = '''<!DOCTYPE html>
 </body>
 </html>
 '''
-for fname in ['index.html', 'books.html', 'posters.html', 'articles.html', 'about.html']:
+for fname in ['index.html', 'books.html', 'posters.html', 'articles.html', 'about.html', 'for-authors.html']:
     seg = '' if fname == 'index.html' else fname
     (ROOT / fname).write_text(STUB.format(seg=seg))
     print('stub', fname, '-> /en/' + seg)
