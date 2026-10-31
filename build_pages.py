@@ -344,6 +344,8 @@ META = {
                   'Javvin Company is an AI-native publisher based in San Francisco, specializing in books and posters on technological innovation. AI supports every stage of its work.', 'Javvin Company — About'),
         'for-authors': ('for-authors.html', 'Publish with Javvin — For Authors | Javvin Company',
                         'Publish with Javvin. Your knowledge. Your experience. Your story. A book worth sharing. Javvin welcomes proposals from scientists, engineers, researchers, educators, and other professionals.', 'Publish with Javvin | Javvin Company'),
+        'affiliates': ('affiliates.html', 'Become a Javvin Affiliate | Javvin Company',
+                        'Earn 30% recommending Javvin books and digital posters: the Network Protocols Map poster, The Power of Desire ebook, and the Network Protocols Handbook ebook.', 'Become a Javvin Affiliate | Javvin Company'),
     },
     'zh': {
         'home': ('index.html', 'Javvin 公司 — 《欲望的力量：人类科技创新简史》', ZH_BOOK_DESC,
@@ -359,6 +361,8 @@ META = {
                   'Javvin 公司是一家位于美国旧金山的 AI 原生出版社，专注于出版科技创新主题的图书与图谱；从编辑、设计到制作、营销与运营，人工智能支持公司工作的每一个环节。', 'Javvin 公司 — 关于'),
         'for-authors': ('for-authors.html', '在 Javvin 出版 — 作者投稿 | Javvin 公司',
                         '在 Javvin 出版。你的知识。你的经验。你的故事。一本值得分享的书。Javvin 欢迎科学家、工程师、研究人员、教育工作者以及其他专业人士投稿。', '在 Javvin 出版 | Javvin 公司'),
+        'affiliates': ('affiliates.html', '成为 Javvin 分销伙伴 | Javvin 公司',
+                        '推荐 Javvin 图书与电子图谱可获得 30% 佣金：网络协议全景图、欲望的力量电子书、Network Protocols Handbook 电子书。', '成为 Javvin 分销伙伴 | Javvin 公司'),
     },
 }
 
@@ -371,6 +375,7 @@ KEYWORDS = {
         'articles': 'Xue Lan, Yan Yan, Sun Xiaochun, foreword, book review, The Power of Desire, history of innovation, Javvin Company',
         'about': 'Javvin Company, AI-native publisher, independent publisher, San Francisco publisher, Jielin Dong, books on technological innovation',
         'for-authors': 'For Authors, publish with Javvin, book proposal, submit a book proposal, Javvin Company, nonfiction publisher, technology books, professional handbooks, science books, innovation books, biographies, memoirs, author submissions, manuscript proposal, independent publisher, San Francisco publisher',
+        'affiliates': 'Javvin affiliate, affiliate program, earn commission, recommend books, Network Protocols Map, digital poster, ebook affiliate, Javvin Company',
     },
     'zh': {
         'home': 'Javvin公司, 欲望的力量, 人类科技创新简史, 董洁林, 科技创新史, 科技史, 电子书',
@@ -379,6 +384,7 @@ KEYWORDS = {
         'articles': '薛澜, 阎焱, 孙小淳, 推荐序, 书评, 欲望的力量, 人类科技创新简史, 科技创新史',
         'about': 'Javvin公司, AI原生出版社, 独立出版社, 旧金山出版社, 董洁林, 科技创新图书',
         'for-authors': '作者投稿, 在 Javvin 出版, 图书提案, 提交图书提案, Javvin公司, 非虚构出版, 科技图书, 专业手册, 科学图书, 创新图书, 传记, 回忆录, 手稿提案, 独立出版社, 旧金山出版社',
+        'affiliates': 'Javvin分销, 分销伙伴, 推广佣金, 推荐图书, 网络协议全景图, 电子图谱, 电子书分销, Javvin公司',
     },
 }
 
@@ -623,6 +629,57 @@ def for_authors_body(lang):
 <p>邮件主题：Book Proposal — [你的书名]</p>
 <p><a class="buy-btn" href="MAILTO"><span>提交图书提案</span></a></p>
 </section>'''.replace('MAILTO', mailto)
+def affiliates_body(lang):
+    signup = 'https://payhip.com/auth/register/af6abecfbbf0cd5'
+    if lang == 'en':
+        return '''<section class="block" id="affiliates">
+<h1>Become a Javvin Affiliate</h1>
+<p class="article-deck">Recommend books and posters your audience will actually use — and earn 30% on every sale you refer.</p>
+<p>Javvin Company publishes books and digital posters on networking, technology, and the history of innovation. If you teach, write, or talk to people who learn this material, you can earn by recommending work you trust.</p>
+<p><a class="buy-btn" href="SIGNUP" rel="noopener" target="_blank"><span>Apply as an Affiliate</span></a></p>
+<h2>What You Can Promote</h2>
+<h3>Network Protocols Map — digital poster (PDF, 36 × 24 in), $19.99</h3>
+<p>A wall chart of the protocols behind connected systems, from the 2009 classic, revised 2026. Buyers download the file and print it themselves.</p>
+<h3>The Power of Desire — ebook (PDF), $12.99</h3>
+<p>A brief history of scientific and technological innovation, available in English and Chinese editions.</p>
+<h3>Network Protocols Handbook, fifth edition — ebook (PDF), $24.95</h3>
+<p>Understanding connectivity across the Internet, cloud, and AI systems. English edition.</p>
+<h2>How It Works</h2>
+<p>1. Apply with the link on this page. We will approve your application and assign the products.</p>
+<p>2. Share your tracked links with your audience — on your site, in your course, in your newsletter, or on social media.</p>
+<p>3. Earn 30% of every sale made through your links. Tracking lasts 30 days, with credit to the last link clicked.</p>
+<h2>Payments</h2>
+<p>Commissions are paid monthly via PayPal, based on Payhip's monthly affiliate report.</p>
+<h2>Please Note</h2>
+<p>Buyers purchase from Javvin's store, and our standard license terms apply to them: a poster purchase may be printed in up to 2 copies and displayed in one location; ebooks are for the buyer's own reading on their own devices; files may not be shared, forwarded, uploaded, or resold. Affiliates refer buyers — they do not receive files to sell onward.</p>
+<p><a class="buy-btn" href="SIGNUP" rel="noopener" target="_blank"><span>Apply as an Affiliate</span></a></p>
+<h2>Questions?</h2>
+<p>Contact us at <a href="mailto:help@javvin.ai">help@javvin.ai</a>.</p>
+</section>'''.replace('SIGNUP', signup)
+    return '''<section class="block" id="affiliates">
+<h1>成为 Javvin 分销伙伴</h1>
+<p class="article-deck">推荐你真正信任的图书与图谱，每一笔你带来的销售，你可获得 30% 佣金。</p>
+<p>Javvin 公司出版网络、技术与创新史主题的图书与电子图谱。如果你面向学习这些内容的人群授课、写作或分享，推荐值得信任的作品即可获得收益。</p>
+<p><a class="buy-btn" href="SIGNUP" rel="noopener" target="_blank"><span>申请成为分销伙伴</span></a></p>
+<h2>可推广的产品</h2>
+<h3>网络协议全景图 — 电子图谱（PDF，36 × 24 英寸），$19.99</h3>
+<p>呈现联网系统背后协议的全景图，源自 2009 经典版、2026 修订。买家下载文件后自行打印。</p>
+<h3>《欲望的力量》— 电子书（PDF），$12.99</h3>
+<p>人类科技创新简史，有英文版与中文版。</p>
+<h3>Network Protocols Handbook（第五版）— 电子书（PDF），$24.95</h3>
+<p>理解互联网、云与 AI 系统的连通性。英文版。</p>
+<h2>如何运作</h2>
+<p>1. 通过本页链接申请。我们批准申请后，会为你开通可推广的产品。</p>
+<p>2. 把你的专属推广链接分享给受众——你的网站、课程、 newsletter 或社交媒体均可。</p>
+<p>3. 通过你的链接产生的每一笔销售，你可获得 30% 佣金。追踪有效期 30 天，以最后一次点击为准。</p>
+<h2>佣金结算</h2>
+<p>佣金按月通过 PayPal 支付，以 Payhip 的月度分销报告为准。</p>
+<h2>请注意</h2>
+<p>买家在 Javvin 店铺购买，适用我们的标准授权条款：图谱每购可打印最多 2 份、展示于一处；电子书限购买者本人在本人设备上阅读；文件不得分享、转传、上传或转售。分销伙伴负责引荐买家，不会直接拿到文件去销售。</p>
+<p><a class="buy-btn" href="SIGNUP" rel="noopener" target="_blank"><span>申请成为分销伙伴</span></a></p>
+<h2>有问题？</h2>
+<p>请联系 <a href="mailto:help@javvin.ai">help@javvin.ai</a>。</p>
+</section>'''.replace('SIGNUP', signup)
 
 
 def build(lang, out_dir):
@@ -690,6 +747,7 @@ def build(lang, out_dir):
         'articles': articles_index(lang) + '\n' + footer(home),
         'about': section(get_page('about.html', zh), 'about') + '\n' + license_block(lang) + '\n' + returns + '\n' + footer(home),
         'for-authors': for_authors_body(lang) + '\n' + footer(home),
+        'affiliates': affiliates_body(lang) + '\n' + footer(home),
     }
     if lang == 'en':
         bodies = {k: v.replace('"assets/', '"../assets/') for k, v in bodies.items()}
@@ -824,7 +882,7 @@ STUB = '''<!DOCTYPE html>
 </body>
 </html>
 '''
-for fname in ['index.html', 'books.html', 'posters.html', 'articles.html', 'about.html', 'for-authors.html']:
+for fname in ['index.html', 'books.html', 'posters.html', 'articles.html', 'about.html', 'for-authors.html', 'affiliates.html']:
     seg = '' if fname == 'index.html' else fname
     (ROOT / fname).write_text(STUB.format(seg=seg))
     print('stub', fname, '-> /en/' + seg)
