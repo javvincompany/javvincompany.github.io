@@ -326,13 +326,14 @@ def cards(lang):
     inner = '\n'.join('<a class="card" href="%s"><h3>%s</h3><p>%s</p></a>' % i for i in items)
     return '<div class="cards">\n%s\n</div>' % inner
 
-EN_BOOK_DESC = ('Javvin Company — The Power of Desire: A Brief History of Scientific &amp; '
-                'Technological Innovation, by Jielin Dong. Ebook (PDF) sold here.')
-ZH_BOOK_DESC = 'Javvin Company — 董洁林作品：《欲望的力量：人类科技创新简史》（第二版）。电子版 PDF 本站出售。'
+EN_BOOK_DESC = 'The Power of Desire, Second Edition, by Jielin Dong: a brief history of scientific and technological innovation, from food and clothing to AI. $12.99.'
+ZH_BOOK_DESC = '《欲望的力量：人类科技创新简史》（第二版），董洁林著——从吃饱穿暖到人工智能，沿着人类欲望的线索重读科技史。电子书（PDF）$12.99。'
+EN_HOME_DESC = 'Javvin Company, an AI-native publisher in San Francisco, publishes books and digital posters on technological innovation and network protocols.'
+ZH_HOME_DESC = 'Javvin 公司是旧金山的一家 AI 原生出版社，出版科技创新史与网络协议领域的图书和电子图谱。'
 META = {
     'en': {
         'home': ('index.html', 'Javvin Company — The Power of Desire: A Brief History of Scientific &amp; Technological Innovation',
-                 EN_BOOK_DESC, 'Javvin Company — The Power of Desire: A Brief History of Scientific &amp; Technological Innovation'),
+                 EN_HOME_DESC, 'Javvin Company — The Power of Desire: A Brief History of Scientific &amp; Technological Innovation'),
         'books': ('books.html', 'Books | Javvin Company',
                   'Books by Jielin Dong, published by Javvin Company — including The Power of Desire: A Brief History of Scientific &amp; Technological Innovation.',
                   'Books | Javvin Company'),
@@ -348,7 +349,7 @@ META = {
                         'Earn 30% recommending Javvin books and digital posters: the Network Protocols Map poster, The Power of Desire ebook, and the Network Protocols Handbook ebook.', 'Become a Javvin Affiliate | Javvin Company'),
     },
     'zh': {
-        'home': ('index.html', 'Javvin 公司 — 《欲望的力量：人类科技创新简史》', ZH_BOOK_DESC,
+        'home': ('index.html', 'Javvin 公司 — 《欲望的力量：人类科技创新简史》', ZH_HOME_DESC,
                  'Javvin 公司 — 《欲望的力量：人类科技创新简史》（第二版）'),
         'books': ('books.html', '书籍 | Javvin 公司',
                   'Javvin 公司出版的图书 — 董洁林作品，包括《欲望的力量：人类科技创新简史》。',
