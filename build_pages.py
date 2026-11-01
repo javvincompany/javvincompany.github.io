@@ -255,14 +255,14 @@ def header(lang, page, fname):
     links = '\n'.join('<a href="%s"><span>%s</span></a>' % (h, t) for h, t in nav)
     if lang == 'en':
         box = ('<aside class="products-box">\n<h3>Our Products</h3>\n'
-               '<a href="books-power-of-desire.html"><img alt="The Power of Desire" src="../assets/covers/cover-en-front.jpg"/><span><span class="pb-title">The Power of Desire</span><span class="pb-meta">Book · eBook $12.99</span></span></a>\n'
-               '<a href="books-network-protocols-handbook.html"><img alt="Network Protocols Handbook" src="../assets/covers/handbook-front.jpg"/><span><span class="pb-title">Network Protocols Handbook</span><span class="pb-meta">Book · eBook $24.95</span></span></a>\n'
-               '<a href="posters.html"><img alt="Network Protocols Map" src="../assets/posters/network-protocols-map-share.jpg"/><span><span class="pb-title">Network Protocols Map</span><span class="pb-meta">Poster · $19.99</span></span></a>\n</aside>')
+               '<a href="books-power-of-desire.html"><img loading="lazy" alt="The Power of Desire" src="../assets/covers/cover-en-front.jpg"/><span><span class="pb-title">The Power of Desire</span><span class="pb-meta">Book · eBook $12.99</span></span></a>\n'
+               '<a href="books-network-protocols-handbook.html"><img loading="lazy" alt="Network Protocols Handbook" src="../assets/covers/handbook-front.jpg"/><span><span class="pb-title">Network Protocols Handbook</span><span class="pb-meta">Book · eBook $24.95</span></span></a>\n'
+               '<a href="posters.html"><img loading="lazy" alt="Network Protocols Map" src="../assets/posters/network-protocols-map-share.jpg"/><span><span class="pb-title">Network Protocols Map</span><span class="pb-meta">Poster · $19.99</span></span></a>\n</aside>')
     else:
         box = ('<aside class="products-box">\n<h3>我们的产品</h3>\n'
-               '<a href="books-power-of-desire.html"><img alt="欲望的力量" src="../assets/covers/cover-front.jpg"/><span><span class="pb-title">欲望的力量</span><span class="pb-meta">图书 · 电子书 $12.99</span></span></a>\n'
-               '<a href="../en/books-network-protocols-handbook.html"><img alt="Network Protocols Handbook" src="../assets/covers/handbook-front.jpg"/><span><span class="pb-title">Network Protocols Handbook</span><span class="pb-meta">图书 · 电子书 $24.95</span></span></a>\n'
-               '<a href="posters.html"><img alt="网络协议全景图" src="../assets/posters/network-protocols-map-share.jpg"/><span><span class="pb-title">网络协议全景图</span><span class="pb-meta">图谱 · $19.99</span></span></a>\n</aside>')
+               '<a href="books-power-of-desire.html"><img loading="lazy" alt="欲望的力量" src="../assets/covers/cover-front.jpg"/><span><span class="pb-title">欲望的力量</span><span class="pb-meta">图书 · 电子书 $12.99</span></span></a>\n'
+               '<a href="../en/books-network-protocols-handbook.html"><img loading="lazy" alt="Network Protocols Handbook" src="../assets/covers/handbook-front.jpg"/><span><span class="pb-title">Network Protocols Handbook</span><span class="pb-meta">图书 · 电子书 $24.95</span></span></a>\n'
+               '<a href="posters.html"><img loading="lazy" alt="网络协议全景图" src="../assets/posters/network-protocols-map-share.jpg"/><span><span class="pb-title">网络协议全景图</span><span class="pb-meta">图谱 · $19.99</span></span></a>\n</aside>')
     if page == 'home':
         box = ''
     return ('<header>\n<a aria-label="Javvin Company" class="logo" href="./">'
@@ -501,7 +501,7 @@ def book_cards(lang):
         buy_html = ('<a class="buy-btn" href="%s" rel="noopener" target="_blank"><span>%s</span></a>'
                     % (buy, buy_label)) if buy else ''
         items.append(
-            '<div class="prod-card"><a href="books-%s.html"><img class="prod-img book" src="%s" alt="%s"/></a>'
+            '<div class="prod-card"><a href="books-%s.html"><img loading="lazy" class="prod-img book" src="%s" alt="%s"/></a>'
             '<h3>%s</h3>'
             '<p class="prod-sub">%s</p>'
             '%s'
@@ -520,13 +520,13 @@ def books_index(lang):
 def products_block(lang):
     if lang == 'zh':
         return ('<section class="block" id="products">\n<h2>作品</h2>\n<div class="prod-grid">\n'
-                '<div class="prod-card"><img class="prod-img book" src="../assets/covers/cover-front.jpg" alt="《欲望的力量：人类科技创新简史》第二版封面"/>'
+                '<div class="prod-card"><img loading="lazy" class="prod-img book" src="../assets/covers/cover-front.jpg" alt="《欲望的力量：人类科技创新简史》第二版封面"/>'
                 '<h3>《欲望的力量：人类科技创新简史》（第二版）</h3>'
                 '<p class="prod-sub">董洁林著 · 电子书（PDF），本站购买后下载；纸质版按需印刷。</p>'
                 '<p class="prod-price">$12.99</p>'
                 '<div class="prod-actions"><a class="buy-btn" href="https://payhip.com/b/ioAfP" rel="noopener" target="_blank"><span>购买电子书</span></a>'
                 '<a class="detail-link" href="books-power-of-desire.html">详细介绍 →</a></div></div>\n'
-                '<div class="prod-card"><img class="prod-img poster" src="../assets/posters/network-protocols-map-promo.jpg" alt="网络协议全景图"/>'
+                '<div class="prod-card"><img loading="lazy" class="prod-img poster" src="../assets/posters/network-protocols-map-promo.jpg" alt="网络协议全景图"/>'
                 '<h3>网络协议全景图</h3>'
                 '<p class="prod-sub">Network Protocols Map · 电子图谱（PDF），2009 经典版 · 2026 修订，横版 36×24 英寸，自行打印装裱。</p>'
                 '<p class="prod-price">$19.99</p>'
@@ -534,13 +534,13 @@ def products_block(lang):
                 '<a class="detail-link" href="posters.html">详细介绍 →</a></div></div>\n'
                 '</div>\n</section>')
     return ('<section class="block" id="products">\n<h2>Publications</h2>\n<div class="prod-grid">\n'
-            '<div class="prod-card"><img class="prod-img book" src="../assets/covers/cover-en-front.jpg" alt="Cover of The Power of Desire, second edition"/>'
+            '<div class="prod-card"><img loading="lazy" class="prod-img book" src="../assets/covers/cover-en-front.jpg" alt="Cover of The Power of Desire, second edition"/>'
             '<h3>The Power of Desire</h3>'
             '<p class="prod-sub">A Brief History of Scientific &amp; Technological Innovation, by Jielin Dong · Ebook (PDF), second edition; print edition by print-on-demand.</p>'
             '<p class="prod-price">$12.99</p>'
             '<div class="prod-actions"><a class="buy-btn" href="https://payhip.com/b/LdW15" rel="noopener" target="_blank"><span>Buy the Ebook</span></a>'
             '<a class="detail-link" href="books-power-of-desire.html">Details →</a></div></div>\n'
-            '<div class="prod-card"><img class="prod-img poster" src="../assets/posters/network-protocols-map-promo.jpg" alt="Network Protocols Map"/>'
+            '<div class="prod-card"><img loading="lazy" class="prod-img poster" src="../assets/posters/network-protocols-map-promo.jpg" alt="Network Protocols Map"/>'
             '<h3>Network Protocols Map</h3>'
             '<p class="prod-sub">Digital poster (PDF) — 2009 classic, revised 2026 · 36×24 in, download and print it yourself.</p>'
             '<p class="prod-price">$19.99</p>'
@@ -794,7 +794,7 @@ def build(lang, out_dir):
                 else '<p class="back-link"><a href="books.html">← Back to Books</a></p>')
         author_alt = '董洁林博士肖像' if zh else 'Portrait of Dr. Jielin Dong'
         bio_html = bio.replace('<div class="about-text">',
-            '<div class="author-wrap"><figure class="author-photo"><img src="../assets/author-jielin-dong.jpg" alt="%s"/></figure><div class="about-text">' % author_alt, 1)
+            '<div class="author-wrap"><figure class="author-photo"><img loading="lazy" src="../assets/author-jielin-dong.jpg" alt="%s"/></figure><div class="about-text">' % author_alt, 1)
         _head, _sep, _tail = bio_html.rpartition('</div>')
         bio_html = _head + '</div></div>' + _tail
         body = frag + toc_block(lang) + praise_block(lang) + bio_html + bottom_buy(lang) + back + footer(home)
@@ -830,7 +830,7 @@ def build_handbook_page():
     fname = 'books-network-protocols-handbook.html'
     frag = (ROOT / 'books-src' / 'en-network-protocols-handbook.html').read_text().strip()
     author_html = ('<section class="block" id="author">\n<h2>About the Author</h2>\n'
-        '<div class="author-wrap"><figure class="author-photo"><img src="../assets/author-jielin-dong.jpg" alt="Portrait of Dr. Jielin Dong"/></figure><div class="about-text">\n'
+        '<div class="author-wrap"><figure class="author-photo"><img loading="lazy" src="../assets/author-jielin-dong.jpg" alt="Portrait of Dr. Jielin Dong"/></figure><div class="about-text">\n'
         '<p>Dr. Jielin Dong’s networking experience includes work at Cisco Systems, Lucent Technologies, and Network Associates. She also served as a professor of the history of science and technology.</p>\n'
         '</div></div>\n</section>')
     back = '<p class="back-link"><a href="books.html">← Back to Books</a></p>'
@@ -845,7 +845,10 @@ def build_handbook_page():
         'datePublished': '2027-01', 'numberOfPages': 324,
         'image': BASE + 'assets/covers/handbook-3d.jpg',
         'url': BASE + 'en/books-network-protocols-handbook.html',
-        'description': desc}
+        'description': desc,
+        'offers': {'@type': 'Offer', 'url': 'https://payhip.com/b/rG6sm',
+                   'price': '24.95', 'priceCurrency': 'USD',
+                   'availability': 'https://schema.org/InStock', 'category': 'Ebook (PDF)'}}
     hd = head('en', 'book', fname,
               'Network Protocols Handbook, Fifth Edition — Jielin Dong | Javvin Company',
               desc,
