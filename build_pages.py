@@ -499,7 +499,6 @@ def book_cards(lang):
     items = []
     for (slug, title, sub, cover, alt, price, buy, buy_label, pb, pb_label, more,
          _dt, _dd, _og, _kw) in BOOKS[lang]:
-        price_html = '<p class="prod-price">%s</p>' % price if price else ''
         buy_html = ('<a class="buy-btn" href="%s" rel="noopener" target="_blank"><span>%s</span></a>'
                     % (buy, buy_label)) if buy else ''
         if pb:
@@ -509,10 +508,9 @@ def book_cards(lang):
             '<div class="prod-card"><a href="books-%s.html"><img loading="lazy" class="prod-img book" src="%s" alt="%s"/></a>'
             '<h3>%s</h3>'
             '<p class="prod-sub">%s</p>'
-            '%s'
             '<div class="prod-actions">%s'
             '<a class="detail-link" href="books-%s.html">%s</a></div></div>'
-            % (slug, cover, alt, title, sub, price_html, buy_html, slug, more))
+            % (slug, cover, alt, title, sub, buy_html, slug, more))
     return ''.join(items)
 
 def books_index(lang):
