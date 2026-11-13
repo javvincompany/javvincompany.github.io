@@ -514,10 +514,8 @@ def book_cards(lang):
 
 def books_index(lang):
     h2 = '书籍' if lang == 'zh' else 'Books'
-    intro = ('从吃饱穿暖到人工智能，沿着人类欲望的线索，重新理解科技如何改变社会和历史。' if lang == 'zh'
-             else 'From food and clothing to artificial intelligence — following the thread of human desire to rethink how technology changes society and history.')
-    return ('<section class="block" id="books"><h2>%s</h2><p class="books-intro">%s</p><div class="prod-grid">%s</div></section>'
-            % (h2, intro, book_cards(lang)))
+    return ('<section class="block" id="books"><h2>%s</h2><div class="prod-grid">%s</div></section>'
+            % (h2, book_cards(lang)))
 
 def products_block(lang):
     if lang == 'zh':
