@@ -559,7 +559,7 @@ def products_block(lang):
 
 def home_articles(lang):
     zh = (lang == 'zh')
-    h2 = '文章与推荐序' if zh else 'Articles & Forewords'
+    h2 = '文章与推荐序' if zh else 'Articles'
     return ('<section class="block" id="home-articles">\n<h2>%s</h2>\n<div class="art-list">\n%s\n</div>\n</section>'
             % (h2, art_cards(lang)))
 
