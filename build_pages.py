@@ -469,7 +469,7 @@ BOOKS = {
          'The Power of Desire',
          'A Brief History of Scientific &amp; Technological Innovation, by Jielin Dong · Ebook (PDF), second edition; print edition by print-on-demand.',
          '../assets/covers/cover-en-front.jpg', 'Cover of The Power of Desire, second edition',
-         '$12.99', 'https://payhip.com/b/LdW15', 'Buy the Ebook', 'Details →',
+         '$12.99', 'https://payhip.com/b/LdW15', 'Buy the Ebook', 'https://www.amazon.com/dp/1602670315', 'Buy the Paperback · $29.99', 'Details →',
          'The Power of Desire — The Book | Javvin Company', EN_BOOK_DESC,
          'Javvin Company — The Power of Desire: A Brief History of Scientific &amp; Technological Innovation',
          'The Power of Desire, Jielin Dong, history of innovation, history of technological innovation, human needs, ebook PDF, ISBN 9781602670310'),
@@ -477,7 +477,7 @@ BOOKS = {
          'Network Protocols Handbook',
          'Understanding Connectivity Across the Internet, Cloud, and AI Systems, by Jielin Dong · Fifth Edition · January 2027',
          '../assets/covers/handbook-front.jpg', 'Cover of Network Protocols Handbook, Fifth Edition',
-         '$24.95', 'https://payhip.com/b/rG6sm', 'Buy the PDF', 'Details →',
+         '$24.95', 'https://payhip.com/b/rG6sm', 'Buy the PDF', 'https://www.amazon.com/dp/1602670323', 'Buy the Paperback · $49.99', 'Details →',
          'Network Protocols Handbook, Fifth Edition — Jielin Dong | Javvin Company',
          'Network Protocols Handbook, Fifth Edition follows a request from a device to a cloud service or an AI data center and back, and explains the protocols at each step: Ethernet, Wi-Fi, IP, routing, and DNS; TCP, QUIC, and HTTP; encryption and identity; container and cloud networks.',
          'Javvin Company — Network Protocols Handbook, Fifth Edition',
@@ -488,7 +488,7 @@ BOOKS = {
          '《欲望的力量：人类科技创新简史》（第二版）',
          '董洁林著 · 电子书（PDF），本站购买后下载；纸质版按需印刷。',
          '../assets/covers/cover-front.jpg', '《欲望的力量：人类科技创新简史》第二版封面',
-         '$12.99', 'https://payhip.com/b/ioAfP', '购买电子书', '详细介绍 →',
+         '$12.99', 'https://payhip.com/b/ioAfP', '购买电子书', '', '', '详细介绍 →',
          '《欲望的力量：人类科技创新简史》（第二版）— 董洁林 | Javvin 公司', ZH_BOOK_DESC,
          'Javvin 公司 — 《欲望的力量：人类科技创新简史》（第二版）',
          '欲望的力量, 人类科技创新简史, 董洁林, 第二版, 科技创新史, 人类需求, 电子书PDF, ISBN 9781602670303'),
@@ -497,11 +497,14 @@ BOOKS = {
 
 def book_cards(lang):
     items = []
-    for (slug, title, sub, cover, alt, price, buy, buy_label, more,
+    for (slug, title, sub, cover, alt, price, buy, buy_label, pb, pb_label, more,
          _dt, _dd, _og, _kw) in BOOKS[lang]:
         price_html = '<p class="prod-price">%s</p>' % price if price else ''
         buy_html = ('<a class="buy-btn" href="%s" rel="noopener" target="_blank"><span>%s</span></a>'
                     % (buy, buy_label)) if buy else ''
+        if pb:
+            buy_html += ('<a class="buy-btn" href="%s" rel="noopener" target="_blank"><span>%s</span></a>'
+                         % (pb, pb_label))
         items.append(
             '<div class="prod-card"><a href="books-%s.html"><img loading="lazy" class="prod-img book" src="%s" alt="%s"/></a>'
             '<h3>%s</h3>'
@@ -784,7 +787,7 @@ def build(lang, out_dir):
 
     # standalone book pages (split out of the Books page 2026-10-29 at her request)
     for bk in BOOKS[lang]:
-        (slug, _ct, _cs, _cv, _al, _pr, _buy, _bl, _more,
+        (slug, _ct, _cs, _cv, _al, _pr, _buy, _bl, _pb, _pbl, _more,
          dtitle, desc, ogt, kw) = bk
         if slug == 'network-protocols-handbook':
             continue  # written by build_handbook_page below (own TOC/bio, no buy)
