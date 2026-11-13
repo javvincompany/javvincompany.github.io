@@ -226,12 +226,12 @@ def bottom_buy(lang):
     if lang == 'en':
         return ('<section class="block buy-bottom" id="buy-bottom">\n<div class="book-info">\n'
                 '<p class="book-price">$12.99</p>\n'
-                '<a class="buy-btn" href="https://payhip.com/b/LdW15" rel="noopener" target="_blank"><span>Buy the English Ebook · $12.99</span></a>\n'
+                '<a class="buy-btn" href="https://payhip.com/b/LdW15" rel="noopener" target="_blank"><span>Buy the English eBook · $12.99</span></a>\n'
                 '<p class="sample-link"><a href="https://payhip.com/b/RXgzv" rel="noopener" target="_blank">Read a free sample (PDF, 19 pages)</a></p>\n'
                 '</div>\n</section>')
     return ('<section class="block buy-bottom" id="buy-bottom">\n<div class="book-info">\n'
             '<p class="book-price">$12.99</p>\n'
-            '<a class="buy-btn" href="https://payhip.com/b/ioAfP" rel="noopener" target="_blank"><span>购买中文电子版 · $12.99</span></a>\n'
+            '<a class="buy-btn" href="https://payhip.com/b/ioAfP" rel="noopener" target="_blank"><span>购买中文电子书 · $12.99</span></a>\n'
             '<p class="sample-link"><a href="https://payhip.com/b/P4XcA" rel="noopener" target="_blank">免费试读（18 页，填写邮箱领取）</a></p>\n'
             '</div>\n</section>')
 
@@ -469,7 +469,7 @@ BOOKS = {
          'The Power of Desire',
          'A Brief History of Scientific &amp; Technological Innovation, by Jielin Dong · Ebook (PDF), second edition; print edition by print-on-demand.',
          '../assets/covers/cover-en-front.jpg', 'Cover of The Power of Desire, second edition',
-         '$12.99', 'https://payhip.com/b/LdW15', 'Buy the Ebook', 'https://www.amazon.com/dp/1602670315', 'Buy the Paperback · $29.99', 'Details →',
+         '$12.99', 'https://payhip.com/b/LdW15', 'Buy the eBook · $12.99', 'https://www.amazon.com/dp/1602670315', 'Buy the Paperback · $29.99', 'Details →',
          'The Power of Desire — The Book | Javvin Company', EN_BOOK_DESC,
          'Javvin Company — The Power of Desire: A Brief History of Scientific &amp; Technological Innovation',
          'The Power of Desire, Jielin Dong, history of innovation, history of technological innovation, human needs, ebook PDF, ISBN 9781602670310'),
@@ -477,7 +477,7 @@ BOOKS = {
          'Network Protocols Handbook',
          'Understanding Connectivity Across the Internet, Cloud, and AI Systems, by Jielin Dong · Fifth Edition · January 2027',
          '../assets/covers/handbook-front.jpg', 'Cover of Network Protocols Handbook, Fifth Edition',
-         '$24.95', 'https://payhip.com/b/rG6sm', 'Buy the PDF', 'https://www.amazon.com/dp/1602670323', 'Buy the Paperback · $49.99', 'Details →',
+         '$24.95', 'https://payhip.com/b/rG6sm', 'Buy the eBook · $24.95', 'https://www.amazon.com/dp/1602670323', 'Buy the Paperback · $49.99', 'Details →',
          'Network Protocols Handbook, Fifth Edition — Jielin Dong | Javvin Company',
          'Network Protocols Handbook, Fifth Edition follows a request from a device to a cloud service or an AI data center and back, and explains the protocols at each step: Ethernet, Wi-Fi, IP, routing, and DNS; TCP, QUIC, and HTTP; encryption and identity; container and cloud networks.',
          'Javvin Company — Network Protocols Handbook, Fifth Edition',
@@ -488,7 +488,7 @@ BOOKS = {
          '《欲望的力量：人类科技创新简史》（第二版）',
          '董洁林著 · 电子书（PDF），本站购买后下载；纸质版按需印刷。',
          '../assets/covers/cover-front.jpg', '《欲望的力量：人类科技创新简史》第二版封面',
-         '$12.99', 'https://payhip.com/b/ioAfP', '购买电子书', '', '', '详细介绍 →',
+         '$12.99', 'https://payhip.com/b/ioAfP', '购买电子书 · $12.99', '', '', '详细介绍 →',
          '《欲望的力量：人类科技创新简史》（第二版）— 董洁林 | Javvin 公司', ZH_BOOK_DESC,
          'Javvin 公司 — 《欲望的力量：人类科技创新简史》（第二版）',
          '欲望的力量, 人类科技创新简史, 董洁林, 第二版, 科技创新史, 人类需求, 电子书PDF, ISBN 9781602670303'),
@@ -541,7 +541,7 @@ def products_block(lang):
             '<h3>The Power of Desire</h3>'
             '<p class="prod-sub">A Brief History of Scientific &amp; Technological Innovation, by Jielin Dong · Ebook (PDF), second edition; print edition by print-on-demand.</p>'
             '<p class="prod-price">$12.99</p>'
-            '<div class="prod-actions"><a class="buy-btn" href="https://payhip.com/b/LdW15" rel="noopener" target="_blank"><span>Buy the Ebook</span></a>'
+            '<div class="prod-actions"><a class="buy-btn" href="https://payhip.com/b/LdW15" rel="noopener" target="_blank"><span>Buy the eBook</span></a>'
             '<a class="detail-link" href="books-power-of-desire.html">Details →</a></div></div>\n'
             '<div class="prod-card"><img loading="lazy" class="prod-img poster" src="../assets/posters/network-protocols-map-promo.jpg" alt="Network Protocols Map"/>'
             '<h3>Network Protocols Map</h3>'
