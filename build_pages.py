@@ -341,7 +341,7 @@ META = {
         'posters': ('posters.html', 'Network Protocols Map — Digital Poster | Javvin Company',
                     'Network Protocols Map (2009 classic, revised 2026) — a high-resolution digital poster (PDF) from Javvin Company: download, print, and frame it yourself.', 'Network Protocols Map — Digital Poster | Javvin Company'),
         'articles': ('articles.html', 'Articles & Forewords — Xue Lan, Yan Yan, Sun Xiaochun | Javvin Company',
-                     'Forewords and essays on The Power of Desire: A Brief History of Scientific & Technological Innovation — by Xue Lan (Tsinghua), Yan Yan (SAIF Partners), and Sun Xiaochun (UCAS).', 'Articles & Forewords | Javvin Company'),
+                     'Forewords, the preface, and essays on The Power of Desire: A Brief History of Scientific & Technological Innovation — by Xue Lan (Tsinghua), Yan Yan (SAIF Partners), and Sun Xiaochun (UCAS).', 'Articles & Forewords | Javvin Company'),
         'about': ('about.html', 'About Javvin Company — AI-Native Publisher in San Francisco',
                   'Javvin Company is an AI-native publisher based in San Francisco, specializing in books and posters on technological innovation. AI supports every stage of its work.', 'Javvin Company — About'),
         'for-authors': ('for-authors.html', 'Publish with Javvin — For Authors | Javvin Company',
@@ -358,7 +358,7 @@ META = {
         'posters': ('posters.html', '网络协议全景图 — 电子图谱 | Javvin 公司',
                     '《网络协议全景图》（2009 经典版·2026 修订）— Javvin 公司电子图谱：高清 PDF，购买后下载，自行打印装裱。', '网络协议全景图 — 电子图谱 | Javvin 公司'),
         'articles': ('articles.html', '文章与推荐序 — 薛澜、阎焱、孙小淳 | Javvin 公司',
-                     '薛澜、阎焱、孙小淳为《欲望的力量：人类科技创新简史》撰写的三篇推荐序全文。', 'Javvin 公司 — 文章与推荐序'),
+                     '《欲望的力量：人类科技创新简史》第二版前言，以及薛澜、阎焱、孙小淳为本书撰写的三篇推荐序全文。', 'Javvin 公司 — 文章与推荐序'),
         'about': ('about.html', '关于 Javvin 公司 — AI 原生出版社（旧金山）',
                   'Javvin 公司是一家位于美国旧金山的 AI 原生出版社，专注于出版科技创新主题的图书与图谱；从编辑、设计到制作、营销与运营，人工智能支持公司工作的每一个环节。', 'Javvin 公司 — 关于'),
         'for-authors': ('for-authors.html', '在 Javvin 出版 — 作者投稿 | Javvin 公司',
@@ -393,6 +393,10 @@ KEYWORDS = {
 # slug, page title (h1), byline, one-sentence guide, author short name, keywords
 ARTICLES = {
     'en': [
+        ('preface', 'Preface to the English Edition',
+         'Jielin Dong',
+         'Preface to the first English edition of The Power of Desire: why humans innovate, how innovation changes life, and what the second edition adds.',
+         'Jielin Dong', 'The Power of Desire preface, preface to the English edition, Jielin Dong, history of innovation, history of scientific innovation, Maslow needs innovation, three revolutions, Subsistence Revolution, Communication Revolution, Efficiency Revolution, artificial intelligence, superintelligence, second edition'),
         ('xue-lan', 'A Small Boat on the Great River of Human Innovation',
          'Xue Lan (Professor at Tsinghua University and Dean of Schwarzman College, Tsinghua University)',
          'Tsinghua scholar Xue Lan on how the book retells the history of innovation — human needs as its thread, vivid stories and rigorous data as its method.',
@@ -411,6 +415,10 @@ ARTICLES = {
          'Jielin Dong', 'The US-China AI Battle, Whose Dividend Whose Price, Jielin Dong, US-China AI competition, AI competition, open weights, open-weight models, AI ecosystem, six-layer AI ecosystem, Harness, AI applications, token prices, token price decline, AI computing power, FP16, EFLOPS, AI chips, NVIDIA, DeepSeek, Qwen, Moonshot AI, Zhipu, Meta, Muse Spark, Anthropic, Hugging Face, OpenRouter, Vercel, AI governance, AI safety, model distillation, AI infrastructure, data centers, AI borders, AI regulation, Economic Observer, AI dividends, AI and jobs, AI productivity, AGI, model consolidation, AI capital, enterprise AI, AI monetization'),
     ],
     'zh': [
+        ('preface', '第二版前言',
+         '董洁林',
+         '《欲望的力量：人类科技创新简史》第二版前言：人类为什么创新，创新怎样改变生活，第二版修订了什么。',
+         '董洁林', '欲望的力量第二版前言, 第二版前言, 董洁林, 科技创新史, 人类为什么创新, 马斯洛需求理论, 三场大革命, 生存革命, 交流革命, 效率革命, 人工智能, 超级智能, 科技创新史'),
         ('xue-lan', '人类创新历史长河中的一叶轻舟',
          '薛澜（清华大学教授，清华大学苏世民书院院长）',
          '薛澜以创新研究学者的视角，解读本书如何以人类需求为线索、用故事与数据重构万年科技创新史。',
