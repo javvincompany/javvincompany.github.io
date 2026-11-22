@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Preface to the Fifth Edition — Jielin Dong | Javvin Company</title>
+<meta content="Preface to the fifth edition of Network Protocols Handbook: why the book is reorganized around how communication works, who it is for, and how to use it as a reference." name="description"/>
+<meta content="Network Protocols Handbook preface, preface to the fifth edition, Jielin Dong, network protocols, how communication works, AI applications, TCP, QUIC, HTTP, fifth edition, Javvin" name="keywords"/>
+<meta content="UjqM5b327ctUoN0HMQ91Dvwp_7B0VCA48ALKU27OKyU" name="google-site-verification"/>
+<link href="https://javvin.ai/en/articles-handbook-preface.html" rel="canonical"/><link href="https://javvin.ai/en/articles-handbook-preface.html" hreflang="x-default" rel="alternate"/><link href="https://javvin.ai/en/articles-handbook-preface.html" hreflang="en" rel="alternate"/>
+<meta content="website" property="og:type"/>
+<meta content="Javvin Company" property="og:site_name"/>
+<meta content="en_US" property="og:locale"/>
+<meta content="Preface to the Fifth Edition — Jielin Dong | Javvin Company" property="og:title"/>
+<meta content="Preface to the fifth edition of Network Protocols Handbook: why the book is reorganized around how communication works, who it is for, and how to use it as a reference." property="og:description"/>
+<meta content="https://javvin.ai/en/articles-handbook-preface.html" property="og:url"/>
+<meta content="https://javvin.ai/assets/covers/cover-en-front.jpg" property="og:image"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Preface to the Fifth Edition",
+  "author": {
+    "@type": "Person",
+    "name": "Jielin Dong"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Javvin Company"
+  },
+  "inLanguage": "en",
+  "description": "Preface to the fifth edition of Network Protocols Handbook: why the book is reorganized around how communication works, who it is for, and how to use it as a reference.",
+  "mainEntityOfPage": "https://javvin.ai/en/articles-handbook-preface.html",
+  "about": {
+    "@type": "Book",
+    "name": "Network Protocols Handbook"
+  }
+}
+</script>
+<style>
+  :root {
+    --navy: #101722;
+    --navy2: #16202e;
+    --paper: #faf7f1;
+    --ink: #2b2620;
+    --gold: #c9a35c;
+    --muted: #8a8177;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Songti SC", "Noto Serif SC", "STSong", Georgia, serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.8;
+  }
+  body.en { font-family: Georgia, "Times New Roman", serif; }
+
+  header {
+    background: var(--navy);
+    color: var(--paper);
+    padding: 1rem 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .logo img { height: 64px; width: auto; display: block; }
+  nav { display: flex; gap: 1.75rem; align-items: center; font-size: 0.95rem; }
+  nav a { color: #cfc8ba; text-decoration: none; letter-spacing: 0.1em; }
+  nav a:hover { color: var(--gold); }
+  .lang-switch {
+    display: flex; gap: 0.25rem;
+    border: 1px solid #3a4657; border-radius: 999px; overflow: hidden;
+  }
+  .lang-switch a {
+    border: none; background: transparent; color: #9aa4b2;
+    padding: 0.35rem 0.9rem; font-size: 0.8rem; cursor: pointer;
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+  .lang-switch a.active { background: var(--gold); color: var(--navy); }
+
+  .hero {
+    background: linear-gradient(160deg, var(--navy) 0%, var(--navy2) 70%);
+    color: var(--paper);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 3.5rem;
+    padding: 4rem 2rem 5rem;
+  }
+  .hero img {
+    width: min(280px, 70vw);
+    border-radius: 4px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.55);
+  }
+  .hero-text { max-width: 520px; }
+  .badge {
+    display: inline-block;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 0.8rem;
+    letter-spacing: 0.25em;
+    padding: 0.3rem 1rem;
+    border-radius: 999px;
+    margin-bottom: 1.5rem;
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+  .hero-text h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.4;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.75rem;
+  }
+  .hero-text h1 .sub { color: var(--gold); }
+  .hero-text .en-title {
+    font-size: clamp(1rem, 2.4vw, 1.25rem);
+    color: #b9c0cb;
+    font-style: italic;
+    margin-bottom: 1.75rem;
+    line-height: 1.6;
+  }
+  .meta { list-style: none; font-size: 1rem; color: #d8d2c4; }
+  .meta li { margin: 0.4rem 0; }
+  .meta .k { color: var(--muted); display: inline-block; min-width: 4.5em; }
+  body.en .meta .k { min-width: 7em; }
+
+  section.block { max-width: 860px; margin: 0 auto; padding: 4rem 2rem; }
+  section.block h2 {
+    font-size: 1.5rem; letter-spacing: 0.3em; text-indent: 0.3em;
+    text-align: center; margin-bottom: 2rem;
+  }
+  section.block h2::after {
+    content: ""; display: block; width: 48px; height: 2px;
+    background: var(--gold); margin: 1rem auto 0;
+  }
+  .soon {
+    text-align: center; color: var(--muted);
+    border: 1px dashed #d8d0c2; border-radius: 8px;
+    padding: 3rem 1.5rem;
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+  .book-card {
+    display: flex; flex-wrap: wrap; gap: 2.5rem;
+    align-items: flex-start; justify-content: center;
+  }
+  .book-card img {
+    width: min(150px, 60vw); border-radius: 4px;
+    box-shadow: 0 16px 40px rgba(16,23,34,0.25);
+  }
+  .book-info { max-width: 440px; }
+  .book-info h3 { font-size: 1.6rem; letter-spacing: 0.1em; margin-bottom: 0.25rem; }
+  .book-info .en { color: var(--muted); font-style: italic; margin-bottom: 1.25rem; }
+  .book-info p { color: var(--muted); font-size: 0.95rem; }
+  .buy-btn {
+    display: inline-block; margin: 0.9rem 0 1.4rem;
+    background: var(--gold); color: var(--navy);
+    padding: 0.6rem 1.6rem; border-radius: 999px;
+    text-decoration: none; font-size: 0.95rem; letter-spacing: 0.05em;
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+  .buy-btn:hover { opacity: 0.88; }
+  .sample-link { margin: -0.4rem 0 1.2rem; font-size: 0.92rem;
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; }
+  .sample-link a { color: #96762e; }
+  .foreword {
+    border: 1px solid #e2dacc; border-radius: 8px;
+    padding: 1.25rem 1.5rem; margin-bottom: 1.25rem; background: #fffdf8;
+  }
+  .foreword summary { cursor: pointer; font-size: 1.02rem; letter-spacing: 0.03em; line-height: 1.8; }
+  .foreword summary:hover { color: var(--gold); }
+  .foreword h3 { font-size: 1.28rem; letter-spacing: 0.05em; margin: 1.5rem 0 0.3rem; }
+  .foreword .byline { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.25rem; }
+  .foreword p { margin-bottom: 1rem; }
+
+  .about-text p { margin-bottom: 1.25rem; }
+  .about-text p:last-child { margin-bottom: 0; }
+  #for-authors p { margin-bottom: 1.25rem; }
+  #for-authors p.welcome-close { margin-top: 1.25rem; }
+
+  footer {
+    background: var(--navy); color: #8f99a6;
+    text-align: center; padding: 2.5rem 1.5rem;
+    font-size: 0.85rem; letter-spacing: 0.08em;
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+  footer a { color: var(--gold); text-decoration: none; }
+
+  .lang-switch a { text-decoration: none; display: inline-block; }
+</style>
+<style>
+  .cards { max-width: 860px; margin: 0 auto; padding: 3.5rem 2rem 4rem;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 1.25rem; }
+  .card { border: 1px solid #e2dacc; border-radius: 8px; background: #fffdf8;
+    padding: 1.75rem 1.25rem; text-align: center; text-decoration: none; color: var(--ink); }
+  .card:hover { border-color: var(--gold); }
+  .card h3 { font-size: 1.15rem; letter-spacing: 0.2em; margin-bottom: 0.5rem; }
+  .card p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+  .hero-btn { display: inline-block; margin-top: 1.5rem; background: var(--gold); color: var(--navy);
+    padding: 0.6rem 1.6rem; border-radius: 999px; text-decoration: none; font-size: 0.95rem;
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; }
+  .hero-btn:hover { opacity: 0.88; }
+  .tagline { font-size: 1.08rem; color: var(--ink); letter-spacing: 0.03em; line-height: 1.7; margin: 0.25rem 0 1rem; }
+  .toc-row { display: flex; justify-content: space-between; gap: 1rem; padding: 0.12rem 0; }
+  .toc-part { font-weight: bold; margin-top: 0.9rem; }
+  .praise { margin-bottom: 1.6rem; }
+  .praise p { font-size: 1.02rem; line-height: 1.75; }
+  .praise .who { color: var(--muted); margin-top: 0.3rem; font-size: 0.95rem; }
+  .hero-tagline { color: #e8e2d4; font-size: 1.05rem; line-height: 1.75; letter-spacing: 0.03em; margin: 1.25rem 0 0.25rem; }
+  body.en .hero-text h1 { font-size: clamp(1.7rem, 4.2vw, 2.6rem); }
+  .hero-btn.alt { background: transparent; border: 1px solid var(--gold); color: var(--gold); margin-left: 0.5rem; }
+  @media (max-width: 640px) {
+    header { padding: 0.75rem 1rem; }
+    .logo img { height: 44px; }
+    nav { flex-wrap: wrap; gap: 0.5rem 0.9rem; justify-content: flex-end; }
+    nav a, .lang-switch a { white-space: nowrap; }
+    .hero { flex-direction: column; padding: 2rem 1.25rem 3rem; gap: 1.5rem; }
+    .hero-text { order: -1; }
+    .hero img { width: min(190px, 55vw); }
+    .hero-btn.alt { margin-left: 0; margin-top: 0.75rem; }
+  }
+  .poster-card { max-width: 780px; margin: 0 auto; }
+  .poster-card img { width: 100%; border-radius: 6px; box-shadow: 0 16px 40px rgba(16,23,34,0.22); display: block; }
+  .poster-info { margin-top: 1.4rem; }
+  .poster-info h3 { font-size: 1.5rem; letter-spacing: 0.06em; margin-bottom: 0.25rem; }
+  .poster-info .en { color: var(--muted); font-style: italic; margin-bottom: 1rem; }
+  .poster-info p { line-height: 1.75; margin-bottom: 0.9rem; }
+  .poster-viewer { position: relative; border-radius: 6px; overflow: hidden; box-shadow: 0 16px 40px rgba(16,23,34,0.22); line-height: 0; touch-action: none; cursor: grab; }
+  .poster-viewer img { width: 100%; display: block; user-select: none; -webkit-user-drag: none; }
+  .poster-lens { position: absolute; width: min(46%, 430px); aspect-ratio: 3/2; border: 4px solid #fff; border-radius: 4px; box-shadow: 0 14px 34px rgba(16,23,34,0.35); background-repeat: no-repeat; display: none; pointer-events: none; }
+  .poster-viewer.ready .poster-lens { display: block; }
+  .poster-hint { color: var(--muted); font-size: 0.95rem; text-align: center; margin-top: 0.6rem; }
+  .poster-price { font-size: 1.15rem; margin: 0.4rem 0 0.9rem; }
+  .poster-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 0.9rem 0 0.6rem; }
+  .poster-chips button { font: inherit; font-size: 0.92rem; padding: 0.35rem 0.95rem; border-radius: 999px; border: 1px solid var(--gold); background: transparent; color: var(--ink); cursor: pointer; }
+  .poster-chips button.active { background: var(--gold); color: #101722; }
+  .poster-detail img { width: 100%; border-radius: 6px; box-shadow: 0 10px 26px rgba(16,23,34,0.18); display: block; }
+  .book-price { font-size: 1.2rem; margin: 0.6rem 0 0.4rem; }
+  .buy-bottom { text-align: left; }
+  .cover-fig { margin: 0; text-align: center; }
+  .hero .cover-fig figcaption { color: #e8e2d4; font-size: 1.05rem; line-height: 1.75; letter-spacing: 0.03em; max-width: 320px; margin: 1rem auto 0; }
+  .book-card .cover-fig figcaption { color: var(--ink); font-size: 1.08rem; line-height: 1.7; letter-spacing: 0.03em; max-width: 280px; margin: 0.9rem auto 0; }
+  .art-list { display: grid; gap: 1.1rem; }
+  .art-card { display: block; border: 1px solid rgba(16,23,34,0.14); border-radius: 8px; padding: 1.2rem 1.4rem; text-decoration: none; color: var(--ink); background: rgba(255,255,255,0.35); }
+  .art-card:hover { border-color: var(--gold); }
+  .art-card h3 { margin: 0 0 0.3rem; font-size: 1.3rem; }
+  .art-card .byline { margin: 0 0 0.6rem; }
+  .art-card .art-guide { line-height: 1.7; margin: 0 0 0.7rem; }
+  .art-more { color: var(--gold); font-size: 0.98rem; }
+  .article-page h1 { font-size: 1.9rem; line-height: 1.35; margin-bottom: 0.4rem; }
+  .back-link { margin-top: 2rem; }
+  html { scroll-behavior: smooth; }
+  .prod-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; }
+  @media (max-width: 720px) { .prod-grid { grid-template-columns: 1fr; } }
+  .prod-card { border: 1px solid rgba(16,23,34,0.14); border-radius: 10px; padding: 1.2rem 1.3rem 1.35rem; background: rgba(255,255,255,0.35); }
+  .prod-card .prod-img { width: 100%; height: 230px; border-radius: 6px; display: block; margin-bottom: 1rem; background: #fff; }
+  .prod-card .prod-img.book { object-fit: contain; }
+  .prod-card .prod-img.poster { object-fit: cover; }
+  .prod-card h3 { margin: 0 0 0.35rem; font-size: 1.35rem; line-height: 1.4; }
+  .prod-card .prod-sub { color: var(--muted); line-height: 1.65; margin: 0 0 0.6rem; }
+  .prod-card .prod-price { font-size: 1.2rem; margin: 0.3rem 0 0.9rem; }
+  .prod-actions { display: flex; align-items: center; gap: 1.1rem; flex-wrap: wrap; }
+  .prod-actions .detail-link { color: var(--gold); text-decoration: none; font-size: 1rem; }
+  .nr-badge { display: inline-block; background: var(--gold); color: #101722; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase; padding: 0.32rem 0.85rem; border-radius: 999px; margin-bottom: 0.9rem; }
+  .author-wrap { display: flex; gap: 1.6rem; align-items: flex-start; } .author-photo { margin: 0; flex: 0 0 180px; } .author-photo img { width: 100%; border-radius: 6px; display: block; box-shadow: 0 10px 26px rgba(16,23,34,0.18); } @media (max-width: 640px) { .author-wrap { flex-direction: column; } .author-photo { flex-basis: auto; width: 170px; margin: 0 auto; } }   .books-intro { text-align: center; font-size: 1.08rem; line-height: 1.7; letter-spacing: 0.03em; margin: 0 0 1.6rem; }   .editions { width: 100%; border-collapse: collapse; margin: 0.5rem 0 1rem; } .editions th, .editions td { text-align: left; padding: 0.6rem 0.75rem; border-bottom: 1px solid #e2dacc; line-height: 1.6; } .editions th { letter-spacing: 0.06em; font-size: 0.95rem; } .editions td.price { white-space: nowrap; font-weight: bold; }   .article-deck { font-size: 1.12rem; font-style: italic; line-height: 1.7; margin: 0 0 0.4rem; } .article-page .byline { margin: 0 0 1.6rem; } .fig-caption { font-weight: bold; text-align: center; margin: 1.8rem 0 0.6rem; line-height: 1.6; } .fig-note { font-size: 0.92rem; color: #5c5c5c; line-height: 1.7; margin: 0.4rem 0 1.2rem; } .pub-note { font-size: 0.92rem; color: #5c5c5c; margin-top: 2rem; } .article-fig { margin: 1.2rem 0; } .article-fig img { width: 100%; display: block; border-radius: 6px; } .products-box { position: fixed; left: 14px; top: 50%; transform: translateY(-50%); width: 192px; background: #fdfbf7; border: 1px solid #e2dacc; border-radius: 10px; box-shadow: 0 10px 30px rgba(16,23,34,0.16); padding: 0.9rem; z-index: 20; display: none; } .products-box h3 { font-size: 0.95rem; letter-spacing: 0.06em; margin: 0 0 0.5rem; text-align: center; } .products-box a { display: flex; gap: 0.6rem; align-items: flex-start; text-decoration: none; color: var(--ink); padding: 0.55rem 0; border-top: 1px solid #eee6d8; } .products-box a:first-of-type { border-top: none; } .products-box img { width: 52px; flex: 0 0 52px; border-radius: 4px; display: block; } .pb-title { font-size: 0.88rem; line-height: 1.45; display: block; font-weight: bold; } .pb-meta { font-size: 0.78rem; color: #6b6b6b; display: block; line-height: 1.45; } @media (min-width: 1280px) { .products-box { display: block; } } </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KYM6J31ZQ2"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KYM6J31ZQ2');
+</script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "38e3f6f15dc1452d9aab53cc4c968a65"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body class="en">
+<header>
+<a aria-label="Javvin Company" class="logo" href="./"><img alt="Javvin Company" src="../assets/javvin-wordmark.svg"/></a>
+<nav>
+<a href="books.html"><span>Books</span></a>
+<a href="posters.html"><span>Posters</span></a>
+<a href="articles.html"><span>Articles</span></a>
+<a href="for-authors.html"><span>For Authors</span></a>
+<a href="about.html"><span>About</span></a>
+<div class="lang-switch"><a class="active" href="articles-handbook-preface.html">EN</a><a href="/zh/articles.html">中文</a></div>
+</nav>
+</header>
+<aside class="products-box">
+<h3>Our Products</h3>
+<a href="books-power-of-desire.html"><img loading="lazy" alt="The Power of Desire" src="../assets/covers/cover-en-front.jpg"/><span><span class="pb-title">The Power of Desire</span><span class="pb-meta">Book · eBook $12.99</span></span></a>
+<a href="books-network-protocols-handbook.html"><img loading="lazy" alt="Network Protocols Handbook" src="../assets/covers/handbook-front.jpg"/><span><span class="pb-title">Network Protocols Handbook</span><span class="pb-meta">Book · eBook $24.95</span></span></a>
+<a href="posters.html"><img loading="lazy" alt="Network Protocols Map" src="../assets/posters/network-protocols-map-share.jpg"/><span><span class="pb-title">Network Protocols Map</span><span class="pb-meta">Poster · $19.99</span></span></a>
+</aside>
+<section class="block article-page" id="article">
+<div>
+<h1>Preface to the Fifth Edition</h1>
+<p class="article-deck">The first edition appeared in 2004. This fifth edition reorganizes the book around how communication works, from a single AI conversation to the whole network.</p>
+<p class="byline">Jielin Dong</p>
+<p>The first edition of Network Protocols Handbook was published by Javvin Technologies in 2004. It brought together the protocols that network engineers and students encountered across Internet, enterprise, and telecommunications systems. The purpose was practical: to make a large and fragmented body of technical information easier to understand and use. Subsequent editions expanded that reference as networking technologies developed. In 2005, Tsinghua University Press published an edition of the handbook in China.</p>
+<p>More than two decades later, the need for a clear account of network communication remains. The systems that readers encounter have changed considerably. An application may run across a browser, several cloud services, containers, and a private data center. Encryption protects much of the traffic. Software creates networks and changes forwarding behavior. A request that appears simple on a screen can depend on many separate connections and administrative domains.</p>
+<p>This fifth edition responds to those changes by reorganizing the book around how communication works in systems that readers can recognize. It retains the practical purpose of the earlier editions while giving more space to relationships between protocols, application behavior, and the evidence available when something fails. The reader should be able to follow a request through a system, identify the role of each communication mechanism, and ask useful questions about its performance and security.</p>
+<p>AI provides a particularly useful setting for that approach. A conversation with an AI assistant can involve name resolution, secure connections, streamed responses, retrieval from data services, and calls to external tools. Behind the service, distributed computation may require communication among accelerators and storage systems. These activities connect familiar networking foundations to questions that now concern many software developers and technical decision makers.</p>
+<h2>Who This Book Is For</h2>
+<p>I have written this edition for a broader technical readership. Network engineers will find a reference that connects established protocols with cloud infrastructure and modern applications. Software developers, platform engineers, security practitioners, and people building AI systems can use it to understand the communication on which their work depends. Students and instructors can follow its progression from basic concepts to complete system investigations.</p>
+<p>The book assumes familiarity with ordinary computer use and a willingness to examine how systems communicate. It introduces the network concepts needed for later chapters. You do not need to have configured a router or built a distributed AI service before beginning. Readers with experience can move directly to the subjects relevant to their work and use the cross references to revisit supporting ideas.</p>
+<p>The level of detail is selective. Some questions require a packet field or a byte calculation; others are best explained through a request sequence or a diagram of system boundaries. My aim is to provide enough detail to support understanding and practical reasoning without turning every chapter into an implementation manual. Product documentation and protocol specifications remain necessary when configuring a particular system or implementing a protocol.</p>
+<p>For a quick lookup, use the alphabetical Subject Index and Appendix F’s core header, field, TCP-option, and HTTP-status summaries. Chapters explain how those fields affect communication; the cited specifications define complete encodings and exceptional cases. The reference summaries cover common Internet paths rather than every protocol family.</p>
+<h2>How AI Connects to the Rest of the Book</h2>
+<p>The book begins with an AI conversation because it gives us a concrete request to follow. The same foundations also support a web application, an online transaction, or a remote administration session. DNS locates services, transports carry data, and authentication and authorization determine which interactions are permitted. Keeping those roles clear makes unfamiliar systems easier to analyze.</p>
+<p>Later chapters examine the additional demands of AI applications. A streamed answer can begin successfully and still fail before completion. A tool call can change an external system even if the caller never receives its response. The delay before the first visible output can include retrieval, queueing, and computation as well as network activity. Distributed training and inference introduce different communication paths from those used to deliver a public API response.</p>
+<p>AI also appears as a tool for working with networks. It can explain packet fields, organize logs, and help prepare diagnostic queries. Those uses are valuable when the explanation remains tied to evidence. Chapter 29 and the accompanying packet-analysis exercise show how to check a model's interpretation, recalculate its measurements, and distinguish a plausible cause from one supported by observations and tests. The operator's understanding of the system remains central to that work.</p>
+<h2>How to Read This Book and Use It as a Reference</h2>
+<p>Parts I through III establish the foundations of communication: layers and encapsulation, network performance, physical and wireless connectivity, addressing, routing, and supporting services. Reading these parts in sequence gives newcomers the vocabulary and mental models used throughout the book. An experienced reader can use them to check a definition or revisit a mechanism that matters to a current problem.</p>
+<p>Part IV follows transport and application communication, including TCP, QUIC, HTTP, APIs, messaging, and real-time media. Part V examines security and trust across connections, identities, and access boundaries. Part VI explains virtual networks, cloud services, and container connectivity. These parts can be read independently when their prerequisites are familiar.</p>
+<p>Part VII brings the earlier material into AI applications, tool and agent communication, and the infrastructure used for training and inference. Part VIII develops a practical method for observing systems and troubleshooting across protocol layers. For a course, instructors can combine the foundational chapters with selected application chapters and exercises. For reference use, begin with the symptom or communication boundary that you need to understand, then follow the related sections.</p>
+<p>Historical material has a different role in this edition. Readers looking for X.25, ATM, Frame Relay, IPX, or AppleTalk should consult the separate companion guide, Legacy Network Protocols Overview. It briefly describes their context, remaining uses, and successors. This preserves their place in the development of networking while keeping the main book focused on the mechanisms needed to understand current systems. The companion download includes that guide, the constructed DNS pcap, the local HTTP/SSE fixture, the lab instructions, and a file manifest. Full source URLs are also supplied in references.tsv; digital source labels link to those addresses.</p>
+<p>Historical context does not mean universal retirement. PPP remains relevant to PPPoE access, FTP survives in FTPS deployments, and TFTP and BOOTP-derived options remain relevant to boot provisioning; the main text retains those operational connections. This edition does not provide full specifications or deployment guides for Bluetooth, Thread, Matter, LoRaWAN, complete Kerberos or SAML exchanges, or iSCSI and NVMe-oF command and transport specifications. Their absence should not be read as an obsolescence claim. Section 26.8 covers storage traffic, checkpoints, and data movement at the workload and network level; it does not specify those storage protocols.</p>
+<h2>Protocols Standards APIs and Implementations</h2>
+<p>The title uses the familiar term protocols, but the book also discusses APIs, data formats, software frameworks, and architectures. These have different roles. HTTP specifies communication behavior. JSON represents data. A REST API defines an application interface using conventions that may be carried over HTTP. A cloud networking product implements a particular set of capabilities and operating choices. Understanding one does not automatically establish the behavior of the others.</p>
+<p>The chapters make these distinctions explicit and identify relevant standards and further reading. A specification describes an agreed behavior; an implementation supports a particular version and set of options. Configuration then selects how those capabilities are used. When interpreting a trace or planning a change, record the versions, enabled features, and actual communication path. A familiar protocol name alone does not settle those details.</p>
+<p>Some of the technologies discussed here continue to evolve quickly, particularly interfaces for AI tools and agents. Where behavior depends on a revision, the text identifies the version being discussed. Readers should check the current specification and deployed implementation before relying on a particular operation. A dated explanation is useful when its scope is clear and its source can be checked.</p>
+<h2>Reading Diagrams Packet Examples and Evidence</h2>
+<p>The diagrams are intended to reveal relationships: what is inside a packet, which components exchange messages, and where a connection or trust boundary ends. Unless stated otherwise, their spacing does not represent measured time or bandwidth. A logical service can involve several processes, and a gateway can terminate one connection before opening another. Relate each diagram to the actual system you are investigating.</p>
+<p>Worked examples use the form of evidence that best explains the mechanism. This may be a short packet extract, decoded fields, an API request body, or a timeline of application events. Constructed examples are identified as such. A few well-explained bytes can make a binary format concrete, while an annotated request can explain an authorization exchange more clearly than a long hexadecimal dump. Encrypted packet captures require particular care because the observer may see connection metadata without seeing application content.</p>
+<p>Javvin's Network Protocols Map remains a separate visual reference for readers who want an overview of protocol families and their relationships. The poster is not reproduced in this book. It can be used alongside the discussion of layers in Chapter 2, while the chapters develop the behavior, implementation context, and operational questions behind those relationships.</p>
+<p>I hope this edition serves both as a book to learn from and a reference to return to during real work. Its central purpose is to help readers build explanations they can check, whether they are following a familiar protocol, designing a cloud service, or investigating an AI application whose communication crosses many systems.</p>
+<p>Jielin Dong</p>
+<p class="pub-note">This preface is from <em>Network Protocols Handbook</em>, fifth edition. The serialization continues with Part I, Understanding Network Communication.</p>
+<div class="prod-actions"><a class="buy-btn" href="https://payhip.com/b/rG6sm" rel="noopener" target="_blank"><span>Buy the eBook · $24.95</span></a><a class="buy-btn" href="https://www.amazon.com/dp/1602670323" rel="noopener" target="_blank"><span>Buy the Paperback · $49.99</span></a></div>
+</div>
+<p class="back-link"><a href="articles.html">← Back to Articles</a></p>
+</section>
+<footer>
+<p>© 2026 Javvin Company · <span>All rights reserved</span> · <a href="affiliates.html">Affiliates</a></p>
+</footer>
+</body>
+</html>

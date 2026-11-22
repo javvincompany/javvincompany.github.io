@@ -405,6 +405,10 @@ ARTICLES = {
          'Jielin Dong',
          'Preface to the first English edition of The Power of Desire: why humans innovate, how innovation changes life, and what the second edition adds.',
          'Jielin Dong', 'The Power of Desire preface, preface to the English edition, Jielin Dong, history of innovation, history of scientific innovation, Maslow needs innovation, three revolutions, Subsistence Revolution, Communication Revolution, Efficiency Revolution, artificial intelligence, superintelligence, second edition'),
+        ('handbook-preface', 'Preface to the Fifth Edition',
+         'Jielin Dong',
+         'Preface to the fifth edition of Network Protocols Handbook: why the book is reorganized around how communication works, who it is for, and how to use it as a reference.',
+         'Jielin Dong', 'Network Protocols Handbook preface, preface to the fifth edition, Jielin Dong, network protocols, how communication works, AI applications, TCP, QUIC, HTTP, fifth edition, Javvin'),
         ('xue-lan', 'A Small Boat on the Great River of Human Innovation',
          'Xue Lan (Professor at Tsinghua University and Dean of Schwarzman College, Tsinghua University)',
          'Tsinghua scholar Xue Lan on how the book retells the history of innovation — human needs as its thread, vivid stories and rigorous data as its method.',
@@ -573,8 +577,9 @@ def article_jsonld(lang, art, fname):
             'about': ({'@type': 'Thing', 'name': ('中美AI竞争' if lang == 'zh' else 'US-China AI competition')}
                       if slug == 'us-china-ai-battle' else
                       {'@type': 'Book',
-                       'name': ('欲望的力量：人类科技创新简史' if lang == 'zh'
-                                else 'The Power of Desire: A Brief History of Scientific & Technological Innovation')})}
+                       'name': ('Network Protocols Handbook' if slug == 'handbook-preface' else
+                                ('欲望的力量：人类科技创新简史' if lang == 'zh'
+                                 else 'The Power of Desire: A Brief History of Scientific & Technological Innovation'))})}
 
 
 def art_cards(lang):
@@ -910,6 +915,12 @@ def build(lang, out_dir):
         html = ('<!DOCTYPE html>\n<html lang="%s">\n%s\n<body%s>\n%s\n%s\n</body>\n</html>\n'
                 % ('en' if lang == 'en' else 'zh-CN', hd, body_attr,
                    header(lang, 'article', fname), body))
+        if slug == 'handbook-preface':
+            # English-only book (same as the handbook detail page): point the
+            # language switch at the Chinese Articles list and drop the zh alternate.
+            html = html.replace('<a href="/zh/articles-handbook-preface.html">中文</a>',
+                                '<a href="/zh/articles.html">中文</a>')
+            html = html.replace('<link href="https://javvin.ai/zh/articles-handbook-preface.html" hreflang="zh" rel="alternate"/>', '')
         (out_dir / fname).write_text(html)
         print('wrote', out_dir / fname, len(html))
 
