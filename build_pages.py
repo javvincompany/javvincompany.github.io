@@ -76,6 +76,11 @@ if '.cover-fig' not in EXTRA_CSS:
         '  .cover-fig { margin: 0; text-align: center; }\n'
         '  .hero .cover-fig figcaption { color: #e8e2d4; font-size: 1.05rem; line-height: 1.75; letter-spacing: 0.03em; max-width: 320px; margin: 1rem auto 0; }\n'
         '  .book-card .cover-fig figcaption { color: var(--ink); font-size: 1.08rem; line-height: 1.7; letter-spacing: 0.03em; max-width: 280px; margin: 0.9rem auto 0; }\n</style>')
+if '.article-cover' not in EXTRA_CSS:
+    EXTRA_CSS = EXTRA_CSS.replace('</style>',
+        '  .article-cover { margin: 0 0 1.2rem; text-align: center; }\n'
+        '  .article-cover img { width: 180px; height: auto; border-radius: 4px; box-shadow: 0 8px 22px rgba(16,23,34,0.18); }\n'
+        '  .article-cover figcaption { color: var(--muted); font-size: 0.95rem; margin-top: 0.5rem; }\n</style>')
 if '.nr-badge' not in EXTRA_CSS:
     EXTRA_CSS = EXTRA_CSS.replace('</style>',
         '  .nr-badge { display: inline-block; background: var(--gold); color: #101722; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase; padding: 0.32rem 0.85rem; border-radius: 999px; margin-bottom: 0.9rem; }\n</style>')
@@ -558,6 +563,28 @@ def toc_href(lang, t):
         return '#serial-part%d' % {'I': 1, 'II': 2, 'III': 3, 'IV': 4, 'V': 5, 'VI': 6, 'VII': 7}[m.group(1)]
     return None
 
+# Serialization articles carry their book's cover right under the title, so a
+# reader arriving from search knows at a glance which book the installment
+# belongs to (2026-11-22, her rule). Standalone articles (e.g.
+# us-china-ai-battle) get no cover. Future serial units use slugs starting
+# with 'power-of-desire-' or 'handbook-', so they pick up the cover
+# automatically. The cover links to the book detail page.
+def article_cover(lang, slug):
+    zh = (lang == 'zh')
+    if slug.startswith('handbook-'):
+        return ('<figure class="cover-fig article-cover">\n'
+                '<a href="books-network-protocols-handbook.html"><img loading="lazy" src="../assets/covers/handbook-front.jpg" alt="Cover of Network Protocols Handbook, Fifth Edition"/></a>\n'
+                '<figcaption><a href="books-network-protocols-handbook.html">Network Protocols Handbook</a></figcaption>\n</figure>')
+    if slug in ('preface', 'xue-lan', 'yan-yan', 'sun-xiaochun') or slug.startswith('power-of-desire-'):
+        if zh:
+            return ('<figure class="cover-fig article-cover">\n'
+                    '<a href="books-power-of-desire.html"><img loading="lazy" src="../assets/covers/cover-front.jpg" alt="《欲望的力量：人类科技创新简史》第二版封面"/></a>\n'
+                    '<figcaption><a href="books-power-of-desire.html">《欲望的力量》</a></figcaption>\n</figure>')
+        return ('<figure class="cover-fig article-cover">\n'
+                '<a href="books-power-of-desire.html"><img loading="lazy" src="../assets/covers/cover-en-front.jpg" alt="Cover of The Power of Desire, second edition"/></a>\n'
+                '<figcaption><a href="books-power-of-desire.html">The Power of Desire</a></figcaption>\n</figure>')
+    return ''
+
 def articles_index(lang):
     zh = (lang == 'zh')
     h2 = '文章' if zh else 'Articles'
@@ -902,6 +929,9 @@ def build(lang, out_dir):
         fname = 'articles-%s.html' % slug
         frag = (ROOT / 'articles-src' / ('%s-%s.html' % (lang, slug))).read_text().strip()
         frag = frag.replace('<h3>', '<h1>', 1).replace('</h3>', '</h1>', 1)
+        cover = article_cover(lang, slug)
+        if cover:
+            frag = frag.replace('</h1>', '</h1>\n' + cover, 1)
         back = ('<p class="back-link"><a href="articles.html">← 返回文章列表</a></p>' if zh
                 else '<p class="back-link"><a href="articles.html">← Back to Articles</a></p>')
         body = ('<section class="block article-page" id="article">\n%s\n%s\n</section>\n%s'
