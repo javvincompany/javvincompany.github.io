@@ -127,9 +127,11 @@ def toc_block(lang):
     rows = []
     for e in data:
         t = e['title']
+        href = toc_href(lang, t)
+        title_html = '<a href="%s">%s</a>' % (href, t) if href else t
         is_part = bool(re.match(r'^(VIII|VII|VI|IV|V|III|II|I)\s', t)) and not t.startswith(('Chapter', '第'))
         cls = 'toc-row toc-part' if is_part else 'toc-row'
-        rows.append('<div class="%s"><span>%s</span><span>%s</span></div>' % (cls, t, e['page']))
+        rows.append('<div class="%s"><span>%s</span><span>%s</span></div>' % (cls, title_html, e['page']))
     label = '目录' if lang == 'zh' else 'Table of Contents'
     return ('<section class="block" id="toc">\n<details class="foreword">\n<summary><span>%s</span></summary>\n<div>\n%s\n</div>\n</details>\n</section>'
             % (label, '\n'.join(rows)))
@@ -342,6 +344,8 @@ META = {
                     'Network Protocols Map (2009 classic, revised 2026) — a high-resolution digital poster (PDF) from Javvin Company: download, print, and frame it yourself.', 'Network Protocols Map — Digital Poster | Javvin Company'),
         'articles': ('articles.html', 'Articles & Forewords — Xue Lan, Yan Yan, Sun Xiaochun | Javvin Company',
                      'Forewords, the preface, and essays on The Power of Desire: A Brief History of Scientific & Technological Innovation — by Xue Lan (Tsinghua), Yan Yan (SAIF Partners), and Sun Xiaochun (UCAS).', 'Articles & Forewords | Javvin Company'),
+        'serial': ('serial-power-of-desire.html', 'The Power of Desire — Read the Book Online | Javvin Company',
+                   'Read The Power of Desire online, section by section: the complete serialization index — preface, opening, all 24 chapters, conclusion, and appendix, free to read.', 'The Power of Desire — Serialization Index | Javvin Company'),
         'about': ('about.html', 'About Javvin Company — AI-Native Publisher in San Francisco',
                   'Javvin Company is an AI-native publisher based in San Francisco, specializing in books and posters on technological innovation. AI supports every stage of its work.', 'Javvin Company — About'),
         'for-authors': ('for-authors.html', 'Publish with Javvin — For Authors | Javvin Company',
@@ -359,6 +363,8 @@ META = {
                     '《网络协议全景图》（2009 经典版·2026 修订）— Javvin 公司电子图谱：高清 PDF，购买后下载，自行打印装裱。', '网络协议全景图 — 电子图谱 | Javvin 公司'),
         'articles': ('articles.html', '文章与推荐序 — 薛澜、阎焱、孙小淳 | Javvin 公司',
                      '《欲望的力量：人类科技创新简史》第二版前言，以及薛澜、阎焱、孙小淳为本书撰写的三篇推荐序全文。', 'Javvin 公司 — 文章与推荐序'),
+        'serial': ('serial-power-of-desire.html', '《欲望的力量》连载总索引 | Javvin 公司',
+                   '《欲望的力量：人类科技创新简史》全书连载总索引：前言、开篇、二十四章、结语、附录，一篇一篇免费读。', '《欲望的力量》连载总索引 | Javvin 公司'),
         'about': ('about.html', '关于 Javvin 公司 — AI 原生出版社（旧金山）',
                   'Javvin 公司是一家位于美国旧金山的 AI 原生出版社，专注于出版科技创新主题的图书与图谱；从编辑、设计到制作、营销与运营，人工智能支持公司工作的每一个环节。', 'Javvin 公司 — 关于'),
         'for-authors': ('for-authors.html', '在 Javvin 出版 — 作者投稿 | Javvin 公司',
@@ -375,6 +381,7 @@ KEYWORDS = {
         'books': 'Javvin Company books, Jielin Dong books, history of innovation books, ebooks',
         'posters': 'Network Protocols Map, network protocols poster, TCP/IP poster, OSI model, digital poster PDF, printable wall chart, Javvin',
         'articles': 'Xue Lan, Yan Yan, Sun Xiaochun, foreword, book review, The Power of Desire, history of innovation, Javvin Company',
+        'serial': 'The Power of Desire serialization, read The Power of Desire online, The Power of Desire free to read, Jielin Dong, history of innovation, book serialization, free book online',
         'about': 'Javvin Company, AI-native publisher, independent publisher, San Francisco publisher, Jielin Dong, books on technological innovation',
         'for-authors': 'For Authors, publish with Javvin, book proposal, submit a book proposal, Javvin Company, nonfiction publisher, technology books, professional handbooks, science books, innovation books, biographies, memoirs, author submissions, manuscript proposal, independent publisher, San Francisco publisher',
         'affiliates': 'Javvin affiliate, affiliate program, earn commission, recommend books, Network Protocols Map, digital poster, ebook affiliate, Javvin Company',
@@ -384,6 +391,7 @@ KEYWORDS = {
         'books': 'Javvin公司图书, 董洁林图书, 科技创新史, 电子书',
         'posters': '网络协议全景图, 网络协议图, TCP/IP, OSI模型, 电子图谱, 知识图谱, PDF下载打印, Javvin',
         'articles': '薛澜, 阎焱, 孙小淳, 推荐序, 书评, 欲望的力量, 人类科技创新简史, 科技创新史',
+        'serial': '欲望的力量连载, 欲望的力量在线阅读, 欲望的力量免费读, 董洁林, 科技创新史, 连载总索引, 免费读',
         'about': 'Javvin公司, AI原生出版社, 独立出版社, 旧金山出版社, 董洁林, 科技创新图书',
         'for-authors': '作者投稿, 在 Javvin 出版, 图书提案, 提交图书提案, Javvin公司, 非虚构出版, 科技图书, 专业手册, 科学图书, 创新图书, 传记, 回忆录, 手稿提案, 独立出版社, 旧金山出版社',
         'affiliates': 'Javvin分销, 分销伙伴, 推广佣金, 推荐图书, 网络协议全景图, 电子图谱, 电子书分销, Javvin公司',
@@ -438,10 +446,121 @@ ARTICLES = {
     ],
 }
 
+# --- The Power of Desire serialization (2026-11-22) ---
+# One data source for the serial index: serial-units.json lists every
+# installment in book order (142 rows: 2 forewords + preface + 5 opening
+# sections + 6 part intros + 120 chapter sections + 5 conclusion sections +
+# 3 appendix sections; long sections split into two installments when
+# published, so the finished serial is about 160 pairs). Published rows
+# carry 'href'; the rest are plain titles until their article goes live.
+# The same data renders both the standalone hub page
+# (serial-power-of-desire.html, the SEO landing page) and the serial
+# section on the book detail page.
+SERIAL_UNITS = _json.loads((ROOT / 'serial-units.json').read_text())
+
+SERIAL_JSONLD = {
+    'en': {'@context': 'https://schema.org', '@type': 'CollectionPage',
+           'name': 'The Power of Desire — Serialization Index',
+           'inLanguage': 'en',
+           'about': {'@type': 'Book',
+                     'name': 'The Power of Desire: A Brief History of Scientific & Technological Innovation',
+                     'author': {'@type': 'Person', 'name': 'Jielin Dong'}}},
+    'zh': {'@context': 'https://schema.org', '@type': 'CollectionPage',
+           'name': '《欲望的力量》连载总索引',
+           'inLanguage': 'zh',
+           'about': {'@type': 'Book',
+                     'name': '欲望的力量：人类科技创新简史',
+                     'author': {'@type': 'Person', 'name': '董洁林'}}},
+}
+
+def serial_unit_list(lang, units):
+    zh = (lang == 'zh')
+    rows = []
+    for u in units:
+        title = u['zh'] if zh else u['en']
+        if u['published']:
+            status = '已发布' if zh else 'Published'
+            rows.append('<div class="toc-row"><span><a href="%s">%s</a></span><span>%s</span></div>'
+                        % (u['href'], title, status))
+        else:
+            status = '待发布' if zh else 'Coming soon'
+            rows.append('<div class="toc-row"><span>%s</span><span>%s</span></div>' % (title, status))
+    return '\n'.join(rows)
+
+def serial_index_html(lang):
+    zh = (lang == 'zh')
+    parts = []
+    for u in SERIAL_UNITS:
+        if not parts or parts[-1]['id'] != u['part']:
+            parts.append({'id': u['part'], 'en': u['part_en'], 'zh': u['part_zh'],
+                          'chapters': [], 'units': []})
+        p = parts[-1]
+        if u['chapter'] is None:
+            p['units'].append(u)
+        else:
+            if not p['chapters'] or p['chapters'][-1]['id'] != u['chapter']:
+                p['chapters'].append({'id': u['chapter'], 'en': u['chapter_en'],
+                                      'zh': u['chapter_zh'], 'units': []})
+            p['chapters'][-1]['units'].append(u)
+    out = []
+    for p in parts:
+        out.append('<div class="serial-part" id="serial-%s">\n<h3>%s</h3>'
+                   % (p['id'], p['zh'] if zh else p['en']))
+        out.append(serial_unit_list(lang, p['units']))
+        for c in p['chapters']:
+            out.append('<h4 id="serial-%s">%s</h4>' % (c['id'], c['zh'] if zh else c['en']))
+            out.append(serial_unit_list(lang, c['units']))
+        out.append('</div>')
+    return '\n'.join(out)
+
+def serial_hub_page(lang):
+    zh = (lang == 'zh')
+    title = '《欲望的力量》连载总索引' if zh else 'The Power of Desire — Serialization Index'
+    intro = ('《欲望的力量：人类科技创新简史》（第二版）全文连载，一篇一篇免费读。已发布的点开即读，其余陆续发布，每天中、英文各一篇。' if zh
+             else 'The Power of Desire: A Brief History of Scientific & Technological Innovation, serialized section by section, free to read. Published installments are linked; the rest follow daily, one in English and one in Chinese.')
+    return ('<section class="block" id="serial-hub">\n<h1>%s</h1>\n<p>%s</p>\n%s\n</section>\n%s'
+            % (title, intro, serial_index_html(lang), bottom_buy(lang)))
+
+def serial_section(lang):
+    zh = (lang == 'zh')
+    title = '连载：全书免费读' if zh else 'Read the Book Online — Free Serialization'
+    intro = ('全书一篇一篇连载，免费读。已发布的点开即读，其余每天中、英文各一篇陆续发布。' if zh
+             else 'The whole book, serialized section by section and free to read. Published installments are linked; new ones appear daily, one in English and one in Chinese.')
+    return ('<section class="block" id="serial">\n<details class="foreword" open>\n<summary><span>%s</span></summary>\n<div>\n<p>%s</p>\n%s\n</div>\n</details>\n</section>'
+            % (title, intro, serial_index_html(lang)))
+
+def toc_href(lang, t):
+    if lang == 'en':
+        if t.startswith('Preface'): return 'articles-preface.html'
+        if t.startswith('Foreword One'): return 'articles-xue-lan.html'
+        if t.startswith('Foreword Two'): return 'articles-sun-xiaochun.html'
+        m = re.match(r'Chapter (\d+)', t)
+        if m: return '#serial-ch%02d' % int(m.group(1))
+        if t.startswith('VIII Conclusion'): return '#serial-conclusion'
+        if t.startswith('Appendix'): return '#serial-appendix'
+        m = re.match(r'^([IV]+) ', t)
+        if m:
+            return '#serial-part%d' % {'I': 1, 'II': 2, 'III': 3, 'IV': 4, 'V': 5, 'VI': 6, 'VII': 7}[m.group(1)]
+        return None
+    if t.startswith('第二版前言'): return 'articles-preface.html'
+    if t.startswith('推荐序一'): return 'articles-xue-lan.html'
+    if t.startswith('推荐序二'): return 'articles-sun-xiaochun.html'
+    m = re.match(r'第(\d+) 章', t)
+    if m: return '#serial-ch%02d' % int(m.group(1))
+    if t.startswith('VIII 结语'): return '#serial-conclusion'
+    if t.startswith('附录'): return '#serial-appendix'
+    m = re.match(r'^([IV]+) ', t)
+    if m:
+        return '#serial-part%d' % {'I': 1, 'II': 2, 'III': 3, 'IV': 4, 'V': 5, 'VI': 6, 'VII': 7}[m.group(1)]
+    return None
+
 def articles_index(lang):
-    h2 = '文章' if lang == 'zh' else 'Articles'
-    return ('<section class="block" id="articles">\n<h2>%s</h2>\n<div class="art-list">\n%s\n</div>\n</section>'
-            % (h2, art_cards(lang)))
+    zh = (lang == 'zh')
+    h2 = '文章' if zh else 'Articles'
+    hub = ('<p>全书连载总索引：<a href="serial-power-of-desire.html">《欲望的力量》连载总索引 →</a></p>' if zh
+           else '<p>Read the whole book online: <a href="serial-power-of-desire.html">The Power of Desire — Serialization Index →</a></p>')
+    return ('<section class="block" id="articles">\n<h2>%s</h2>\n%s\n<div class="art-list">\n%s\n</div>\n</section>'
+            % (h2, hub, art_cards(lang)))
 
 def article_jsonld(lang, art, fname):
     slug, title, _b, guide, author, _k = art
@@ -755,6 +874,7 @@ def build(lang, out_dir):
         'books': books_index(lang) + footer(home),
         'posters': section(get_page('posters.html', zh), 'posters') + '\n' + footer(home),
         'articles': articles_index(lang) + '\n' + footer(home),
+        'serial': serial_hub_page(lang) + '\n' + footer(home),
         'about': section(get_page('about.html', zh), 'about') + '\n' + license_block(lang) + '\n' + returns + '\n' + footer(home),
         'for-authors': for_authors_body(lang) + '\n' + footer(home),
         'affiliates': affiliates_body(lang) + '\n' + footer(home),
@@ -762,7 +882,8 @@ def build(lang, out_dir):
     if lang == 'en':
         bodies = {k: v.replace('"assets/', '"../assets/') for k, v in bodies.items()}
     for name, (fname, title, desc, ogt) in META[lang].items():
-        hd = head(lang, name, fname, title, desc, ogt, keywords=KEYWORDS[lang][name])
+        jld = SERIAL_JSONLD[lang] if name == 'serial' else None
+        hd = head(lang, name, fname, title, desc, ogt, keywords=KEYWORDS[lang][name], jsonld_override=jld)
         body_attr = ' class="en"' if lang == 'en' else ''
         html = ('<!DOCTYPE html>\n<html lang="%s">\n%s\n<body%s>\n%s\n%s\n</body>\n</html>\n'
                 % ('en' if lang == 'en' else 'zh-CN', hd, body_attr,
@@ -807,7 +928,7 @@ def build(lang, out_dir):
             '<div class="author-wrap"><figure class="author-photo"><img loading="lazy" src="../assets/author-jielin-dong.jpg" alt="%s"/></figure><div class="about-text">' % author_alt, 1)
         _head, _sep, _tail = bio_html.rpartition('</div>')
         bio_html = _head + '</div></div>' + _tail
-        body = frag + toc_block(lang) + praise_block(lang) + bio_html + bottom_buy(lang) + back + footer(home)
+        body = frag + toc_block(lang) + serial_section(lang) + praise_block(lang) + bio_html + bottom_buy(lang) + back + footer(home)
         if lang == 'en':
             body = body.replace('"assets/', '"../assets/')
         hd = head(lang, 'book', fname, dtitle, desc, ogt, keywords=kw,
