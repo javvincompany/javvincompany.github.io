@@ -350,7 +350,7 @@ META = {
         'articles': ('articles.html', 'Articles & Forewords — Xue Lan, Yan Yan, Sun Xiaochun | Javvin Company',
                      'Forewords, the preface, and essays on The Power of Desire: A Brief History of Scientific & Technological Innovation — by Xue Lan (Tsinghua), Yan Yan (SAIF Partners), and Sun Xiaochun (UCAS).', 'Articles & Forewords | Javvin Company'),
         'serial': ('serial-power-of-desire.html', 'The Power of Desire — Read the Book Online | Javvin Company',
-                   'Read The Power of Desire online, section by section: the complete serialization index — preface, opening, all 24 chapters, conclusion, and appendix, free to read.', 'The Power of Desire — Serialization Index | Javvin Company'),
+                   'Read The Power of Desire online, section by section: the complete serialization index — preface, opening, all 24 chapters, conclusion, and appendix.', 'The Power of Desire — Serialization Index | Javvin Company'),
         'about': ('about.html', 'About Javvin Company — AI-Native Publisher in San Francisco',
                   'Javvin Company is an AI-native publisher based in San Francisco, specializing in books and posters on technological innovation. AI supports every stage of its work.', 'Javvin Company — About'),
         'for-authors': ('for-authors.html', 'Publish with Javvin — For Authors | Javvin Company',
@@ -369,7 +369,7 @@ META = {
         'articles': ('articles.html', '文章与推荐序 — 薛澜、阎焱、孙小淳 | Javvin 公司',
                      '《欲望的力量：人类科技创新简史》第二版前言，以及薛澜、阎焱、孙小淳为本书撰写的三篇推荐序全文。', 'Javvin 公司 — 文章与推荐序'),
         'serial': ('serial-power-of-desire.html', '《欲望的力量》连载总索引 | Javvin 公司',
-                   '《欲望的力量：人类科技创新简史》全书连载总索引：前言、开篇、二十四章、结语、附录，一篇一篇免费读。', '《欲望的力量》连载总索引 | Javvin 公司'),
+                   '《欲望的力量：人类科技创新简史》全书连载总索引：前言、开篇、二十四章、结语、附录。', '《欲望的力量》连载总索引 | Javvin 公司'),
         'about': ('about.html', '关于 Javvin 公司 — AI 原生出版社（旧金山）',
                   'Javvin 公司是一家位于美国旧金山的 AI 原生出版社，专注于出版科技创新主题的图书与图谱；从编辑、设计到制作、营销与运营，人工智能支持公司工作的每一个环节。', 'Javvin 公司 — 关于'),
         'for-authors': ('for-authors.html', '在 Javvin 出版 — 作者投稿 | Javvin 公司',
@@ -525,16 +525,16 @@ def serial_index_html(lang):
 def serial_hub_page(lang):
     zh = (lang == 'zh')
     title = '《欲望的力量》连载总索引' if zh else 'The Power of Desire — Serialization Index'
-    intro = ('《欲望的力量：人类科技创新简史》（第二版）全文连载，一篇一篇免费读。已发布的点开即读，其余陆续发布，每天中、英文各一篇。' if zh
-             else 'The Power of Desire: A Brief History of Scientific & Technological Innovation, serialized section by section, free to read. Published installments are linked; the rest follow daily, one in English and one in Chinese.')
+    intro = ('《欲望的力量：人类科技创新简史》（第二版）全文连载。已发布的点开即读，其余陆续发布，每天中、英文各一篇。' if zh
+             else 'The Power of Desire: A Brief History of Scientific & Technological Innovation, serialized section by section. Published installments are linked; the rest follow daily, one in English and one in Chinese.')
     return ('<section class="block" id="serial-hub">\n<h1>%s</h1>\n<p>%s</p>\n%s\n</section>\n%s'
             % (title, intro, serial_index_html(lang), bottom_buy(lang)))
 
 def serial_section(lang):
     zh = (lang == 'zh')
-    title = '连载：全书免费读' if zh else 'Read the Book Online — Free Serialization'
-    intro = ('全书一篇一篇连载，免费读。已发布的点开即读，其余每天中、英文各一篇陆续发布。' if zh
-             else 'The whole book, serialized section by section and free to read. Published installments are linked; new ones appear daily, one in English and one in Chinese.')
+    title = '连载' if zh else 'Read the Book Online'
+    intro = ('全书一篇一篇连载。已发布的点开即读，其余每天中、英文各一篇陆续发布。' if zh
+             else 'The whole book, serialized section by section. Published installments are linked; new ones appear daily, one in English and one in Chinese.')
     return ('<section class="block" id="serial">\n<details class="foreword" open>\n<summary><span>%s</span></summary>\n<div>\n<p>%s</p>\n%s\n</div>\n</details>\n</section>'
             % (title, intro, serial_index_html(lang)))
 
