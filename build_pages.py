@@ -450,6 +450,10 @@ ARTICLES = {
          'Jielin Dong',
          'Population size and technological innovation: why more people and researchers did not raise per-capita breakthroughs since the 1920s — from The Power of Desire.',
          'Jielin Dong', 'population size and technological innovation, The Power of Desire, Jielin Dong, history of innovation, major firsts, population and innovation'),
+        ('power-of-desire-population-size-and-scientific-and-technological-innovation-part-2', 'Structure of Major Innovation',
+         'Jielin Dong',
+         'Structure of major innovation: major firsts atop a pyramid of incremental improvements; breakthroughs open space for later creation — from The Power of Desire.',
+         'Jielin Dong', 'structure of major innovation, The Power of Desire, Jielin Dong, history of innovation, major firsts, incremental innovation, pyramid of innovation'),
     ],
     'zh': [
         ('preface', '第二版前言',
@@ -490,8 +494,12 @@ ARTICLES = {
          '董洁林', '三次科技革命, 欲望的力量, 董洁林, 科技创新史, 生存革命, 交流革命, 效率革命'),
         ('power-of-desire-population-size-and-scientific-and-technological-innovation', '人口与科技创新：人口规模与科技创新',
          '董洁林',
-         '人口与科技创新：人口越多，重大首创就越多吗？马尔萨斯、熊彼特、索罗、罗默从不同角度讨论人口、知识与增长；为什么人均重大首创自二十世纪二十年代后下降？重大创新与微创新共同构成科技发展的结构，顶端是重大首创，下面是大量改进与应用；重大突破先于人口变化，打开新的生存与发展空间，人口和经济随后扩展——《欲望的力量》开篇。',
+         '人口与科技创新：人口越多，重大首创就越多吗？马尔萨斯、熊彼特、索罗、罗默从不同角度讨论人口、知识与增长；图I-8显示人均年均重大首创自二十世纪二十年代后达到高点，此后明显下降；图I-9显示人口超过约20亿后，两者转为负相关；科研投入增加而突破相对减少，促使我们重新思考创新的投入方式——《欲望的力量》开篇。',
          '董洁林', '人口与科技创新, 欲望的力量, 董洁林, 科技创新史, 重大首创, 人口规模'),
+        ('power-of-desire-population-size-and-scientific-and-technological-innovation-part-2', '重大创新结构：人口规模与科技创新（续）',
+         '董洁林',
+         '重大创新结构：重大创新与微创新共同构成科技发展的结构，顶端是数量较少的重大首创，下面是大量改进与应用；重大成就往往具有很长的生命力，并在周围催生密集的后续创新；从创造过程看，有理论、想象出发与从用户、实际问题出发两种方式；重大突破先于人口变化，打开新的生存与发展空间，人口和经济随后扩展——《欲望的力量》开篇。',
+         '董洁林', '重大创新结构, 欲望的力量, 董洁林, 科技创新史, 重大首创, 微创新, 创新金字塔'),
     ],
 }
 
