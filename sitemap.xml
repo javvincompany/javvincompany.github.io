@@ -217,6 +217,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://javvin.ai/en/articles-power-of-desire-part-2-introduction.html</loc>
+    <lastmod>2026-11-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://javvin.ai/zh/articles-power-of-desire-population-size-and-scientific-and-technological-innovation.html</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -225,6 +231,12 @@
   <url>
     <loc>https://javvin.ai/zh/articles-power-of-desire-population-size-and-scientific-and-technological-innovation-part-2.html</loc>
     <lastmod>2026-11-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://javvin.ai/zh/articles-power-of-desire-part-2-introduction.html</loc>
+    <lastmod>2026-11-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

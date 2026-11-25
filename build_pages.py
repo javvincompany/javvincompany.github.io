@@ -454,6 +454,10 @@ ARTICLES = {
          'Jielin Dong',
          'Structure of major innovation: major firsts atop a pyramid of incremental improvements; breakthroughs open space for later creation — from The Power of Desire.',
          'Jielin Dong', 'structure of major innovation, The Power of Desire, Jielin Dong, history of innovation, major firsts, incremental innovation, pyramid of innovation'),
+        ('power-of-desire-part-2-introduction', 'History of Subsistence Innovation: Introduction',
+         'Jielin Dong',
+         'History of subsistence innovation: how humans changed how they obtain food and stay warm — leaving Africa, farming, cooking, and textiles — The Power of Desire.',
+         'Jielin Dong', 'history of subsistence innovation, The Power of Desire, Jielin Dong, history of innovation, subsistence, agriculture, food and textiles'),
     ],
     'zh': [
         ('preface', '第二版前言',
@@ -500,6 +504,10 @@ ARTICLES = {
          '董洁林',
          '重大创新结构：重大创新与微创新共同构成科技发展的结构，顶端是数量较少的重大首创，下面是大量改进与应用；重大成就往往具有很长的生命力，并在周围催生密集的后续创新；从创造过程看，有理论、想象出发与从用户、实际问题出发两种方式；重大突破先于人口变化，打开新的生存与发展空间，人口和经济随后扩展——《欲望的力量》开篇。',
          '董洁林', '重大创新结构, 欲望的力量, 董洁林, 科技创新史, 重大首创, 微创新, 创新金字塔'),
+        ('power-of-desire-part-2-introduction', '生存温饱创新：必需篇导言',
+         '董洁林',
+         '生存温饱创新：人类怎样改变获取食物、抵御寒冷的方式？从走出非洲、开垦土地，到烹调食物、纺织衣物，生存与温饱技术扩大了可利用的资源，提高了土地承载人口的能力；约四成生存温饱类重大成就出现于公元前5000年及更早时期，耕作、灌溉与食物加工技术随后数千年继续积累，至公元之初已占约74%——《欲望的力量》第二编导言。',
+         '董洁林', '生存温饱创新, 欲望的力量, 董洁林, 科技创新史, 生存与温饱, 农业, 食物与纺织'),
     ],
 }
 
