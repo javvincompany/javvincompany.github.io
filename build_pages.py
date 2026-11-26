@@ -121,6 +121,19 @@ if '.editions' not in EXTRA_CSS:
 if '.products-box' not in EXTRA_CSS:
     EXTRA_CSS = EXTRA_CSS.replace('</style>',
         '  .article-deck { font-size: 1.12rem; font-style: italic; line-height: 1.7; margin: 0 0 0.4rem; } .article-page .byline { margin: 0 0 1.6rem; } .fig-caption { font-weight: bold; text-align: center; margin: 1.8rem 0 0.6rem; line-height: 1.6; } .fig-note { font-size: 0.92rem; color: #5c5c5c; line-height: 1.7; margin: 0.4rem 0 1.2rem; } .pub-note { font-size: 0.92rem; color: #5c5c5c; margin-top: 2rem; } .article-fig { margin: 1.2rem 0; } .article-fig img { width: 100%; display: block; border-radius: 6px; } .products-box { position: sticky; top: 7rem; float: left; width: 192px; margin-left: 14px; background: #fdfbf7; border: 1px solid #e2dacc; border-radius: 10px; box-shadow: 0 10px 30px rgba(16,23,34,0.16); padding: 0.9rem; z-index: 20; display: none; } .products-box h3 { font-size: 0.95rem; letter-spacing: 0.06em; margin: 0 0 0.5rem; text-align: center; } .products-box a { display: flex; gap: 0.6rem; align-items: flex-start; text-decoration: none; color: var(--ink); padding: 0.55rem 0; border-top: 1px solid #eee6d8; } .products-box a:first-of-type { border-top: none; } .products-box img { width: 52px; flex: 0 0 52px; border-radius: 4px; display: block; } .pb-title { font-size: 0.88rem; line-height: 1.45; display: block; font-weight: bold; } .pb-meta { font-size: 0.78rem; color: #6b6b6b; display: block; line-height: 1.45; } @media (min-width: 1280px) { .products-box { display: block; } } </style>')
+if '@media (max-width: 1279px)' not in EXTRA_CSS:
+    # narrow screens: the products box becomes a fixed bottom bar so the
+    # ad is always visible, not only on wide screens (2026-11-26).
+    EXTRA_CSS = EXTRA_CSS.replace('</style>',
+        '  @media (max-width: 1279px) {\n'
+        '    .products-box { display: flex; position: fixed; left: 0; right: 0; bottom: 0; top: auto; float: none; width: auto; margin: 0; padding: 0.55rem 0.75rem; border-radius: 0; border-left: none; border-right: none; border-bottom: none; box-shadow: 0 -6px 20px rgba(16,23,34,0.15); z-index: 30; align-items: stretch; gap: 0.75rem; }\n'
+        '    .products-box h3 { display: none; }\n'
+        '    .products-box a { flex: 1 1 0; min-width: 0; border-top: none; padding: 0; align-items: center; gap: 0.5rem; }\n'
+        '    .products-box img { width: 36px; flex-basis: 36px; }\n'
+        '    .products-box .pb-title { font-size: 0.8rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }\n'
+        '    .products-box .pb-meta { font-size: 0.72rem; }\n'
+        '    body:has(.products-box) { padding-bottom: 84px; }\n'
+        '  }\n</style>')
 if '.book-price' not in EXTRA_CSS:
     EXTRA_CSS = EXTRA_CSS.replace('</style>',
         '  .book-price { font-size: 1.2rem; margin: 0.6rem 0 0.4rem; }\n'
