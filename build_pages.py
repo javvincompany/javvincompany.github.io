@@ -406,6 +406,10 @@ KEYWORDS = {
 # slug, page title (h1), byline, one-sentence guide, author short name, keywords
 ARTICLES = {
     'en': [
+        ('tsung-dao-lee-at-100', 'Tsung-Dao Lee at 100: In Pursuit of Science, Dancing Across Boundaries',
+         'Jielin Dong',
+         'On the centennial of Tsung-Dao Lee\'s birth, his CUSPEA student remembers a physicist who danced across boundaries — from parity nonconservation to the Beijing Electron-Positron Collider and the Internet in China.',
+         'Jielin Dong', 'Tsung-Dao Lee, T. D. Lee, Li Zhengdao, Lee centennial, CUSPEA, parity nonconservation, Lee-Yang theorem, Lee model, Beijing Electron-Positron Collider, RHIC, Jielin Dong, history of physics'),
         ('preface', 'Preface to the English Edition',
          'Jielin Dong',
          'Preface to the first English edition of The Power of Desire: why humans innovate, how innovation changes life, and what the second edition adds.',
@@ -468,6 +472,10 @@ ARTICLES = {
          'Jielin Dong', 'Neanderthals and Homo sapiens, The Power of Desire, Jielin Dong, history of innovation, Neanderthals, Denisovans, early human technology, composite tools'),
     ],
     'zh': [
+        ('tsung-dao-lee-at-100', '李政道百年：求索科学，跨域起舞',
+         '董洁林',
+         '李政道诞辰百年之际，追忆这位跨域起舞的物理学家：从宇称不守恒到北京正负电子对撞机，再到互联网进入中国。',
+         '董洁林', '李政道, 李政道百年, CUSPEA, 宇称不守恒, 李杨定理, 李模型, 北京正负电子对撞机, 董洁林, 物理学史'),
         ('preface', '第二版前言',
          '董洁林',
          '《欲望的力量：人类科技创新简史》第二版前言：人类为什么创新，创新怎样改变生活，第二版修订了什么。',
@@ -675,10 +683,12 @@ def article_jsonld(lang, art, fname):
             'mainEntityOfPage': BASE + lang + '/' + fname,
             'about': ({'@type': 'Thing', 'name': ('中美AI竞争' if lang == 'zh' else 'US-China AI competition')}
                       if slug == 'us-china-ai-battle' else
-                      {'@type': 'Book',
-                       'name': ('Network Protocols Handbook' if slug == 'handbook-preface' else
-                                ('欲望的力量：人类科技创新简史' if lang == 'zh'
-                                 else 'The Power of Desire: A Brief History of Scientific & Technological Innovation'))})}
+                      ({'@type': 'Person', 'name': ('李政道' if lang == 'zh' else 'Tsung-Dao Lee')}
+                       if slug == 'tsung-dao-lee-at-100' else
+                       {'@type': 'Book',
+                        'name': ('Network Protocols Handbook' if slug == 'handbook-preface' else
+                                 ('欲望的力量：人类科技创新简史' if lang == 'zh'
+                                  else 'The Power of Desire: A Brief History of Scientific & Technological Innovation'))}))}
 
 
 def art_cards(lang):
