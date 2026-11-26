@@ -139,8 +139,21 @@
   "slug": "homo-sapiens-in-a-changing-african-environment",
   "en": "Homo sapiens in a Changing African Environment",
   "zh": "非洲的智人与变化的环境",
-  "published": false,
-  "href": null
+  "published": true,
+  "href": "articles-power-of-desire-homo-sapiens-in-a-changing-african-environment.html"
+ },
+ {
+  "part": "part2",
+  "part_en": "II Necessities: Subsistence",
+  "part_zh": "II 必需篇 生存与温饱",
+  "chapter": "ch01",
+  "chapter_en": "Chapter 1 Makers Go Global",
+  "chapter_zh": "第1 章 走向全球的创客",
+  "slug": "homo-sapiens-in-a-changing-african-environment-part-2",
+  "en": "Homo sapiens in a Changing African Environment (continued)",
+  "zh": "非洲的智人与变化的环境（续）",
+  "published": true,
+  "href": "articles-power-of-desire-homo-sapiens-in-a-changing-african-environment-part-2.html"
  },
  {
   "part": "part2",
